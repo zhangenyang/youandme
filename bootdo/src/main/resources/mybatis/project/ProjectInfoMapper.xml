@@ -1,0 +1,1693 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bootdo.project.dao.ProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bootdo.project.model.ProjectInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_status" property="projectStatus" jdbcType="VARCHAR" />
+    <result column="project_year" property="projectYear" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="customer_unit" property="customerUnit" jdbcType="VARCHAR" />
+    <result column="customer_contactor_ids" property="customerContactorIds" jdbcType="VARCHAR" />
+    <result column="follower_unit" property="followerUnit" jdbcType="VARCHAR" />
+    <result column="follower_ids" property="followerIds" jdbcType="VARCHAR" />
+    <result column="project_participate_info" property="projectParticipateInfo" jdbcType="VARCHAR" />
+    <result column="solution_file_path" property="solutionFilePath" jdbcType="VARCHAR" />
+    <result column="project_budget" property="projectBudget" jdbcType="DECIMAL" />
+    <result column="project_code" property="projectCode" jdbcType="VARCHAR" />
+    <result column="project_notice_type" property="projectNoticeType" jdbcType="BIT" />
+    <result column="regi_date" property="regiDate" jdbcType="TIMESTAMP" />
+    <result column="regi_place" property="regiPlace" jdbcType="VARCHAR" />
+    <result column="regi_contactor_ids" property="regiContactorIds" jdbcType="VARCHAR" />
+    <result column="regi_req" property="regiReq" jdbcType="VARCHAR" />
+    <result column="pur_tender_ids" property="purTenderIds" jdbcType="VARCHAR" />
+    <result column="pur_tender_date" property="purTenderDate" jdbcType="TIMESTAMP" />
+    <result column="pur_tender_cost" property="purTenderCost" jdbcType="DECIMAL" />
+    <result column="pur_tender_travel_expense" property="purTenderTravelExpense" jdbcType="DECIMAL" />
+    <result column="tender_file_path" property="tenderFilePath" jdbcType="VARCHAR" />
+    <result column="config_file_path" property="configFilePath" jdbcType="VARCHAR" />
+    <result column="qualification_file_path" property="qualificationFilePath" jdbcType="VARCHAR" />
+    <result column="business_technology_assessment_file_path" property="businessTechnologyAssessmentFilePath" jdbcType="VARCHAR" />
+    <result column="survey_place" property="surveyPlace" jdbcType="VARCHAR" />
+    <result column="survey_date" property="surveyDate" jdbcType="TIMESTAMP" />
+    <result column="survey_unit_contactor_ids" property="surveyUnitContactorIds" jdbcType="VARCHAR" />
+    <result column="survey_unit_leader_ids" property="surveyUnitLeaderIds" jdbcType="VARCHAR" />
+    <result column="survey_has_sample" property="surveyHasSample" jdbcType="BIT" />
+    <result column="survey_sample_detail" property="surveySampleDetail" jdbcType="VARCHAR" />
+    <result column="survey_test_sample" property="surveyTestSample" jdbcType="BIT" />
+    <result column="survey_test_detail" property="surveyTestDetail" jdbcType="VARCHAR" />
+    <result column="survey_travel_expense" property="surveyTravelExpense" jdbcType="DECIMAL" />
+    <result column="survey_sample_transfor_expense" property="surveySampleTransforExpense" jdbcType="DECIMAL" />
+    <result column="tender_price_file_contactor_ids" property="tenderPriceFileContactorIds" jdbcType="VARCHAR" />
+    <result column="tender_book_file_contactor_ids" property="tenderBookFileContactorIds" jdbcType="VARCHAR" />
+    <result column="prove_file_contactor_ids" property="proveFileContactorIds" jdbcType="VARCHAR" />
+    <result column="print_tender_cost" property="printTenderCost" jdbcType="DECIMAL" />
+    <result column="tender_car_cost" property="tenderCarCost" jdbcType="DECIMAL" />
+    <result column="submit_tender_file_path" property="submitTenderFilePath" jdbcType="VARCHAR" />
+    <result column="prove_file_path" property="proveFilePath" jdbcType="VARCHAR" />
+    <result column="price_file_path" property="priceFilePath" jdbcType="VARCHAR" />
+    <result column="start_tender_place" property="startTenderPlace" jdbcType="VARCHAR" />
+    <result column="start_tender_time" property="startTenderTime" jdbcType="TIMESTAMP" />
+    <result column="start_tender_has_sample" property="startTenderHasSample" jdbcType="BIT" />
+    <result column="start_tender_sample_detail" property="startTenderSampleDetail" jdbcType="VARCHAR" />
+    <result column="start_tender_test_sample" property="startTenderTestSample" jdbcType="BIT" />
+    <result column="start_tender_test_detail" property="startTenderTestDetail" jdbcType="VARCHAR" />
+    <result column="start_tender_leader_ids" property="startTenderLeaderIds" jdbcType="VARCHAR" />
+    <result column="start_tender_travel_expense" property="startTenderTravelExpense" jdbcType="DECIMAL" />
+    <result column="start_tender_sample_transfor_expense" property="startTenderSampleTransforExpense" jdbcType="DECIMAL" />
+    <result column="start_tender_total_expense" property="startTenderTotalExpense" jdbcType="DECIMAL" />
+    <result column="tender_people_name" property="tenderPeopleName" jdbcType="VARCHAR" />
+    <result column="tender_people_phone" property="tenderPeoplePhone" jdbcType="VARCHAR" />
+    <result column="tender_people_train_cost" property="tenderPeopleTrainCost" jdbcType="DECIMAL" />
+    <result column="tender_people_flight_cost" property="tenderPeopleFlightCost" jdbcType="DECIMAL" />
+    <result column="tender_people_stay_cost" property="tenderPeopleStayCost" jdbcType="DECIMAL" />
+    <result column="tender_people_supply_cost" property="tenderPeopleSupplyCost" jdbcType="DECIMAL" />
+    <result column="tender_people_taxi_cost" property="tenderPeopleTaxiCost" jdbcType="DECIMAL" />
+    <result column="tender_people_other_cost" property="tenderPeopleOtherCost" jdbcType="DECIMAL" />
+    <result column="tender_people_file_transfor_cost" property="tenderPeopleFileTransforCost" jdbcType="DECIMAL" />
+    <result column="tender_people_total_cost" property="tenderPeopleTotalCost" jdbcType="DECIMAL" />
+    <result column="tender_pay_price" property="tenderPayPrice" jdbcType="DECIMAL" />
+    <result column="tender_win" property="tenderWin" jdbcType="BIT" />
+    <result column="tender_win_price" property="tenderWinPrice" jdbcType="DECIMAL" />
+    <result column="tender_service_rate" property="tenderServiceRate" jdbcType="DECIMAL" />
+    <result column="tender_interest_rate" property="tenderInterestRate" jdbcType="DECIMAL" />
+    <result column="tender_project_integrate_cost" property="tenderProjectIntegrateCost" jdbcType="DECIMAL" />
+    <result column="incoming_rate" property="incomingRate" jdbcType="DECIMAL" />
+    <result column="incoming_cost" property="incomingCost" jdbcType="DECIMAL" />
+    <result column="project_integrate_total_cost" property="projectIntegrateTotalCost" jdbcType="DECIMAL" />
+    <result column="unit_interest" property="unitInterest" jdbcType="DECIMAL" />
+    <result column="cor_integrate_cost" property="corIntegrateCost" jdbcType="DECIMAL" />
+    <result column="cor_other_cost" property="corOtherCost" jdbcType="DECIMAL" />
+    <result column="cor_total_cost" property="corTotalCost" jdbcType="DECIMAL" />
+    <result column="cor_can_use_cost" property="corCanUseCost" jdbcType="DECIMAL" />
+    <result column="contract_info_ids" property="contractInfoIds" jdbcType="VARCHAR" />
+    <result column="warranty_period_standard" property="warrantyPeriodStandard" jdbcType="VARCHAR" />
+    <result column="tender_warranty_period" property="tenderWarrantyPeriod" jdbcType="VARCHAR" />
+    <result column="warranty_price_standard" property="warrantyPriceStandard" jdbcType="DECIMAL" />
+    <result column="tender_warranty_price" property="tenderWarrantyPrice" jdbcType="DECIMAL" />
+    <result column="can_use_without_warranty_price" property="canUseWithoutWarrantyPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bootdo.project.model.ProjectInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="project_notice_value" property="projectNoticeValue" jdbcType="LONGVARCHAR" />
+    <result column="other" property="other" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, project_status, project_year, project_name, customer_unit, customer_contactor_ids, 
+    follower_unit, follower_ids, project_participate_info, solution_file_path, project_budget, 
+    project_code, project_notice_type, regi_date, regi_place, regi_contactor_ids, regi_req, 
+    pur_tender_ids, pur_tender_date, pur_tender_cost, pur_tender_travel_expense, tender_file_path, 
+    config_file_path, qualification_file_path, business_technology_assessment_file_path, 
+    survey_place, survey_date, survey_unit_contactor_ids, survey_unit_leader_ids, survey_has_sample, 
+    survey_sample_detail, survey_test_sample, survey_test_detail, survey_travel_expense, 
+    survey_sample_transfor_expense, tender_price_file_contactor_ids, tender_book_file_contactor_ids, 
+    prove_file_contactor_ids, print_tender_cost, tender_car_cost, submit_tender_file_path, 
+    prove_file_path, price_file_path, start_tender_place, start_tender_time, start_tender_has_sample, 
+    start_tender_sample_detail, start_tender_test_sample, start_tender_test_detail, start_tender_leader_ids, 
+    start_tender_travel_expense, start_tender_sample_transfor_expense, start_tender_total_expense, 
+    tender_people_name, tender_people_phone, tender_people_train_cost, tender_people_flight_cost, 
+    tender_people_stay_cost, tender_people_supply_cost, tender_people_taxi_cost, tender_people_other_cost, 
+    tender_people_file_transfor_cost, tender_people_total_cost, tender_pay_price, tender_win, 
+    tender_win_price, tender_service_rate, tender_interest_rate, tender_project_integrate_cost, 
+    incoming_rate, incoming_cost, project_integrate_total_cost, unit_interest, cor_integrate_cost, 
+    cor_other_cost, cor_total_cost, cor_can_use_cost, contract_info_ids, warranty_period_standard, 
+    tender_warranty_period, warranty_price_standard, tender_warranty_price, can_use_without_warranty_price
+  </sql>
+  <sql id="Blob_Column_List" >
+    project_notice_value, other
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bootdo.project.model.ProjectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bootdo.project.model.ProjectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from project_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from project_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bootdo.project.model.ProjectInfoExample" >
+    delete from project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+    insert into project_info (id, project_status, project_year, 
+      project_name, customer_unit, customer_contactor_ids, 
+      follower_unit, follower_ids, project_participate_info, 
+      solution_file_path, project_budget, project_code, 
+      project_notice_type, regi_date, regi_place, 
+      regi_contactor_ids, regi_req, pur_tender_ids, 
+      pur_tender_date, pur_tender_cost, pur_tender_travel_expense, 
+      tender_file_path, config_file_path, qualification_file_path, 
+      business_technology_assessment_file_path, survey_place, 
+      survey_date, survey_unit_contactor_ids, survey_unit_leader_ids, 
+      survey_has_sample, survey_sample_detail, survey_test_sample, 
+      survey_test_detail, survey_travel_expense, 
+      survey_sample_transfor_expense, tender_price_file_contactor_ids, 
+      tender_book_file_contactor_ids, prove_file_contactor_ids, 
+      print_tender_cost, tender_car_cost, submit_tender_file_path, 
+      prove_file_path, price_file_path, start_tender_place, 
+      start_tender_time, start_tender_has_sample, start_tender_sample_detail, 
+      start_tender_test_sample, start_tender_test_detail, 
+      start_tender_leader_ids, start_tender_travel_expense, 
+      start_tender_sample_transfor_expense, start_tender_total_expense, 
+      tender_people_name, tender_people_phone, tender_people_train_cost, 
+      tender_people_flight_cost, tender_people_stay_cost, 
+      tender_people_supply_cost, tender_people_taxi_cost, 
+      tender_people_other_cost, tender_people_file_transfor_cost, 
+      tender_people_total_cost, tender_pay_price, 
+      tender_win, tender_win_price, tender_service_rate, 
+      tender_interest_rate, tender_project_integrate_cost, 
+      incoming_rate, incoming_cost, project_integrate_total_cost, 
+      unit_interest, cor_integrate_cost, cor_other_cost, 
+      cor_total_cost, cor_can_use_cost, contract_info_ids, 
+      warranty_period_standard, tender_warranty_period, 
+      warranty_price_standard, tender_warranty_price, 
+      can_use_without_warranty_price, project_notice_value, 
+      other)
+    values (#{id,jdbcType=BIGINT}, #{projectStatus,jdbcType=VARCHAR}, #{projectYear,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerUnit,jdbcType=VARCHAR}, #{customerContactorIds,jdbcType=VARCHAR}, 
+      #{followerUnit,jdbcType=VARCHAR}, #{followerIds,jdbcType=VARCHAR}, #{projectParticipateInfo,jdbcType=VARCHAR}, 
+      #{solutionFilePath,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DECIMAL}, #{projectCode,jdbcType=VARCHAR}, 
+      #{projectNoticeType,jdbcType=BIT}, #{regiDate,jdbcType=TIMESTAMP}, #{regiPlace,jdbcType=VARCHAR}, 
+      #{regiContactorIds,jdbcType=VARCHAR}, #{regiReq,jdbcType=VARCHAR}, #{purTenderIds,jdbcType=VARCHAR}, 
+      #{purTenderDate,jdbcType=TIMESTAMP}, #{purTenderCost,jdbcType=DECIMAL}, #{purTenderTravelExpense,jdbcType=DECIMAL}, 
+      #{tenderFilePath,jdbcType=VARCHAR}, #{configFilePath,jdbcType=VARCHAR}, #{qualificationFilePath,jdbcType=VARCHAR}, 
+      #{businessTechnologyAssessmentFilePath,jdbcType=VARCHAR}, #{surveyPlace,jdbcType=VARCHAR}, 
+      #{surveyDate,jdbcType=TIMESTAMP}, #{surveyUnitContactorIds,jdbcType=VARCHAR}, #{surveyUnitLeaderIds,jdbcType=VARCHAR}, 
+      #{surveyHasSample,jdbcType=BIT}, #{surveySampleDetail,jdbcType=VARCHAR}, #{surveyTestSample,jdbcType=BIT}, 
+      #{surveyTestDetail,jdbcType=VARCHAR}, #{surveyTravelExpense,jdbcType=DECIMAL}, 
+      #{surveySampleTransforExpense,jdbcType=DECIMAL}, #{tenderPriceFileContactorIds,jdbcType=VARCHAR}, 
+      #{tenderBookFileContactorIds,jdbcType=VARCHAR}, #{proveFileContactorIds,jdbcType=VARCHAR}, 
+      #{printTenderCost,jdbcType=DECIMAL}, #{tenderCarCost,jdbcType=DECIMAL}, #{submitTenderFilePath,jdbcType=VARCHAR}, 
+      #{proveFilePath,jdbcType=VARCHAR}, #{priceFilePath,jdbcType=VARCHAR}, #{startTenderPlace,jdbcType=VARCHAR}, 
+      #{startTenderTime,jdbcType=TIMESTAMP}, #{startTenderHasSample,jdbcType=BIT}, #{startTenderSampleDetail,jdbcType=VARCHAR}, 
+      #{startTenderTestSample,jdbcType=BIT}, #{startTenderTestDetail,jdbcType=VARCHAR}, 
+      #{startTenderLeaderIds,jdbcType=VARCHAR}, #{startTenderTravelExpense,jdbcType=DECIMAL}, 
+      #{startTenderSampleTransforExpense,jdbcType=DECIMAL}, #{startTenderTotalExpense,jdbcType=DECIMAL}, 
+      #{tenderPeopleName,jdbcType=VARCHAR}, #{tenderPeoplePhone,jdbcType=VARCHAR}, #{tenderPeopleTrainCost,jdbcType=DECIMAL}, 
+      #{tenderPeopleFlightCost,jdbcType=DECIMAL}, #{tenderPeopleStayCost,jdbcType=DECIMAL}, 
+      #{tenderPeopleSupplyCost,jdbcType=DECIMAL}, #{tenderPeopleTaxiCost,jdbcType=DECIMAL}, 
+      #{tenderPeopleOtherCost,jdbcType=DECIMAL}, #{tenderPeopleFileTransforCost,jdbcType=DECIMAL}, 
+      #{tenderPeopleTotalCost,jdbcType=DECIMAL}, #{tenderPayPrice,jdbcType=DECIMAL}, 
+      #{tenderWin,jdbcType=BIT}, #{tenderWinPrice,jdbcType=DECIMAL}, #{tenderServiceRate,jdbcType=DECIMAL}, 
+      #{tenderInterestRate,jdbcType=DECIMAL}, #{tenderProjectIntegrateCost,jdbcType=DECIMAL}, 
+      #{incomingRate,jdbcType=DECIMAL}, #{incomingCost,jdbcType=DECIMAL}, #{projectIntegrateTotalCost,jdbcType=DECIMAL}, 
+      #{unitInterest,jdbcType=DECIMAL}, #{corIntegrateCost,jdbcType=DECIMAL}, #{corOtherCost,jdbcType=DECIMAL}, 
+      #{corTotalCost,jdbcType=DECIMAL}, #{corCanUseCost,jdbcType=DECIMAL}, #{contractInfoIds,jdbcType=VARCHAR}, 
+      #{warrantyPeriodStandard,jdbcType=VARCHAR}, #{tenderWarrantyPeriod,jdbcType=VARCHAR}, 
+      #{warrantyPriceStandard,jdbcType=DECIMAL}, #{tenderWarrantyPrice,jdbcType=DECIMAL}, 
+      #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL}, #{projectNoticeValue,jdbcType=LONGVARCHAR}, 
+      #{other,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+    insert into project_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectStatus != null" >
+        project_status,
+      </if>
+      <if test="projectYear != null" >
+        project_year,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="customerUnit != null" >
+        customer_unit,
+      </if>
+      <if test="customerContactorIds != null" >
+        customer_contactor_ids,
+      </if>
+      <if test="followerUnit != null" >
+        follower_unit,
+      </if>
+      <if test="followerIds != null" >
+        follower_ids,
+      </if>
+      <if test="projectParticipateInfo != null" >
+        project_participate_info,
+      </if>
+      <if test="solutionFilePath != null" >
+        solution_file_path,
+      </if>
+      <if test="projectBudget != null" >
+        project_budget,
+      </if>
+      <if test="projectCode != null" >
+        project_code,
+      </if>
+      <if test="projectNoticeType != null" >
+        project_notice_type,
+      </if>
+      <if test="regiDate != null" >
+        regi_date,
+      </if>
+      <if test="regiPlace != null" >
+        regi_place,
+      </if>
+      <if test="regiContactorIds != null" >
+        regi_contactor_ids,
+      </if>
+      <if test="regiReq != null" >
+        regi_req,
+      </if>
+      <if test="purTenderIds != null" >
+        pur_tender_ids,
+      </if>
+      <if test="purTenderDate != null" >
+        pur_tender_date,
+      </if>
+      <if test="purTenderCost != null" >
+        pur_tender_cost,
+      </if>
+      <if test="purTenderTravelExpense != null" >
+        pur_tender_travel_expense,
+      </if>
+      <if test="tenderFilePath != null" >
+        tender_file_path,
+      </if>
+      <if test="configFilePath != null" >
+        config_file_path,
+      </if>
+      <if test="qualificationFilePath != null" >
+        qualification_file_path,
+      </if>
+      <if test="businessTechnologyAssessmentFilePath != null" >
+        business_technology_assessment_file_path,
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place,
+      </if>
+      <if test="surveyDate != null" >
+        survey_date,
+      </if>
+      <if test="surveyUnitContactorIds != null" >
+        survey_unit_contactor_ids,
+      </if>
+      <if test="surveyUnitLeaderIds != null" >
+        survey_unit_leader_ids,
+      </if>
+      <if test="surveyHasSample != null" >
+        survey_has_sample,
+      </if>
+      <if test="surveySampleDetail != null" >
+        survey_sample_detail,
+      </if>
+      <if test="surveyTestSample != null" >
+        survey_test_sample,
+      </if>
+      <if test="surveyTestDetail != null" >
+        survey_test_detail,
+      </if>
+      <if test="surveyTravelExpense != null" >
+        survey_travel_expense,
+      </if>
+      <if test="surveySampleTransforExpense != null" >
+        survey_sample_transfor_expense,
+      </if>
+      <if test="tenderPriceFileContactorIds != null" >
+        tender_price_file_contactor_ids,
+      </if>
+      <if test="tenderBookFileContactorIds != null" >
+        tender_book_file_contactor_ids,
+      </if>
+      <if test="proveFileContactorIds != null" >
+        prove_file_contactor_ids,
+      </if>
+      <if test="printTenderCost != null" >
+        print_tender_cost,
+      </if>
+      <if test="tenderCarCost != null" >
+        tender_car_cost,
+      </if>
+      <if test="submitTenderFilePath != null" >
+        submit_tender_file_path,
+      </if>
+      <if test="proveFilePath != null" >
+        prove_file_path,
+      </if>
+      <if test="priceFilePath != null" >
+        price_file_path,
+      </if>
+      <if test="startTenderPlace != null" >
+        start_tender_place,
+      </if>
+      <if test="startTenderTime != null" >
+        start_tender_time,
+      </if>
+      <if test="startTenderHasSample != null" >
+        start_tender_has_sample,
+      </if>
+      <if test="startTenderSampleDetail != null" >
+        start_tender_sample_detail,
+      </if>
+      <if test="startTenderTestSample != null" >
+        start_tender_test_sample,
+      </if>
+      <if test="startTenderTestDetail != null" >
+        start_tender_test_detail,
+      </if>
+      <if test="startTenderLeaderIds != null" >
+        start_tender_leader_ids,
+      </if>
+      <if test="startTenderTravelExpense != null" >
+        start_tender_travel_expense,
+      </if>
+      <if test="startTenderSampleTransforExpense != null" >
+        start_tender_sample_transfor_expense,
+      </if>
+      <if test="startTenderTotalExpense != null" >
+        start_tender_total_expense,
+      </if>
+      <if test="tenderPeopleName != null" >
+        tender_people_name,
+      </if>
+      <if test="tenderPeoplePhone != null" >
+        tender_people_phone,
+      </if>
+      <if test="tenderPeopleTrainCost != null" >
+        tender_people_train_cost,
+      </if>
+      <if test="tenderPeopleFlightCost != null" >
+        tender_people_flight_cost,
+      </if>
+      <if test="tenderPeopleStayCost != null" >
+        tender_people_stay_cost,
+      </if>
+      <if test="tenderPeopleSupplyCost != null" >
+        tender_people_supply_cost,
+      </if>
+      <if test="tenderPeopleTaxiCost != null" >
+        tender_people_taxi_cost,
+      </if>
+      <if test="tenderPeopleOtherCost != null" >
+        tender_people_other_cost,
+      </if>
+      <if test="tenderPeopleFileTransforCost != null" >
+        tender_people_file_transfor_cost,
+      </if>
+      <if test="tenderPeopleTotalCost != null" >
+        tender_people_total_cost,
+      </if>
+      <if test="tenderPayPrice != null" >
+        tender_pay_price,
+      </if>
+      <if test="tenderWin != null" >
+        tender_win,
+      </if>
+      <if test="tenderWinPrice != null" >
+        tender_win_price,
+      </if>
+      <if test="tenderServiceRate != null" >
+        tender_service_rate,
+      </if>
+      <if test="tenderInterestRate != null" >
+        tender_interest_rate,
+      </if>
+      <if test="tenderProjectIntegrateCost != null" >
+        tender_project_integrate_cost,
+      </if>
+      <if test="incomingRate != null" >
+        incoming_rate,
+      </if>
+      <if test="incomingCost != null" >
+        incoming_cost,
+      </if>
+      <if test="projectIntegrateTotalCost != null" >
+        project_integrate_total_cost,
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest,
+      </if>
+      <if test="corIntegrateCost != null" >
+        cor_integrate_cost,
+      </if>
+      <if test="corOtherCost != null" >
+        cor_other_cost,
+      </if>
+      <if test="corTotalCost != null" >
+        cor_total_cost,
+      </if>
+      <if test="corCanUseCost != null" >
+        cor_can_use_cost,
+      </if>
+      <if test="contractInfoIds != null" >
+        contract_info_ids,
+      </if>
+      <if test="warrantyPeriodStandard != null" >
+        warranty_period_standard,
+      </if>
+      <if test="tenderWarrantyPeriod != null" >
+        tender_warranty_period,
+      </if>
+      <if test="warrantyPriceStandard != null" >
+        warranty_price_standard,
+      </if>
+      <if test="tenderWarrantyPrice != null" >
+        tender_warranty_price,
+      </if>
+      <if test="canUseWithoutWarrantyPrice != null" >
+        can_use_without_warranty_price,
+      </if>
+      <if test="projectNoticeValue != null" >
+        project_notice_value,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectStatus != null" >
+        #{projectStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYear != null" >
+        #{projectYear,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUnit != null" >
+        #{customerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="customerContactorIds != null" >
+        #{customerContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="followerUnit != null" >
+        #{followerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="followerIds != null" >
+        #{followerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="projectParticipateInfo != null" >
+        #{projectParticipateInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="solutionFilePath != null" >
+        #{solutionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudget != null" >
+        #{projectBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="projectCode != null" >
+        #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeType != null" >
+        #{projectNoticeType,jdbcType=BIT},
+      </if>
+      <if test="regiDate != null" >
+        #{regiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regiPlace != null" >
+        #{regiPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="regiContactorIds != null" >
+        #{regiContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="regiReq != null" >
+        #{regiReq,jdbcType=VARCHAR},
+      </if>
+      <if test="purTenderIds != null" >
+        #{purTenderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="purTenderDate != null" >
+        #{purTenderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purTenderCost != null" >
+        #{purTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="purTenderTravelExpense != null" >
+        #{purTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderFilePath != null" >
+        #{tenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="configFilePath != null" >
+        #{configFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qualificationFilePath != null" >
+        #{qualificationFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="businessTechnologyAssessmentFilePath != null" >
+        #{businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyPlace != null" >
+        #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyDate != null" >
+        #{surveyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyUnitContactorIds != null" >
+        #{surveyUnitContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyUnitLeaderIds != null" >
+        #{surveyUnitLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyHasSample != null" >
+        #{surveyHasSample,jdbcType=BIT},
+      </if>
+      <if test="surveySampleDetail != null" >
+        #{surveySampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTestSample != null" >
+        #{surveyTestSample,jdbcType=BIT},
+      </if>
+      <if test="surveyTestDetail != null" >
+        #{surveyTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTravelExpense != null" >
+        #{surveyTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="surveySampleTransforExpense != null" >
+        #{surveySampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPriceFileContactorIds != null" >
+        #{tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderBookFileContactorIds != null" >
+        #{tenderBookFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="proveFileContactorIds != null" >
+        #{proveFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="printTenderCost != null" >
+        #{printTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderCarCost != null" >
+        #{tenderCarCost,jdbcType=DECIMAL},
+      </if>
+      <if test="submitTenderFilePath != null" >
+        #{submitTenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="proveFilePath != null" >
+        #{proveFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="priceFilePath != null" >
+        #{priceFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderPlace != null" >
+        #{startTenderPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTime != null" >
+        #{startTenderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTenderHasSample != null" >
+        #{startTenderHasSample,jdbcType=BIT},
+      </if>
+      <if test="startTenderSampleDetail != null" >
+        #{startTenderSampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTestSample != null" >
+        #{startTenderTestSample,jdbcType=BIT},
+      </if>
+      <if test="startTenderTestDetail != null" >
+        #{startTenderTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderLeaderIds != null" >
+        #{startTenderLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTravelExpense != null" >
+        #{startTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="startTenderSampleTransforExpense != null" >
+        #{startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="startTenderTotalExpense != null" >
+        #{startTenderTotalExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleName != null" >
+        #{tenderPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderPeoplePhone != null" >
+        #{tenderPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderPeopleTrainCost != null" >
+        #{tenderPeopleTrainCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleFlightCost != null" >
+        #{tenderPeopleFlightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleStayCost != null" >
+        #{tenderPeopleStayCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleSupplyCost != null" >
+        #{tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleTaxiCost != null" >
+        #{tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleOtherCost != null" >
+        #{tenderPeopleOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleFileTransforCost != null" >
+        #{tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleTotalCost != null" >
+        #{tenderPeopleTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPayPrice != null" >
+        #{tenderPayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderWin != null" >
+        #{tenderWin,jdbcType=BIT},
+      </if>
+      <if test="tenderWinPrice != null" >
+        #{tenderWinPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderServiceRate != null" >
+        #{tenderServiceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderInterestRate != null" >
+        #{tenderInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderProjectIntegrateCost != null" >
+        #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="incomingRate != null" >
+        #{incomingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="incomingCost != null" >
+        #{incomingCost,jdbcType=DECIMAL},
+      </if>
+      <if test="projectIntegrateTotalCost != null" >
+        #{projectIntegrateTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="corIntegrateCost != null" >
+        #{corIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corOtherCost != null" >
+        #{corOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corTotalCost != null" >
+        #{corTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corCanUseCost != null" >
+        #{corCanUseCost,jdbcType=DECIMAL},
+      </if>
+      <if test="contractInfoIds != null" >
+        #{contractInfoIds,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyPeriodStandard != null" >
+        #{warrantyPeriodStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderWarrantyPeriod != null" >
+        #{tenderWarrantyPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyPriceStandard != null" >
+        #{warrantyPriceStandard,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderWarrantyPrice != null" >
+        #{tenderWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="canUseWithoutWarrantyPrice != null" >
+        #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectNoticeValue != null" >
+        #{projectNoticeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bootdo.project.model.ProjectInfoExample" resultType="java.lang.Integer" >
+    select count(*) from project_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update project_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.projectStatus != null" >
+        project_status = #{record.projectStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectYear != null" >
+        project_year = #{record.projectYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerUnit != null" >
+        customer_unit = #{record.customerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerContactorIds != null" >
+        customer_contactor_ids = #{record.customerContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.followerUnit != null" >
+        follower_unit = #{record.followerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.followerIds != null" >
+        follower_ids = #{record.followerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectParticipateInfo != null" >
+        project_participate_info = #{record.projectParticipateInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.solutionFilePath != null" >
+        solution_file_path = #{record.solutionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectBudget != null" >
+        project_budget = #{record.projectBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectCode != null" >
+        project_code = #{record.projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectNoticeType != null" >
+        project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
+      </if>
+      <if test="record.regiDate != null" >
+        regi_date = #{record.regiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regiPlace != null" >
+        regi_place = #{record.regiPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regiContactorIds != null" >
+        regi_contactor_ids = #{record.regiContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regiReq != null" >
+        regi_req = #{record.regiReq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purTenderIds != null" >
+        pur_tender_ids = #{record.purTenderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purTenderDate != null" >
+        pur_tender_date = #{record.purTenderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purTenderCost != null" >
+        pur_tender_cost = #{record.purTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purTenderTravelExpense != null" >
+        pur_tender_travel_expense = #{record.purTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderFilePath != null" >
+        tender_file_path = #{record.tenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configFilePath != null" >
+        config_file_path = #{record.configFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualificationFilePath != null" >
+        qualification_file_path = #{record.qualificationFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessTechnologyAssessmentFilePath != null" >
+        business_technology_assessment_file_path = #{record.businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyPlace != null" >
+        survey_place = #{record.surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyDate != null" >
+        survey_date = #{record.surveyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.surveyUnitContactorIds != null" >
+        survey_unit_contactor_ids = #{record.surveyUnitContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyUnitLeaderIds != null" >
+        survey_unit_leader_ids = #{record.surveyUnitLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyHasSample != null" >
+        survey_has_sample = #{record.surveyHasSample,jdbcType=BIT},
+      </if>
+      <if test="record.surveySampleDetail != null" >
+        survey_sample_detail = #{record.surveySampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyTestSample != null" >
+        survey_test_sample = #{record.surveyTestSample,jdbcType=BIT},
+      </if>
+      <if test="record.surveyTestDetail != null" >
+        survey_test_detail = #{record.surveyTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surveyTravelExpense != null" >
+        survey_travel_expense = #{record.surveyTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.surveySampleTransforExpense != null" >
+        survey_sample_transfor_expense = #{record.surveySampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPriceFileContactorIds != null" >
+        tender_price_file_contactor_ids = #{record.tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderBookFileContactorIds != null" >
+        tender_book_file_contactor_ids = #{record.tenderBookFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proveFileContactorIds != null" >
+        prove_file_contactor_ids = #{record.proveFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.printTenderCost != null" >
+        print_tender_cost = #{record.printTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderCarCost != null" >
+        tender_car_cost = #{record.tenderCarCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.submitTenderFilePath != null" >
+        submit_tender_file_path = #{record.submitTenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proveFilePath != null" >
+        prove_file_path = #{record.proveFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceFilePath != null" >
+        price_file_path = #{record.priceFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTenderPlace != null" >
+        start_tender_place = #{record.startTenderPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTenderTime != null" >
+        start_tender_time = #{record.startTenderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startTenderHasSample != null" >
+        start_tender_has_sample = #{record.startTenderHasSample,jdbcType=BIT},
+      </if>
+      <if test="record.startTenderSampleDetail != null" >
+        start_tender_sample_detail = #{record.startTenderSampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTenderTestSample != null" >
+        start_tender_test_sample = #{record.startTenderTestSample,jdbcType=BIT},
+      </if>
+      <if test="record.startTenderTestDetail != null" >
+        start_tender_test_detail = #{record.startTenderTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTenderLeaderIds != null" >
+        start_tender_leader_ids = #{record.startTenderLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTenderTravelExpense != null" >
+        start_tender_travel_expense = #{record.startTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTenderSampleTransforExpense != null" >
+        start_tender_sample_transfor_expense = #{record.startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTenderTotalExpense != null" >
+        start_tender_total_expense = #{record.startTenderTotalExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleName != null" >
+        tender_people_name = #{record.tenderPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderPeoplePhone != null" >
+        tender_people_phone = #{record.tenderPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderPeopleTrainCost != null" >
+        tender_people_train_cost = #{record.tenderPeopleTrainCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleFlightCost != null" >
+        tender_people_flight_cost = #{record.tenderPeopleFlightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleStayCost != null" >
+        tender_people_stay_cost = #{record.tenderPeopleStayCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleSupplyCost != null" >
+        tender_people_supply_cost = #{record.tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleTaxiCost != null" >
+        tender_people_taxi_cost = #{record.tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleOtherCost != null" >
+        tender_people_other_cost = #{record.tenderPeopleOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleFileTransforCost != null" >
+        tender_people_file_transfor_cost = #{record.tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPeopleTotalCost != null" >
+        tender_people_total_cost = #{record.tenderPeopleTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderPayPrice != null" >
+        tender_pay_price = #{record.tenderPayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderWin != null" >
+        tender_win = #{record.tenderWin,jdbcType=BIT},
+      </if>
+      <if test="record.tenderWinPrice != null" >
+        tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderServiceRate != null" >
+        tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderInterestRate != null" >
+        tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderProjectIntegrateCost != null" >
+        tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incomingRate != null" >
+        incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incomingCost != null" >
+        incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectIntegrateTotalCost != null" >
+        project_integrate_total_cost = #{record.projectIntegrateTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unitInterest != null" >
+        unit_interest = #{record.unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="record.corIntegrateCost != null" >
+        cor_integrate_cost = #{record.corIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.corOtherCost != null" >
+        cor_other_cost = #{record.corOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.corTotalCost != null" >
+        cor_total_cost = #{record.corTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.corCanUseCost != null" >
+        cor_can_use_cost = #{record.corCanUseCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contractInfoIds != null" >
+        contract_info_ids = #{record.contractInfoIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warrantyPeriodStandard != null" >
+        warranty_period_standard = #{record.warrantyPeriodStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderWarrantyPeriod != null" >
+        tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warrantyPriceStandard != null" >
+        warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenderWarrantyPrice != null" >
+        tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.canUseWithoutWarrantyPrice != null" >
+        can_use_without_warranty_price = #{record.canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectNoticeValue != null" >
+        project_notice_value = #{record.projectNoticeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update project_info
+    set id = #{record.id,jdbcType=BIGINT},
+      project_status = #{record.projectStatus,jdbcType=VARCHAR},
+      project_year = #{record.projectYear,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      customer_unit = #{record.customerUnit,jdbcType=VARCHAR},
+      customer_contactor_ids = #{record.customerContactorIds,jdbcType=VARCHAR},
+      follower_unit = #{record.followerUnit,jdbcType=VARCHAR},
+      follower_ids = #{record.followerIds,jdbcType=VARCHAR},
+      project_participate_info = #{record.projectParticipateInfo,jdbcType=VARCHAR},
+      solution_file_path = #{record.solutionFilePath,jdbcType=VARCHAR},
+      project_budget = #{record.projectBudget,jdbcType=DECIMAL},
+      project_code = #{record.projectCode,jdbcType=VARCHAR},
+      project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
+      regi_date = #{record.regiDate,jdbcType=TIMESTAMP},
+      regi_place = #{record.regiPlace,jdbcType=VARCHAR},
+      regi_contactor_ids = #{record.regiContactorIds,jdbcType=VARCHAR},
+      regi_req = #{record.regiReq,jdbcType=VARCHAR},
+      pur_tender_ids = #{record.purTenderIds,jdbcType=VARCHAR},
+      pur_tender_date = #{record.purTenderDate,jdbcType=TIMESTAMP},
+      pur_tender_cost = #{record.purTenderCost,jdbcType=DECIMAL},
+      pur_tender_travel_expense = #{record.purTenderTravelExpense,jdbcType=DECIMAL},
+      tender_file_path = #{record.tenderFilePath,jdbcType=VARCHAR},
+      config_file_path = #{record.configFilePath,jdbcType=VARCHAR},
+      qualification_file_path = #{record.qualificationFilePath,jdbcType=VARCHAR},
+      business_technology_assessment_file_path = #{record.businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      survey_place = #{record.surveyPlace,jdbcType=VARCHAR},
+      survey_date = #{record.surveyDate,jdbcType=TIMESTAMP},
+      survey_unit_contactor_ids = #{record.surveyUnitContactorIds,jdbcType=VARCHAR},
+      survey_unit_leader_ids = #{record.surveyUnitLeaderIds,jdbcType=VARCHAR},
+      survey_has_sample = #{record.surveyHasSample,jdbcType=BIT},
+      survey_sample_detail = #{record.surveySampleDetail,jdbcType=VARCHAR},
+      survey_test_sample = #{record.surveyTestSample,jdbcType=BIT},
+      survey_test_detail = #{record.surveyTestDetail,jdbcType=VARCHAR},
+      survey_travel_expense = #{record.surveyTravelExpense,jdbcType=DECIMAL},
+      survey_sample_transfor_expense = #{record.surveySampleTransforExpense,jdbcType=DECIMAL},
+      tender_price_file_contactor_ids = #{record.tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      tender_book_file_contactor_ids = #{record.tenderBookFileContactorIds,jdbcType=VARCHAR},
+      prove_file_contactor_ids = #{record.proveFileContactorIds,jdbcType=VARCHAR},
+      print_tender_cost = #{record.printTenderCost,jdbcType=DECIMAL},
+      tender_car_cost = #{record.tenderCarCost,jdbcType=DECIMAL},
+      submit_tender_file_path = #{record.submitTenderFilePath,jdbcType=VARCHAR},
+      prove_file_path = #{record.proveFilePath,jdbcType=VARCHAR},
+      price_file_path = #{record.priceFilePath,jdbcType=VARCHAR},
+      start_tender_place = #{record.startTenderPlace,jdbcType=VARCHAR},
+      start_tender_time = #{record.startTenderTime,jdbcType=TIMESTAMP},
+      start_tender_has_sample = #{record.startTenderHasSample,jdbcType=BIT},
+      start_tender_sample_detail = #{record.startTenderSampleDetail,jdbcType=VARCHAR},
+      start_tender_test_sample = #{record.startTenderTestSample,jdbcType=BIT},
+      start_tender_test_detail = #{record.startTenderTestDetail,jdbcType=VARCHAR},
+      start_tender_leader_ids = #{record.startTenderLeaderIds,jdbcType=VARCHAR},
+      start_tender_travel_expense = #{record.startTenderTravelExpense,jdbcType=DECIMAL},
+      start_tender_sample_transfor_expense = #{record.startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      start_tender_total_expense = #{record.startTenderTotalExpense,jdbcType=DECIMAL},
+      tender_people_name = #{record.tenderPeopleName,jdbcType=VARCHAR},
+      tender_people_phone = #{record.tenderPeoplePhone,jdbcType=VARCHAR},
+      tender_people_train_cost = #{record.tenderPeopleTrainCost,jdbcType=DECIMAL},
+      tender_people_flight_cost = #{record.tenderPeopleFlightCost,jdbcType=DECIMAL},
+      tender_people_stay_cost = #{record.tenderPeopleStayCost,jdbcType=DECIMAL},
+      tender_people_supply_cost = #{record.tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      tender_people_taxi_cost = #{record.tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      tender_people_other_cost = #{record.tenderPeopleOtherCost,jdbcType=DECIMAL},
+      tender_people_file_transfor_cost = #{record.tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      tender_people_total_cost = #{record.tenderPeopleTotalCost,jdbcType=DECIMAL},
+      tender_pay_price = #{record.tenderPayPrice,jdbcType=DECIMAL},
+      tender_win = #{record.tenderWin,jdbcType=BIT},
+      tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
+      tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
+      tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+      tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+      incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
+      project_integrate_total_cost = #{record.projectIntegrateTotalCost,jdbcType=DECIMAL},
+      unit_interest = #{record.unitInterest,jdbcType=DECIMAL},
+      cor_integrate_cost = #{record.corIntegrateCost,jdbcType=DECIMAL},
+      cor_other_cost = #{record.corOtherCost,jdbcType=DECIMAL},
+      cor_total_cost = #{record.corTotalCost,jdbcType=DECIMAL},
+      cor_can_use_cost = #{record.corCanUseCost,jdbcType=DECIMAL},
+      contract_info_ids = #{record.contractInfoIds,jdbcType=VARCHAR},
+      warranty_period_standard = #{record.warrantyPeriodStandard,jdbcType=VARCHAR},
+      tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
+      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+      tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
+      can_use_without_warranty_price = #{record.canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
+      project_notice_value = #{record.projectNoticeValue,jdbcType=LONGVARCHAR},
+      other = #{record.other,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update project_info
+    set id = #{record.id,jdbcType=BIGINT},
+      project_status = #{record.projectStatus,jdbcType=VARCHAR},
+      project_year = #{record.projectYear,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      customer_unit = #{record.customerUnit,jdbcType=VARCHAR},
+      customer_contactor_ids = #{record.customerContactorIds,jdbcType=VARCHAR},
+      follower_unit = #{record.followerUnit,jdbcType=VARCHAR},
+      follower_ids = #{record.followerIds,jdbcType=VARCHAR},
+      project_participate_info = #{record.projectParticipateInfo,jdbcType=VARCHAR},
+      solution_file_path = #{record.solutionFilePath,jdbcType=VARCHAR},
+      project_budget = #{record.projectBudget,jdbcType=DECIMAL},
+      project_code = #{record.projectCode,jdbcType=VARCHAR},
+      project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
+      regi_date = #{record.regiDate,jdbcType=TIMESTAMP},
+      regi_place = #{record.regiPlace,jdbcType=VARCHAR},
+      regi_contactor_ids = #{record.regiContactorIds,jdbcType=VARCHAR},
+      regi_req = #{record.regiReq,jdbcType=VARCHAR},
+      pur_tender_ids = #{record.purTenderIds,jdbcType=VARCHAR},
+      pur_tender_date = #{record.purTenderDate,jdbcType=TIMESTAMP},
+      pur_tender_cost = #{record.purTenderCost,jdbcType=DECIMAL},
+      pur_tender_travel_expense = #{record.purTenderTravelExpense,jdbcType=DECIMAL},
+      tender_file_path = #{record.tenderFilePath,jdbcType=VARCHAR},
+      config_file_path = #{record.configFilePath,jdbcType=VARCHAR},
+      qualification_file_path = #{record.qualificationFilePath,jdbcType=VARCHAR},
+      business_technology_assessment_file_path = #{record.businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      survey_place = #{record.surveyPlace,jdbcType=VARCHAR},
+      survey_date = #{record.surveyDate,jdbcType=TIMESTAMP},
+      survey_unit_contactor_ids = #{record.surveyUnitContactorIds,jdbcType=VARCHAR},
+      survey_unit_leader_ids = #{record.surveyUnitLeaderIds,jdbcType=VARCHAR},
+      survey_has_sample = #{record.surveyHasSample,jdbcType=BIT},
+      survey_sample_detail = #{record.surveySampleDetail,jdbcType=VARCHAR},
+      survey_test_sample = #{record.surveyTestSample,jdbcType=BIT},
+      survey_test_detail = #{record.surveyTestDetail,jdbcType=VARCHAR},
+      survey_travel_expense = #{record.surveyTravelExpense,jdbcType=DECIMAL},
+      survey_sample_transfor_expense = #{record.surveySampleTransforExpense,jdbcType=DECIMAL},
+      tender_price_file_contactor_ids = #{record.tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      tender_book_file_contactor_ids = #{record.tenderBookFileContactorIds,jdbcType=VARCHAR},
+      prove_file_contactor_ids = #{record.proveFileContactorIds,jdbcType=VARCHAR},
+      print_tender_cost = #{record.printTenderCost,jdbcType=DECIMAL},
+      tender_car_cost = #{record.tenderCarCost,jdbcType=DECIMAL},
+      submit_tender_file_path = #{record.submitTenderFilePath,jdbcType=VARCHAR},
+      prove_file_path = #{record.proveFilePath,jdbcType=VARCHAR},
+      price_file_path = #{record.priceFilePath,jdbcType=VARCHAR},
+      start_tender_place = #{record.startTenderPlace,jdbcType=VARCHAR},
+      start_tender_time = #{record.startTenderTime,jdbcType=TIMESTAMP},
+      start_tender_has_sample = #{record.startTenderHasSample,jdbcType=BIT},
+      start_tender_sample_detail = #{record.startTenderSampleDetail,jdbcType=VARCHAR},
+      start_tender_test_sample = #{record.startTenderTestSample,jdbcType=BIT},
+      start_tender_test_detail = #{record.startTenderTestDetail,jdbcType=VARCHAR},
+      start_tender_leader_ids = #{record.startTenderLeaderIds,jdbcType=VARCHAR},
+      start_tender_travel_expense = #{record.startTenderTravelExpense,jdbcType=DECIMAL},
+      start_tender_sample_transfor_expense = #{record.startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      start_tender_total_expense = #{record.startTenderTotalExpense,jdbcType=DECIMAL},
+      tender_people_name = #{record.tenderPeopleName,jdbcType=VARCHAR},
+      tender_people_phone = #{record.tenderPeoplePhone,jdbcType=VARCHAR},
+      tender_people_train_cost = #{record.tenderPeopleTrainCost,jdbcType=DECIMAL},
+      tender_people_flight_cost = #{record.tenderPeopleFlightCost,jdbcType=DECIMAL},
+      tender_people_stay_cost = #{record.tenderPeopleStayCost,jdbcType=DECIMAL},
+      tender_people_supply_cost = #{record.tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      tender_people_taxi_cost = #{record.tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      tender_people_other_cost = #{record.tenderPeopleOtherCost,jdbcType=DECIMAL},
+      tender_people_file_transfor_cost = #{record.tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      tender_people_total_cost = #{record.tenderPeopleTotalCost,jdbcType=DECIMAL},
+      tender_pay_price = #{record.tenderPayPrice,jdbcType=DECIMAL},
+      tender_win = #{record.tenderWin,jdbcType=BIT},
+      tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
+      tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
+      tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+      tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+      incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
+      project_integrate_total_cost = #{record.projectIntegrateTotalCost,jdbcType=DECIMAL},
+      unit_interest = #{record.unitInterest,jdbcType=DECIMAL},
+      cor_integrate_cost = #{record.corIntegrateCost,jdbcType=DECIMAL},
+      cor_other_cost = #{record.corOtherCost,jdbcType=DECIMAL},
+      cor_total_cost = #{record.corTotalCost,jdbcType=DECIMAL},
+      cor_can_use_cost = #{record.corCanUseCost,jdbcType=DECIMAL},
+      contract_info_ids = #{record.contractInfoIds,jdbcType=VARCHAR},
+      warranty_period_standard = #{record.warrantyPeriodStandard,jdbcType=VARCHAR},
+      tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
+      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+      tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
+      can_use_without_warranty_price = #{record.canUseWithoutWarrantyPrice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+    update project_info
+    <set >
+      <if test="projectStatus != null" >
+        project_status = #{projectStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYear != null" >
+        project_year = #{projectYear,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUnit != null" >
+        customer_unit = #{customerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="customerContactorIds != null" >
+        customer_contactor_ids = #{customerContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="followerUnit != null" >
+        follower_unit = #{followerUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="followerIds != null" >
+        follower_ids = #{followerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="projectParticipateInfo != null" >
+        project_participate_info = #{projectParticipateInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="solutionFilePath != null" >
+        solution_file_path = #{solutionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBudget != null" >
+        project_budget = #{projectBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="projectCode != null" >
+        project_code = #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeType != null" >
+        project_notice_type = #{projectNoticeType,jdbcType=BIT},
+      </if>
+      <if test="regiDate != null" >
+        regi_date = #{regiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regiPlace != null" >
+        regi_place = #{regiPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="regiContactorIds != null" >
+        regi_contactor_ids = #{regiContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="regiReq != null" >
+        regi_req = #{regiReq,jdbcType=VARCHAR},
+      </if>
+      <if test="purTenderIds != null" >
+        pur_tender_ids = #{purTenderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="purTenderDate != null" >
+        pur_tender_date = #{purTenderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purTenderCost != null" >
+        pur_tender_cost = #{purTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="purTenderTravelExpense != null" >
+        pur_tender_travel_expense = #{purTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderFilePath != null" >
+        tender_file_path = #{tenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="configFilePath != null" >
+        config_file_path = #{configFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qualificationFilePath != null" >
+        qualification_file_path = #{qualificationFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="businessTechnologyAssessmentFilePath != null" >
+        business_technology_assessment_file_path = #{businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place = #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyDate != null" >
+        survey_date = #{surveyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyUnitContactorIds != null" >
+        survey_unit_contactor_ids = #{surveyUnitContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyUnitLeaderIds != null" >
+        survey_unit_leader_ids = #{surveyUnitLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyHasSample != null" >
+        survey_has_sample = #{surveyHasSample,jdbcType=BIT},
+      </if>
+      <if test="surveySampleDetail != null" >
+        survey_sample_detail = #{surveySampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTestSample != null" >
+        survey_test_sample = #{surveyTestSample,jdbcType=BIT},
+      </if>
+      <if test="surveyTestDetail != null" >
+        survey_test_detail = #{surveyTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTravelExpense != null" >
+        survey_travel_expense = #{surveyTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="surveySampleTransforExpense != null" >
+        survey_sample_transfor_expense = #{surveySampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPriceFileContactorIds != null" >
+        tender_price_file_contactor_ids = #{tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderBookFileContactorIds != null" >
+        tender_book_file_contactor_ids = #{tenderBookFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="proveFileContactorIds != null" >
+        prove_file_contactor_ids = #{proveFileContactorIds,jdbcType=VARCHAR},
+      </if>
+      <if test="printTenderCost != null" >
+        print_tender_cost = #{printTenderCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderCarCost != null" >
+        tender_car_cost = #{tenderCarCost,jdbcType=DECIMAL},
+      </if>
+      <if test="submitTenderFilePath != null" >
+        submit_tender_file_path = #{submitTenderFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="proveFilePath != null" >
+        prove_file_path = #{proveFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="priceFilePath != null" >
+        price_file_path = #{priceFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderPlace != null" >
+        start_tender_place = #{startTenderPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTime != null" >
+        start_tender_time = #{startTenderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTenderHasSample != null" >
+        start_tender_has_sample = #{startTenderHasSample,jdbcType=BIT},
+      </if>
+      <if test="startTenderSampleDetail != null" >
+        start_tender_sample_detail = #{startTenderSampleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTestSample != null" >
+        start_tender_test_sample = #{startTenderTestSample,jdbcType=BIT},
+      </if>
+      <if test="startTenderTestDetail != null" >
+        start_tender_test_detail = #{startTenderTestDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderLeaderIds != null" >
+        start_tender_leader_ids = #{startTenderLeaderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startTenderTravelExpense != null" >
+        start_tender_travel_expense = #{startTenderTravelExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="startTenderSampleTransforExpense != null" >
+        start_tender_sample_transfor_expense = #{startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="startTenderTotalExpense != null" >
+        start_tender_total_expense = #{startTenderTotalExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleName != null" >
+        tender_people_name = #{tenderPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderPeoplePhone != null" >
+        tender_people_phone = #{tenderPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderPeopleTrainCost != null" >
+        tender_people_train_cost = #{tenderPeopleTrainCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleFlightCost != null" >
+        tender_people_flight_cost = #{tenderPeopleFlightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleStayCost != null" >
+        tender_people_stay_cost = #{tenderPeopleStayCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleSupplyCost != null" >
+        tender_people_supply_cost = #{tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleTaxiCost != null" >
+        tender_people_taxi_cost = #{tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleOtherCost != null" >
+        tender_people_other_cost = #{tenderPeopleOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleFileTransforCost != null" >
+        tender_people_file_transfor_cost = #{tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPeopleTotalCost != null" >
+        tender_people_total_cost = #{tenderPeopleTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderPayPrice != null" >
+        tender_pay_price = #{tenderPayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderWin != null" >
+        tender_win = #{tenderWin,jdbcType=BIT},
+      </if>
+      <if test="tenderWinPrice != null" >
+        tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderServiceRate != null" >
+        tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderInterestRate != null" >
+        tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderProjectIntegrateCost != null" >
+        tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="incomingRate != null" >
+        incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="incomingCost != null" >
+        incoming_cost = #{incomingCost,jdbcType=DECIMAL},
+      </if>
+      <if test="projectIntegrateTotalCost != null" >
+        project_integrate_total_cost = #{projectIntegrateTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest = #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="corIntegrateCost != null" >
+        cor_integrate_cost = #{corIntegrateCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corOtherCost != null" >
+        cor_other_cost = #{corOtherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corTotalCost != null" >
+        cor_total_cost = #{corTotalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="corCanUseCost != null" >
+        cor_can_use_cost = #{corCanUseCost,jdbcType=DECIMAL},
+      </if>
+      <if test="contractInfoIds != null" >
+        contract_info_ids = #{contractInfoIds,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyPeriodStandard != null" >
+        warranty_period_standard = #{warrantyPeriodStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderWarrantyPeriod != null" >
+        tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyPriceStandard != null" >
+        warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+      </if>
+      <if test="tenderWarrantyPrice != null" >
+        tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="canUseWithoutWarrantyPrice != null" >
+        can_use_without_warranty_price = #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectNoticeValue != null" >
+        project_notice_value = #{projectNoticeValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+    update project_info
+    set project_status = #{projectStatus,jdbcType=VARCHAR},
+      project_year = #{projectYear,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_unit = #{customerUnit,jdbcType=VARCHAR},
+      customer_contactor_ids = #{customerContactorIds,jdbcType=VARCHAR},
+      follower_unit = #{followerUnit,jdbcType=VARCHAR},
+      follower_ids = #{followerIds,jdbcType=VARCHAR},
+      project_participate_info = #{projectParticipateInfo,jdbcType=VARCHAR},
+      solution_file_path = #{solutionFilePath,jdbcType=VARCHAR},
+      project_budget = #{projectBudget,jdbcType=DECIMAL},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      project_notice_type = #{projectNoticeType,jdbcType=BIT},
+      regi_date = #{regiDate,jdbcType=TIMESTAMP},
+      regi_place = #{regiPlace,jdbcType=VARCHAR},
+      regi_contactor_ids = #{regiContactorIds,jdbcType=VARCHAR},
+      regi_req = #{regiReq,jdbcType=VARCHAR},
+      pur_tender_ids = #{purTenderIds,jdbcType=VARCHAR},
+      pur_tender_date = #{purTenderDate,jdbcType=TIMESTAMP},
+      pur_tender_cost = #{purTenderCost,jdbcType=DECIMAL},
+      pur_tender_travel_expense = #{purTenderTravelExpense,jdbcType=DECIMAL},
+      tender_file_path = #{tenderFilePath,jdbcType=VARCHAR},
+      config_file_path = #{configFilePath,jdbcType=VARCHAR},
+      qualification_file_path = #{qualificationFilePath,jdbcType=VARCHAR},
+      business_technology_assessment_file_path = #{businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      survey_place = #{surveyPlace,jdbcType=VARCHAR},
+      survey_date = #{surveyDate,jdbcType=TIMESTAMP},
+      survey_unit_contactor_ids = #{surveyUnitContactorIds,jdbcType=VARCHAR},
+      survey_unit_leader_ids = #{surveyUnitLeaderIds,jdbcType=VARCHAR},
+      survey_has_sample = #{surveyHasSample,jdbcType=BIT},
+      survey_sample_detail = #{surveySampleDetail,jdbcType=VARCHAR},
+      survey_test_sample = #{surveyTestSample,jdbcType=BIT},
+      survey_test_detail = #{surveyTestDetail,jdbcType=VARCHAR},
+      survey_travel_expense = #{surveyTravelExpense,jdbcType=DECIMAL},
+      survey_sample_transfor_expense = #{surveySampleTransforExpense,jdbcType=DECIMAL},
+      tender_price_file_contactor_ids = #{tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      tender_book_file_contactor_ids = #{tenderBookFileContactorIds,jdbcType=VARCHAR},
+      prove_file_contactor_ids = #{proveFileContactorIds,jdbcType=VARCHAR},
+      print_tender_cost = #{printTenderCost,jdbcType=DECIMAL},
+      tender_car_cost = #{tenderCarCost,jdbcType=DECIMAL},
+      submit_tender_file_path = #{submitTenderFilePath,jdbcType=VARCHAR},
+      prove_file_path = #{proveFilePath,jdbcType=VARCHAR},
+      price_file_path = #{priceFilePath,jdbcType=VARCHAR},
+      start_tender_place = #{startTenderPlace,jdbcType=VARCHAR},
+      start_tender_time = #{startTenderTime,jdbcType=TIMESTAMP},
+      start_tender_has_sample = #{startTenderHasSample,jdbcType=BIT},
+      start_tender_sample_detail = #{startTenderSampleDetail,jdbcType=VARCHAR},
+      start_tender_test_sample = #{startTenderTestSample,jdbcType=BIT},
+      start_tender_test_detail = #{startTenderTestDetail,jdbcType=VARCHAR},
+      start_tender_leader_ids = #{startTenderLeaderIds,jdbcType=VARCHAR},
+      start_tender_travel_expense = #{startTenderTravelExpense,jdbcType=DECIMAL},
+      start_tender_sample_transfor_expense = #{startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      start_tender_total_expense = #{startTenderTotalExpense,jdbcType=DECIMAL},
+      tender_people_name = #{tenderPeopleName,jdbcType=VARCHAR},
+      tender_people_phone = #{tenderPeoplePhone,jdbcType=VARCHAR},
+      tender_people_train_cost = #{tenderPeopleTrainCost,jdbcType=DECIMAL},
+      tender_people_flight_cost = #{tenderPeopleFlightCost,jdbcType=DECIMAL},
+      tender_people_stay_cost = #{tenderPeopleStayCost,jdbcType=DECIMAL},
+      tender_people_supply_cost = #{tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      tender_people_taxi_cost = #{tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      tender_people_other_cost = #{tenderPeopleOtherCost,jdbcType=DECIMAL},
+      tender_people_file_transfor_cost = #{tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      tender_people_total_cost = #{tenderPeopleTotalCost,jdbcType=DECIMAL},
+      tender_pay_price = #{tenderPayPrice,jdbcType=DECIMAL},
+      tender_win = #{tenderWin,jdbcType=BIT},
+      tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
+      tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
+      tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+      tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+      incoming_cost = #{incomingCost,jdbcType=DECIMAL},
+      project_integrate_total_cost = #{projectIntegrateTotalCost,jdbcType=DECIMAL},
+      unit_interest = #{unitInterest,jdbcType=DECIMAL},
+      cor_integrate_cost = #{corIntegrateCost,jdbcType=DECIMAL},
+      cor_other_cost = #{corOtherCost,jdbcType=DECIMAL},
+      cor_total_cost = #{corTotalCost,jdbcType=DECIMAL},
+      cor_can_use_cost = #{corCanUseCost,jdbcType=DECIMAL},
+      contract_info_ids = #{contractInfoIds,jdbcType=VARCHAR},
+      warranty_period_standard = #{warrantyPeriodStandard,jdbcType=VARCHAR},
+      tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
+      warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+      tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
+      can_use_without_warranty_price = #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
+      project_notice_value = #{projectNoticeValue,jdbcType=LONGVARCHAR},
+      other = #{other,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bootdo.project.model.ProjectInfo" >
+    update project_info
+    set project_status = #{projectStatus,jdbcType=VARCHAR},
+      project_year = #{projectYear,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_unit = #{customerUnit,jdbcType=VARCHAR},
+      customer_contactor_ids = #{customerContactorIds,jdbcType=VARCHAR},
+      follower_unit = #{followerUnit,jdbcType=VARCHAR},
+      follower_ids = #{followerIds,jdbcType=VARCHAR},
+      project_participate_info = #{projectParticipateInfo,jdbcType=VARCHAR},
+      solution_file_path = #{solutionFilePath,jdbcType=VARCHAR},
+      project_budget = #{projectBudget,jdbcType=DECIMAL},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      project_notice_type = #{projectNoticeType,jdbcType=BIT},
+      regi_date = #{regiDate,jdbcType=TIMESTAMP},
+      regi_place = #{regiPlace,jdbcType=VARCHAR},
+      regi_contactor_ids = #{regiContactorIds,jdbcType=VARCHAR},
+      regi_req = #{regiReq,jdbcType=VARCHAR},
+      pur_tender_ids = #{purTenderIds,jdbcType=VARCHAR},
+      pur_tender_date = #{purTenderDate,jdbcType=TIMESTAMP},
+      pur_tender_cost = #{purTenderCost,jdbcType=DECIMAL},
+      pur_tender_travel_expense = #{purTenderTravelExpense,jdbcType=DECIMAL},
+      tender_file_path = #{tenderFilePath,jdbcType=VARCHAR},
+      config_file_path = #{configFilePath,jdbcType=VARCHAR},
+      qualification_file_path = #{qualificationFilePath,jdbcType=VARCHAR},
+      business_technology_assessment_file_path = #{businessTechnologyAssessmentFilePath,jdbcType=VARCHAR},
+      survey_place = #{surveyPlace,jdbcType=VARCHAR},
+      survey_date = #{surveyDate,jdbcType=TIMESTAMP},
+      survey_unit_contactor_ids = #{surveyUnitContactorIds,jdbcType=VARCHAR},
+      survey_unit_leader_ids = #{surveyUnitLeaderIds,jdbcType=VARCHAR},
+      survey_has_sample = #{surveyHasSample,jdbcType=BIT},
+      survey_sample_detail = #{surveySampleDetail,jdbcType=VARCHAR},
+      survey_test_sample = #{surveyTestSample,jdbcType=BIT},
+      survey_test_detail = #{surveyTestDetail,jdbcType=VARCHAR},
+      survey_travel_expense = #{surveyTravelExpense,jdbcType=DECIMAL},
+      survey_sample_transfor_expense = #{surveySampleTransforExpense,jdbcType=DECIMAL},
+      tender_price_file_contactor_ids = #{tenderPriceFileContactorIds,jdbcType=VARCHAR},
+      tender_book_file_contactor_ids = #{tenderBookFileContactorIds,jdbcType=VARCHAR},
+      prove_file_contactor_ids = #{proveFileContactorIds,jdbcType=VARCHAR},
+      print_tender_cost = #{printTenderCost,jdbcType=DECIMAL},
+      tender_car_cost = #{tenderCarCost,jdbcType=DECIMAL},
+      submit_tender_file_path = #{submitTenderFilePath,jdbcType=VARCHAR},
+      prove_file_path = #{proveFilePath,jdbcType=VARCHAR},
+      price_file_path = #{priceFilePath,jdbcType=VARCHAR},
+      start_tender_place = #{startTenderPlace,jdbcType=VARCHAR},
+      start_tender_time = #{startTenderTime,jdbcType=TIMESTAMP},
+      start_tender_has_sample = #{startTenderHasSample,jdbcType=BIT},
+      start_tender_sample_detail = #{startTenderSampleDetail,jdbcType=VARCHAR},
+      start_tender_test_sample = #{startTenderTestSample,jdbcType=BIT},
+      start_tender_test_detail = #{startTenderTestDetail,jdbcType=VARCHAR},
+      start_tender_leader_ids = #{startTenderLeaderIds,jdbcType=VARCHAR},
+      start_tender_travel_expense = #{startTenderTravelExpense,jdbcType=DECIMAL},
+      start_tender_sample_transfor_expense = #{startTenderSampleTransforExpense,jdbcType=DECIMAL},
+      start_tender_total_expense = #{startTenderTotalExpense,jdbcType=DECIMAL},
+      tender_people_name = #{tenderPeopleName,jdbcType=VARCHAR},
+      tender_people_phone = #{tenderPeoplePhone,jdbcType=VARCHAR},
+      tender_people_train_cost = #{tenderPeopleTrainCost,jdbcType=DECIMAL},
+      tender_people_flight_cost = #{tenderPeopleFlightCost,jdbcType=DECIMAL},
+      tender_people_stay_cost = #{tenderPeopleStayCost,jdbcType=DECIMAL},
+      tender_people_supply_cost = #{tenderPeopleSupplyCost,jdbcType=DECIMAL},
+      tender_people_taxi_cost = #{tenderPeopleTaxiCost,jdbcType=DECIMAL},
+      tender_people_other_cost = #{tenderPeopleOtherCost,jdbcType=DECIMAL},
+      tender_people_file_transfor_cost = #{tenderPeopleFileTransforCost,jdbcType=DECIMAL},
+      tender_people_total_cost = #{tenderPeopleTotalCost,jdbcType=DECIMAL},
+      tender_pay_price = #{tenderPayPrice,jdbcType=DECIMAL},
+      tender_win = #{tenderWin,jdbcType=BIT},
+      tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
+      tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
+      tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+      tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
+      incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+      incoming_cost = #{incomingCost,jdbcType=DECIMAL},
+      project_integrate_total_cost = #{projectIntegrateTotalCost,jdbcType=DECIMAL},
+      unit_interest = #{unitInterest,jdbcType=DECIMAL},
+      cor_integrate_cost = #{corIntegrateCost,jdbcType=DECIMAL},
+      cor_other_cost = #{corOtherCost,jdbcType=DECIMAL},
+      cor_total_cost = #{corTotalCost,jdbcType=DECIMAL},
+      cor_can_use_cost = #{corCanUseCost,jdbcType=DECIMAL},
+      contract_info_ids = #{contractInfoIds,jdbcType=VARCHAR},
+      warranty_period_standard = #{warrantyPeriodStandard,jdbcType=VARCHAR},
+      tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
+      warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+      tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
+      can_use_without_warranty_price = #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

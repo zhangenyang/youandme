@@ -101,15 +101,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bootdo.project.model.Contactor">
-    insert into contactor (id, name, title, 
+  <insert id="insert" parameterType="com.bootdo.project.model.Contactor" useGeneratedKeys="true" keyProperty="id">
+    insert into contactor (id, name, title,
       fixed_phone, phone, fax
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{fixedPhone,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bootdo.project.model.Contactor">
+  <insert id="insertSelective" parameterType="com.bootdo.project.model.Contactor" useGeneratedKeys="true" keyProperty="id">
     insert into contactor
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

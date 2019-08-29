@@ -97,11 +97,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bootdo.project.model.ProjectStatus" >
+  <insert id="insert" parameterType="com.bootdo.project.model.ProjectStatus" useGeneratedKeys="true" keyProperty="id">
     insert into project_status (id, name)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectStatus" >
+  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectStatus" useGeneratedKeys="true" keyProperty="id">
     insert into project_status
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

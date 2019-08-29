@@ -222,7 +222,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+  <insert id="insert" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into project_info (id, project_status, project_year, 
       project_name, customer_unit, customer_contactor_ids, 
       follower_unit, follower_ids, project_participate_info, 
@@ -292,7 +292,7 @@
       #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL}, #{projectNoticeValue,jdbcType=LONGVARCHAR}, 
       #{other,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into project_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

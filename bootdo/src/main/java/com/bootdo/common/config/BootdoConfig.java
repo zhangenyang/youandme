@@ -9,6 +9,8 @@ public class BootdoConfig {
 	//上传路径
 	private String uploadPath;
 
+	private String downloadPath;
+
 	private String username;
 
 	private String password;
@@ -19,6 +21,14 @@ public class BootdoConfig {
 
 	public void setUploadPath(String uploadPath) {
 		this.uploadPath = uploadPath;
+	}
+
+	public String getDownloadPath() {
+		return downloadPath;
+	}
+
+	public void setDownloadPath(String downloadPath) {
+		this.downloadPath = downloadPath;
 	}
 
 	public String getUsername() {

@@ -17,6 +17,8 @@ public interface ProjectInfoMapper {
 
     int insertSelective(ProjectInfoWithBLOBs record);
 
+    List<ProjectInfoWithBLOBs> selectAll();
+
     List<ProjectInfoWithBLOBs> selectByExampleWithBLOBs(ProjectInfoExample example);
 
     List<ProjectInfo> selectByExample(ProjectInfoExample example);

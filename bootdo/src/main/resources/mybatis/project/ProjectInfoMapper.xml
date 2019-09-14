@@ -172,6 +172,9 @@
   <sql id="Blob_Column_List" >
     project_notice_value, other
   </sql>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="com.bootdo.project.model.ProjectInfoExample" >
+    select * from project_info
+  </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bootdo.project.model.ProjectInfoExample" >
     select
     <if test="distinct" >

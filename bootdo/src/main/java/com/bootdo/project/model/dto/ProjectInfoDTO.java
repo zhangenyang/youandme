@@ -13,8 +13,8 @@ import java.util.List;
  * @Description 项目信息的返回实体类
  * */
 @Data
-public class ProjectInfoVO {
-    public ProjectInfoVO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
+public class ProjectInfoDTO {
+    public ProjectInfoDTO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
         // todo
 
     }

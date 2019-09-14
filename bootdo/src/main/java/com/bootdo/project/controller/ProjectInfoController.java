@@ -1,19 +1,14 @@
 package com.bootdo.project.controller;
 
 
-import com.bootdo.common.config.Constant;
-import com.bootdo.common.utils.MD5Utils;
 import com.bootdo.common.utils.PageUtils;
-import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 import com.bootdo.project.model.ProjectInfoWithBLOBs;
-import com.bootdo.project.model.ProjectStatus;
-import com.bootdo.project.model.dto.ProjectInfoVO;
+import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.service.ContactorService;
 import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
 import com.bootdo.project.service.ProjectStatusService;
-import com.bootdo.system.domain.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +35,7 @@ public class ProjectInfoController {
     @ResponseBody
     PageUtils list(@RequestParam Map<String, Object> params) {
         // 查询列表数据
-        List<ProjectInfoVO> projectInfoWithBLOBs =  projectInfoService.getAll();
+        List<ProjectInfoDTO> projectInfoWithBLOBs =  projectInfoService.getAll();
 
         PageUtils pageUtil = new PageUtils(projectInfoWithBLOBs, projectInfoWithBLOBs.size());
         return pageUtil;

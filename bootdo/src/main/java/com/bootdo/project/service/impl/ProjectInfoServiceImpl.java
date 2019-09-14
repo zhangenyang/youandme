@@ -4,12 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.bootdo.project.dao.ContactorMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
-import com.bootdo.project.model.dto.ProjectInfoVO;
+import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +26,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public List<ProjectInfoVO> getAll() {
+    public List<ProjectInfoDTO> getAll() {
         List<ProjectInfoWithBLOBs> list = projectInfoMapper.selectAll();
-        List<ProjectInfoVO> responseList = new ArrayList<>();
+        List<ProjectInfoDTO> responseList = new ArrayList<>();
         for(ProjectInfoWithBLOBs p : list){
-            ProjectInfoVO projectInfoVO = new ProjectInfoVO(p);
+            ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
 
             // 根据customerContactorIds 获取contractList的信息
             List<Long> customerContactorIds =  JSON.parseArray(p.getContractInfoIds(),Long.class);
@@ -40,10 +39,10 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             criteria.andIdIn(customerContactorIds);
             List<Contactor> contactors = contactorMapper.selectByExample(example);
 
-            projectInfoVO.setContactorList(contactors);
+            projectInfoDTO.setContactorList(contactors);
             // todo 其他的也一样
 
-            responseList.add(projectInfoVO);
+            responseList.add(projectInfoDTO);
         }
 
         return responseList;

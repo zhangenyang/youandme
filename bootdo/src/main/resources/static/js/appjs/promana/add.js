@@ -120,37 +120,167 @@ function loadDept( deptId,deptName){
     $("#deptId").val(deptId);
     $("#deptName").val(deptName);
 }
-function addDeptUser() {
-    layer.open({
-        type:2,
-        title:"添加用户单位联系人",
-        area : [ '600px', '450px' ],
-        content:"/system/sysDept/treeView"
-    })
-}
-function addFollowUser() {
 
-}
 function uploadPartInfo(){
 
 }
-function addPurTender(){
+function uploadProjectNoticeFile(){
 
 }
-function addPurchasingUnitUser() {
-    
-}
-var addContactorcCount = 0;
+function uploadProjectNoticeImg(){
 
-function addContactor() {
-    alert(addContactorcCount)
-    if(addContactorcCount <=3 ){
-        if(addContactorcCount == 0){
-            document.getElementById("table").style.display = "inline";
-            document.getElementById("line" + addContactorcCount).style.display = "inline";
-        }else{
-            document.getElementById("line" + addContactorcCount).style.display = "inline";
-        }
-        addContactorcCount++;
-    }
+}
+
+// 用户单位联系人
+var addContactorCount = 0;
+// 跟进人
+var addFollowerCount = 0;
+// 招标机构联系人
+var addRegiContactorCount = 0;
+// 购买标书情况联系人
+var addPurTenderCount = 0;
+// 踏勘单位联系人
+var addSurveyUnitContactorCount = 0;
+// 踏勘负责人
+var addSurveyUnitLeaderCount = 0;
+// 价格文件负责人
+var addTenderPriceFileContactorCount = 0;
+// 投标书负责人
+var addTenderBookFileContactorCount = 0;
+// 资格证明文件负责人
+var addProveFileContactorCount = 0;
+// 开标是否携带样和测试 负责人
+var addStartTenderLeaderCount = 0;
+
+// 合同信息
+var addContractCount = 0;
+
+function addContractAction() {
+    var table = document.getElementById("contractTable");
+    var newTr = table.insertRow(addContractCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "contract_"+ addContractCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addContractCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"price"+addContractCount+"\"/></td>\n";
+
+    addContractCount++;
+}
+
+function addStartTenderLeaderAction() {
+    var table = document.getElementById("startTenderLeaderTable");
+    var newTr = table.insertRow(addStartTenderLeaderCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "tenderPriceFileContactor_"+ addStartTenderLeaderCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addStartTenderLeaderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addStartTenderLeaderCount+"\"/></td>\n";
+
+    addStartTenderLeaderCount++;
+}
+
+function addTenderPriceFileContactorAction() {
+    var table = document.getElementById("tenderPriceFileContactorTable");
+    var newTr = table.insertRow(addTenderPriceFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "tenderPriceFileContactor_"+ addTenderPriceFileContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addTenderPriceFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addTenderPriceFileContactorCount+"\"/></td>\n";
+
+    addTenderPriceFileContactorCount++;
+}
+
+function addTenderBookFileContactorAction() {
+    var table = document.getElementById("tenderBookFileContactorTable");
+    var newTr = table.insertRow(addTenderBookFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "tenderBookFileContactor_"+ addTenderBookFileContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addTenderBookFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addTenderBookFileContactorCount+"\"/></td>\n";
+
+    addTenderBookFileContactorCount++;
+}
+
+function addProveFileContactorAction() {
+    var table = document.getElementById("proveFileContactorTable");
+    var newTr = table.insertRow(addProveFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "proveFileContactor_"+ addProveFileContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addProveFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addProveFileContactorCount+"\"/></td>\n";
+
+    addProveFileContactorCount++;
+}
+
+function addSurveyUnitLeaderAction() {
+    var table = document.getElementById("surveyUnitLeaderTable");
+    var newTr = table.insertRow(addSurveyUnitLeaderCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "surveyUnitLeader_"+ addSurveyUnitLeaderCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addSurveyUnitLeaderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addSurveyUnitLeaderCount+"\"/></td>\n";
+
+    addSurveyUnitLeaderCount++;
+}
+
+function addSurveyUnitContactorAction() {
+    var table = document.getElementById("surveyUnitContactorTable");
+    var newTr = table.insertRow(addSurveyUnitContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "surveyUnitContactor_"+ addSurveyUnitContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addSurveyUnitContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addSurveyUnitContactorCount+"\"/></td>\n";
+
+    addSurveyUnitContactorCount++;
+}
+
+function addContactorAction() {
+    var table = document.getElementById("contactorTable");
+    var newTr = table.insertRow(addContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "contactor_"+ addContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"title"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"fixedPhone"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addContactorCount+"\"/></td>\n";
+
+    addContactorCount++;
+}
+
+function addFollowerAction() {
+    var table = document.getElementById("followerTable");
+    var newTr = table.insertRow(addFollowerCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "follower_"+ addFollowerCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"title"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"fixedPhone"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addFollowerCount+"\"/></td>\n";
+
+    addFollowerCount++;
+}
+
+function addRegiContactorAction() {
+    var table = document.getElementById("regiContactorTable");
+    var newTr = table.insertRow(addRegiContactorCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "regiContactor_"+ addRegiContactorCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"title"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"fixedPhone"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addRegiContactorCount+"\"/></td>\n";
+
+    addRegiContactorCount++;
+}
+
+function addPurTenderAction() {
+    var table = document.getElementById("purTenderTable");
+    var newTr = table.insertRow(addPurTenderCount + 1);//添加新行，trIndex就是要添加的位置
+    newTr.id = "purTender_"+ addPurTenderCount;
+
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"title"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"fixedPhone"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"fax"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"phone"+addPurTenderCount+"\"/></td>\n";
+
+    addPurTenderCount++;
 }

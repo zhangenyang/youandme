@@ -1,13 +1,16 @@
 package com.bootdo.project.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.bootdo.project.dao.ContactorMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
-import com.bootdo.project.model.ProjectInfo;
-import com.bootdo.project.model.ProjectInfoExample;
-import com.bootdo.project.model.ProjectInfoWithBLOBs;
+import com.bootdo.project.model.*;
+import com.bootdo.project.model.dto.ProjectInfoVO;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +18,8 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     @Autowired
     private ProjectInfoMapper projectInfoMapper;
+    @Autowired
+    private ContactorMapper contactorMapper;
 
     @Override
     public ProjectInfoWithBLOBs getProjectInfoById(Long id){
@@ -22,8 +27,24 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public List<ProjectInfoWithBLOBs> getAll() {
-        return projectInfoMapper.selectAll();
+    public List<ProjectInfoVO> getAll() {
+        List<ProjectInfoWithBLOBs> list = projectInfoMapper.selectAll();
+        List<ProjectInfoVO> responseList = new ArrayList<>();
+        for(ProjectInfoWithBLOBs p : list){
+            ProjectInfoVO projectInfoVO = new ProjectInfoVO(p);
+
+            // 根据customerContactorIds 获取contractList的信息
+            List<Long> customerContactorIds =  JSON.parseArray(p.getContractInfoIds(),Long.class);
+            ContactorExample example = new ContactorExample();
+            ContactorExample.Criteria criteria = example.createCriteria();
+            criteria.andIdIn(customerContactorIds);
+            List<Contactor> contactors = contactorMapper.selectByExample(example);
+
+            projectInfoVO.setContactorList(contactors);
+
+        }
+
+        return responseList;
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 import com.bootdo.project.model.ProjectInfoWithBLOBs;
 import com.bootdo.project.model.ProjectStatus;
+import com.bootdo.project.model.dto.ProjectInfoVO;
 import com.bootdo.project.service.ContactorService;
 import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
@@ -39,7 +40,7 @@ public class ProjectInfoController {
     @ResponseBody
     PageUtils list(@RequestParam Map<String, Object> params) {
         // 查询列表数据
-        List<ProjectInfoWithBLOBs> projectInfoWithBLOBs =  projectInfoService.getAll();
+        List<ProjectInfoVO> projectInfoWithBLOBs =  projectInfoService.getAll();
 
         PageUtils pageUtil = new PageUtils(projectInfoWithBLOBs, projectInfoWithBLOBs.size());
         return pageUtil;

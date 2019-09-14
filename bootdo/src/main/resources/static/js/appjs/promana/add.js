@@ -131,6 +131,12 @@ function addDeptUser() {
 function addFollowUser() {
 
 }
+function uploadPartInfo(){
+
+}
+function addPurTender(){
+
+}
 function addPurchasingUnitUser() {
     
 }

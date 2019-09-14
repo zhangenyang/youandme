@@ -13,8 +13,9 @@ import java.util.List;
  * @Description 项目信息的返回实体类
  * */
 @Data
-public class ProjectInfoVO extends ProjectInfoWithBLOBs {
+public class ProjectInfoVO {
     public ProjectInfoVO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
+        // todo
 
     }
 

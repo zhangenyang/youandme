@@ -41,7 +41,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             List<Contactor> contactors = contactorMapper.selectByExample(example);
 
             projectInfoVO.setContactorList(contactors);
+            // todo 其他的也一样
 
+            responseList.add(projectInfoVO);
         }
 
         return responseList;

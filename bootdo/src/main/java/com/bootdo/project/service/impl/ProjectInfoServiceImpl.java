@@ -32,15 +32,15 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         for(ProjectInfoWithBLOBs p : list){
             ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
 
-            // 根据customerContactorIds 获取contractList的信息
-            List<Long> customerContactorIds =  JSON.parseArray(p.getContractInfoIds(),Long.class);
-            ContactorExample example = new ContactorExample();
-            ContactorExample.Criteria criteria = example.createCriteria();
-            criteria.andIdIn(customerContactorIds);
-            List<Contactor> contactors = contactorMapper.selectByExample(example);
-
-            projectInfoDTO.setContactorList(contactors);
-            // todo 其他的也一样
+//            // 根据customerContactorIds 获取contractList的信息
+//            List<Long> customerContactorIds =  JSON.parseArray(p.getContractInfoIds(),Long.class);
+//            ContactorExample example = new ContactorExample();
+//            ContactorExample.Criteria criteria = example.createCriteria();
+//            criteria.andIdIn(customerContactorIds);
+//            List<Contactor> contactors = contactorMapper.selectByExample(example);
+//
+//            projectInfoDTO.setContactorList(contactors);
+//            // todo 其他的也一样
 
             responseList.add(projectInfoDTO);
         }

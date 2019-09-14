@@ -4,27 +4,18 @@ $().ready(function() {
 
 $.validator.setDefaults({
     submitHandler : function() {
-        // save();
+        save();
     }
 });
-function getCheckedRoles() {
-    var adIds = "";
-    $("input:checkbox[name=role]:checked").each(function(i) {
-        if (0 == i) {
-            adIds = $(this).val();
-        } else {
-            adIds += ("," + $(this).val());
-        }
-    });
-    return adIds;
-}
+
 function save() {
-    $("#roleIds").val(getCheckedRoles());
+    var data = $('#signupForm').serialize();
+    // 获取各种联系人的信息并组装
     $.ajax({
         cache : true,
         type : "POST",
-        url : "/sys/user/save",
-        data : $('#signupForm').serialize(),// 你的formid
+        url : "/project/save",
+        data : data,
         async : false,
         error : function(request) {
             parent.layer.alert("Connection error");
@@ -45,6 +36,7 @@ function save() {
 
 }
 function validateRule() {
+    // TODO 更新校验
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules : {
@@ -106,19 +98,6 @@ function validateRule() {
             email : icon + "请输入您的E-mail",
         }
     })
-}
-
-var openDept = function(){
-    layer.open({
-        type:2,
-        title:"选择部门",
-        area : [ '300px', '450px' ],
-        content:"/system/sysDept/treeView"
-    })
-}
-function loadDept( deptId,deptName){
-    $("#deptId").val(deptId);
-    $("#deptName").val(deptName);
 }
 
 function uploadPartInfo(){

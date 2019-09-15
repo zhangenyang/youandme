@@ -1,5 +1,8 @@
 package com.bootdo.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -30,6 +33,8 @@ public class ProjectInfo {
 
     private Boolean projectNoticeType;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date regiDate;
 
     private String regiPlace;
@@ -40,6 +45,8 @@ public class ProjectInfo {
 
     private String purTenderIds;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date purTenderDate;
 
     private BigDecimal purTenderCost;
@@ -56,6 +63,8 @@ public class ProjectInfo {
 
     private String surveyPlace;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date surveyDate;
 
     private String surveyUnitContactorIds;
@@ -92,6 +101,8 @@ public class ProjectInfo {
 
     private String startTenderPlace;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startTenderTime;
 
     private Boolean startTenderHasSample;

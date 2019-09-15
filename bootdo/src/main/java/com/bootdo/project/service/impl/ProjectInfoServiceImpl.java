@@ -8,6 +8,8 @@ import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.model.vo.ProjectInfoVO;
+import com.bootdo.project.service.ContactorService;
+import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,12 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     private ContactorMapper contactorMapper;
     @Autowired
     private ContractInfoMapper contractInfoMapper;
+
+    @Autowired
+    private ContactorService contactorService;
+
+    @Autowired
+    private ContractInfoService contractInfoService;
 
     @Override
     public ProjectInfoDTO getProjectInfoById(Long id){
@@ -113,9 +121,43 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     public int insert(ProjectInfoVO projectInfoVO) {
         ProjectInfoWithBLOBs record = new ProjectInfoWithBLOBs();
         // 保存联系人信息
-
+        List<Contactor> contactors = new ArrayList<>();
+        List<Contactor> customerContactorList = projectInfoVO.getCustomerContactorList();
+        List<Contactor> followerList = projectInfoVO.getFollowerList();
+        List<Contactor> regiContactorList = projectInfoVO.getRegiContactorList();
+        List<Contactor> purTenderContactorList = projectInfoVO.getPurTenderContactorList();
+        List<Contactor> surveyUnitContactorList = projectInfoVO.getSurveyUnitContactorList();
+        List<Contactor> surveyUnitLeaderList = projectInfoVO.getSurveyUnitLeaderList();
+        List<Contactor> tenderPriceFileContactorList = projectInfoVO.getTenderPriceFileContactorList();
+        List<Contactor> tenderBookFileContactorList = projectInfoVO.getTenderBookFileContactorList();
+        List<Contactor> proveFileContactorList = projectInfoVO.getProveFileContactorList();
+        List<Contactor> startTenderLeaderList = projectInfoVO.getStartTenderLeaderList();
+        contactors.addAll(customerContactorList);
+        contactors.addAll(followerList);
+        contactors.addAll(regiContactorList);
+        contactors.addAll(purTenderContactorList);
+        contactors.addAll(surveyUnitContactorList);
+        contactors.addAll(surveyUnitLeaderList);
+        contactors.addAll(tenderPriceFileContactorList);
+        contactors.addAll(tenderBookFileContactorList);
+        contactors.addAll(proveFileContactorList);
+        contactors.addAll(startTenderLeaderList);
+        for (Contactor c : contactors) {
+            try {
+                contactorService.insert(c);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
         // 保存合同信息
-
+        List<ContractInfo> contractInfos = projectInfoVO.getContractInfoList();
+        for (ContractInfo contractInfo : contractInfos) {
+            try {
+                contractInfoService.insert(contractInfo);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
         // 保存projectInfo主表信息
 
         return projectInfoMapper.insert(record);

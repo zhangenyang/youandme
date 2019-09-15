@@ -4,7 +4,7 @@ $().ready(function() {
 
 $.validator.setDefaults({
     submitHandler : function() {
-        save();
+        update();
     }
 });
 

@@ -53,12 +53,12 @@ public class ProjectInfoController {
         return pageUtil;
     }
 
-    @GetMapping("/info")
-    @ResponseBody
-    ProjectInfoDTO get(Long id) {
+    @GetMapping("/info/{id}")
+    String get(Model model,@PathVariable("id") Long id) {
         // 查询项目信息数据
         ProjectInfoDTO p =  projectInfoService.getProjectInfoById(id);
-        return p;
+        model.addAttribute("projectInfo", p);
+        return prefix+"/edit";
     }
 
     @PostMapping("/remove")

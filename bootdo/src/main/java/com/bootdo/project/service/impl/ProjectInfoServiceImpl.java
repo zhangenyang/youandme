@@ -5,7 +5,6 @@ import com.bootdo.project.dao.ContactorMapper;
 import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
-import com.bootdo.project.model.dto.ProjectInfoVO;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,8 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     private ProjectInfoMapper projectInfoMapper;
     @Autowired
     private ContactorMapper contactorMapper;
+    @Autowired
+    private ContractInfoMapper contractInfoMapper;
 
     @Override
     public ProjectInfoWithBLOBs getProjectInfoById(Long id){
@@ -35,16 +36,16 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         for(ProjectInfoWithBLOBs p : list){
             ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
 
-            projectInfoVO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
-            projectInfoVO.setFollowerList(getContactorsByIds(p.getFollowerIds()));
-            projectInfoVO.setRegiContactorList(getContactorsByIds(p.getRegiContactorIds()));
-            projectInfoVO.setPurTenderContactorList(getContactorsByIds(p.getPurTenderIds()));
-            projectInfoVO.setSurveyUnitContactorList(getContactorsByIds(p.getSurveyUnitContactorIds()));
-            projectInfoVO.setSurveyUnitLeaderList(getContactorsByIds(p.getSurveyUnitLeaderIds()));
-            projectInfoVO.setTenderPriceFileContactorList(getContactorsByIds(p.getTenderPriceFileContactorIds()));
-            projectInfoVO.setTenderBookFileContactorList(getContactorsByIds(p.getTenderBookFileContactorIds()));
-            projectInfoVO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
-            projectInfoVO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
+            projectInfoDTO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
+            projectInfoDTO.setFollowerList(getContactorsByIds(p.getFollowerIds()));
+            projectInfoDTO.setRegiContactorList(getContactorsByIds(p.getRegiContactorIds()));
+            projectInfoDTO.setPurTenderContactorList(getContactorsByIds(p.getPurTenderIds()));
+            projectInfoDTO.setSurveyUnitContactorList(getContactorsByIds(p.getSurveyUnitContactorIds()));
+            projectInfoDTO.setSurveyUnitLeaderList(getContactorsByIds(p.getSurveyUnitLeaderIds()));
+            projectInfoDTO.setTenderPriceFileContactorList(getContactorsByIds(p.getTenderPriceFileContactorIds()));
+            projectInfoDTO.setTenderBookFileContactorList(getContactorsByIds(p.getTenderBookFileContactorIds()));
+            projectInfoDTO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
+            projectInfoDTO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
 
             List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
             ContractInfoExample contractInfoExample = new ContractInfoExample();
@@ -52,9 +53,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             contractInfoExampleCriteria.andIdIn(contractInfoIds);
             List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
 
-            projectInfoVO.setContractInfoList(contractInfos);
+            projectInfoDTO.setContractInfoList(contractInfos);
 
-            responseList.add(projectInfoVO);
+            responseList.add(projectInfoDTO);
         }
 
         return responseList;

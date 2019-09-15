@@ -1,6 +1,7 @@
 package com.bootdo.project.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.bootdo.common.annotation.Log;
 import com.bootdo.common.utils.PageUtils;
 import com.bootdo.common.utils.R;
@@ -72,6 +73,8 @@ public class ProjectInfoController {
     @PostMapping("/save")
     @ResponseBody
     R save(@RequestBody ProjectInfoVO projectInfoVO) {
+
+        System.out.println(JSON.toJSONString(projectInfoVO));
 
         if (projectInfoService.insert(projectInfoVO) > 0) {
             return R.ok();

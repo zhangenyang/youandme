@@ -33,66 +33,35 @@ var addStartTenderLeaderCount = 0;
 var addContractCount = 0;
 
 function validateRule() {
-    // TODO 更新校验
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules : {
-            name : {
-                required : true
-            },
-            username : {
-                required : true,
-                minlength : 2,
-                remote : {
-                    url : "/sys/user/exit", // 后台处理程序
-                    type : "post", // 数据发送方式
-                    dataType : "json", // 接受数据格式
-                    data : { // 要传递的数据
-                        username : function() {
-                            return $("#username").val();
-                        }
-                    }
-                }
-            },
-            password : {
-                required : true,
-                minlength : 6
-            },
-            confirm_password : {
-                required : true,
-                minlength : 6,
-                equalTo : "#password"
-            },
-            email : {
-                required : true,
-                email : true
-            },
-            topic : {
-                required : "#newsletter:checked",
-                minlength : 2
-            },
-            agree : "required"
+            projectYear : "required",
+            projectName : "required",
+            customerUnit : "required",
+            followerUnit : "required",
+            projectCode : "required",
+            projectNoticePath: "required"
         },
         messages : {
-
-            name : {
-                required : icon + "请输入姓名"
+            projectYear : {
+                required : icon + "请输入年度"
             },
-            username : {
-                required : icon + "请输入您的用户名",
-                minlength : icon + "用户名必须两个字符以上",
-                remote : icon + "用户名已经存在"
+            projectName : {
+                required : icon + "请输入项目名称"
             },
-            password : {
-                required : icon + "请输入您的密码",
-                minlength : icon + "密码必须6个字符以上"
+            customerUnit : {
+                required : icon + "请输入用户单位"
             },
-            confirm_password : {
-                required : icon + "请再次输入密码",
-                minlength : icon + "密码必须6个字符以上",
-                equalTo : icon + "两次输入的密码不一致"
+            followerUnit : {
+                required : icon + "请输入跟进单位"
             },
-            email : icon + "请输入您的E-mail",
+            projectCode : {
+                required : icon + "请输入项目编号"
+            },
+            projectNoticePath : {
+                required : icon + "请输入项目公告链接地址"
+            }
         }
     })
 }
@@ -113,7 +82,7 @@ function addContractAction() {
     newTr.id = "contract_"+ addContractCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"contract_name"+addContractCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"contract_price"+addContractCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" step=\"0.001\" id=\"contract_price"+addContractCount+"\"/></td>\n";
 
     addContractCount++;
 }
@@ -121,10 +90,10 @@ function addContractAction() {
 function addStartTenderLeaderAction() {
     var table = document.getElementById("startTenderLeaderTable");
     var newTr = table.insertRow(addStartTenderLeaderCount + 1);//添加新行，trIndex就是要添加的位置
-    newTr.id = "tenderPriceFileContactor_"+ addStartTenderLeaderCount;
+    newTr.id = "startTenderLeader_"+ addStartTenderLeaderCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_name"+addStartTenderLeaderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_phone"+addStartTenderLeaderCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"startTenderLeader_name"+addStartTenderLeaderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"number\" id=\"startTenderLeader_phone"+addStartTenderLeaderCount+"\"/></td>\n";
 
     addStartTenderLeaderCount++;
 }
@@ -135,7 +104,7 @@ function addTenderPriceFileContactorAction() {
     newTr.id = "tenderPriceFileContactor_"+ addTenderPriceFileContactorCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_name"+addTenderPriceFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_phone"+addTenderPriceFileContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"tenderPriceFileContactor_phone"+addTenderPriceFileContactorCount+"\"/></td>\n";
 
     addTenderPriceFileContactorCount++;
 }
@@ -146,7 +115,7 @@ function addTenderBookFileContactorAction() {
     newTr.id = "tenderBookFileContactor_"+ addTenderBookFileContactorCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderBookFileContactor_name"+addTenderBookFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"tenderBookFileContactor_phone"+addTenderBookFileContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"tenderBookFileContactor_phone"+addTenderBookFileContactorCount+"\"/></td>\n";
 
     addTenderBookFileContactorCount++;
 }
@@ -157,7 +126,7 @@ function addProveFileContactorAction() {
     newTr.id = "proveFileContactor_"+ addProveFileContactorCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"proveFileContactor_name"+addProveFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"proveFileContactor_phone"+addProveFileContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"proveFileContactor_phone"+addProveFileContactorCount+"\"/></td>\n";
 
     addProveFileContactorCount++;
 }
@@ -168,7 +137,7 @@ function addSurveyUnitLeaderAction() {
     newTr.id = "surveyUnitLeader_"+ addSurveyUnitLeaderCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"surveyUnitLeader_name"+addSurveyUnitLeaderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"surveyUnitLeader_phone"+addSurveyUnitLeaderCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"surveyUnitLeader_phone"+addSurveyUnitLeaderCount+"\"/></td>\n";
 
     addSurveyUnitLeaderCount++;
 }
@@ -179,7 +148,7 @@ function addSurveyUnitContactorAction() {
     newTr.id = "surveyUnitContactor_"+ addSurveyUnitContactorCount;
 
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"surveyUnitContactor_name"+addSurveyUnitContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"surveyUnitContactor_phone"+addSurveyUnitContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"surveyUnitContactor_phone"+addSurveyUnitContactorCount+"\"/></td>\n";
 
     addSurveyUnitContactorCount++;
 }
@@ -192,7 +161,7 @@ function addContactorAction() {
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"contactor_name"+addContactorCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"contactor_title"+addContactorCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"contactor_fixedPhone"+addContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"contactor_phone"+addContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"contactor_phone"+addContactorCount+"\"/></td>\n";
 
     addContactorCount++;
 }
@@ -205,7 +174,7 @@ function addFollowerAction() {
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"follower_name"+addFollowerCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"follower_title"+addFollowerCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"follower_fixedPhone"+addFollowerCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"follower_phone"+addFollowerCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"follower_phone"+addFollowerCount+"\"/></td>\n";
 
     addFollowerCount++;
 }
@@ -218,7 +187,7 @@ function addRegiContactorAction() {
     newTr.innerHTML = "                                        <td><input type=\"text\" id=\"regiContactor_name"+addRegiContactorCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"regiContactor_title"+addRegiContactorCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"regiContactor_fixedPhone"+addRegiContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"regiContactor_phone"+addRegiContactorCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"regiContactor_phone"+addRegiContactorCount+"\"/></td>\n";
 
     addRegiContactorCount++;
 }
@@ -232,7 +201,7 @@ function addPurTenderAction() {
         "                                        <td><input type=\"text\" id=\"purTender_title"+addPurTenderCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"purTender_fixedPhone"+addPurTenderCount+"\"/></td>\n" +
         "                                        <td><input type=\"text\" id=\"purTender_fax"+addPurTenderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"purTender_phone"+addPurTenderCount+"\"/></td>\n";
+        "                                        <td><input type=\"number\" id=\"purTender_phone"+addPurTenderCount+"\"/></td>\n";
 
     addPurTenderCount++;
 }
@@ -246,21 +215,162 @@ function save() {
     // 获取各种联系人的信息并组装
 
     // 用户单位联系人
-    var customerContactorList = [];
-    var customerContactor={
-        name:"",
-        title:"",
-        fixedPhone:"",
-        phone:""
-    };
-    for(var i=0; i< addContactorCount ; i++){
-        customerContactor.name = document.getElementById("contactor_name"+i).value;
-        customerContactor.title = document.getElementById("contactor_title"+i).value;
-        customerContactor.fixedPhone = document.getElementById("contactor_fixedPhone"+i).value;
-        customerContactor.phone = document.getElementById("contactor_phone"+i).value;
-        customerContactorList[i] = customerContactor;
+    var list = [];
+    var one={};
+    var i;
+    for(i=0; i< addContactorCount ; i++){
+        one["name"] = document.getElementById("contactor_name"+i).value;
+        one["title"] = document.getElementById("contactor_title"+i).value;
+        one["fixedPhone"] = document.getElementById("contactor_fixedPhone"+i).value;
+        one["phone"] = document.getElementById("contactor_phone"+i).value;
+        list[i] = one;
     }
-    data["customerContactorList"] = customerContactorList;
+    data["customerContactorList"] = list;
+
+    // 跟进人
+    list = [];
+    one = {};
+    for(i=0; i< addFollowerCount ; i++){
+        one["name"] = document.getElementById("follower_name"+i).value;
+        one["title"] = document.getElementById("follower_title"+i).value;
+        one["fixedPhone"] = document.getElementById("follower_fixedPhone"+i).value;
+        one["phone"] = document.getElementById("follower_phone"+i).value;
+        list[i] = one;
+    }
+    data["followerList"] = list;
+
+    // 招标机构联系人
+    list = [];
+    one = {};
+    for(i=0; i< addRegiContactorCount ; i++){
+        one["name"] = document.getElementById("regiContactor_name"+i).value;
+        one["title"] = document.getElementById("regiContactor_title"+i).value;
+        one["fixedPhone"] = document.getElementById("regiContactor_fixedPhone"+i).value;
+        one["phone"] = document.getElementById("regiContactor_phone"+i).value;
+        list[i] = one;
+    }
+    data["regiContactorList"] = list;
+
+    // 购买标书情况联系人
+    list = [];
+    one = {};
+    for(i=0; i< addPurTenderCount ; i++){
+        one["name"] = document.getElementById("purTender_name"+i).value;
+        one["title"] = document.getElementById("purTender_title"+i).value;
+        one["fixedPhone"] = document.getElementById("purTender_fixedPhone"+i).value;
+        one["phone"] = document.getElementById("purTender_phone"+i).value;
+        list[i] = one;
+    }
+    data["purTenderContactorList"] = list;
+
+    // 踏勘单位联系人
+    list = [];
+    one = {};
+    for(i=0; i< addSurveyUnitContactorCount ; i++){
+        one["name"] = document.getElementById("surveyUnitContactor_name"+i).value;
+        one["phone"] = document.getElementById("surveyUnitContactor_phone"+i).value;
+        list[i] = one;
+    }
+    data["surveyUnitContactorList"] = list;
+
+    // 踏勘负责人列表
+    list = [];
+    one = {};
+    for(i=0; i< addSurveyUnitLeaderCount ; i++){
+        one["name"] = document.getElementById("surveyUnitLeader_name"+i).value;
+        one["phone"] = document.getElementById("surveyUnitLeader_phone"+i).value;
+        list[i] = one;
+    }
+    data["surveyUnitLeaderList"] = list;
+
+    // 价格文件负责人列表
+    list = [];
+    one = {};
+    for(i=0; i< addTenderPriceFileContactorCount ; i++){
+        one["name"] = document.getElementById("tenderPriceFileContactor_name"+i).value;
+        one["phone"] = document.getElementById("tenderPriceFileContactor_phone"+i).value;
+        list[i] = one;
+    }
+    data["tenderPriceFileContactorList"] = list;
+
+    // 投标书负责人列表
+    list = [];
+    one = {};
+    for(i=0; i< addTenderBookFileContactorCount ; i++){
+        one["name"] = document.getElementById("tenderBookFileContactor_name"+i).value;
+        one["phone"] = document.getElementById("tenderBookFileContactor_phone"+i).value;
+        list[i] = one;
+    }
+    data["tenderBookFileContactorList"] = list;
+
+    // 资格证明文件负责人列表
+    list = [];
+    one = {};
+    for(i=0; i< addProveFileContactorCount ; i++){
+        one["name"] = document.getElementById("proveFileContactor_name"+i).value;
+        one["phone"] = document.getElementById("proveFileContactor_phone"+i).value;
+        list[i] = one;
+    }
+    data["proveFileContactorList"] = list;
+
+    // 开标负责人列表
+    list = [];
+    one = {};
+    for(i=0; i< addStartTenderLeaderCount ; i++){
+        one["name"] = document.getElementById("startTenderLeader_name"+i).value;
+        one["phone"] = document.getElementById("startTenderLeader_phone"+i).value;
+        list[i] = one;
+    }
+    data["startTenderLeaderList"] = list;
+
+    // 合同信息列表
+    list = [];
+    one = {};
+    for(i=0; i< addContractCount ; i++){
+        one["name"] = document.getElementById("contract_name"+i).value;
+        one["price"] = document.getElementById("contract_price"+i).value;
+        list[i] = one;
+    }
+    data["contractInfoList"] = list;
+
+    if(data["surveyHasSample"] != null){
+        if(data["surveyHasSample"] = "0"){
+            data["surveyHasSample"] = false;
+        }else{
+            data["surveyHasSample"] = true;
+        }
+    }
+    if(data["surveyTestSample"] != null){
+        if(data["surveyTestSample"] = "0"){
+            data["surveyTestSample"] = false;
+        }else{
+            data["surveyTestSample"] = true;
+        }
+    }
+
+    if(data["startTenderHasSample"] != null){
+        if(data["startTenderHasSample"] = "0"){
+            data["startTenderHasSample"] = false;
+        }else{
+            data["startTenderHasSample"] = true;
+        }
+    }
+
+    if(data["startTenderTestSample"] != null){
+        if(data["startTenderTestSample"] = "0"){
+            data["startTenderTestSample"] = false;
+        }else{
+            data["startTenderTestSample"] = true;
+        }
+    }
+
+    if(data["tenderWin"] != null){
+        if(data["tenderWin"] = "0"){
+            data["tenderWin"] = false;
+        }else{
+            data["tenderWin"] = true;
+        }
+    }
 
     $.ajax({
         dataType: 'json',

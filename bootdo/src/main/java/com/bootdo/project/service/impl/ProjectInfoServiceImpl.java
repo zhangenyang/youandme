@@ -27,8 +27,12 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     private ContractInfoMapper contractInfoMapper;
 
     @Override
-    public ProjectInfoWithBLOBs getProjectInfoById(Long id){
-        return projectInfoMapper.selectByPrimaryKey(id);
+    public ProjectInfoDTO getProjectInfoById(Long id){
+
+        ProjectInfoWithBLOBs p =  projectInfoMapper.selectByPrimaryKey(id);
+        ProjectInfoDTO projectInfoDTO = getProjectInfoDTO(p);
+        return projectInfoDTO;
+
     }
 
     @Override
@@ -36,33 +40,38 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         List<ProjectInfoWithBLOBs> list = projectInfoMapper.selectAll();
         List<ProjectInfoDTO> responseList = new ArrayList<>();
         for(ProjectInfoWithBLOBs p : list){
-            ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
-
-            projectInfoDTO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
-            projectInfoDTO.setFollowerList(getContactorsByIds(p.getFollowerIds()));
-            projectInfoDTO.setRegiContactorList(getContactorsByIds(p.getRegiContactorIds()));
-            projectInfoDTO.setPurTenderContactorList(getContactorsByIds(p.getPurTenderIds()));
-            projectInfoDTO.setSurveyUnitContactorList(getContactorsByIds(p.getSurveyUnitContactorIds()));
-            projectInfoDTO.setSurveyUnitLeaderList(getContactorsByIds(p.getSurveyUnitLeaderIds()));
-            projectInfoDTO.setTenderPriceFileContactorList(getContactorsByIds(p.getTenderPriceFileContactorIds()));
-            projectInfoDTO.setTenderBookFileContactorList(getContactorsByIds(p.getTenderBookFileContactorIds()));
-            projectInfoDTO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
-            projectInfoDTO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
-
-            if (StringUtils.isNotBlank(p.getContractInfoIds())) {
-                List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
-                ContractInfoExample contractInfoExample = new ContractInfoExample();
-                ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
-                contractInfoExampleCriteria.andIdIn(contractInfoIds);
-                List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
-
-                projectInfoDTO.setContractInfoList(contractInfos);
-            }
+            ProjectInfoDTO projectInfoDTO = getProjectInfoDTO(p);
 
             responseList.add(projectInfoDTO);
         }
 
         return responseList;
+    }
+
+    private ProjectInfoDTO getProjectInfoDTO(ProjectInfoWithBLOBs p) {
+        ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
+
+        projectInfoDTO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
+        projectInfoDTO.setFollowerList(getContactorsByIds(p.getFollowerIds()));
+        projectInfoDTO.setRegiContactorList(getContactorsByIds(p.getRegiContactorIds()));
+        projectInfoDTO.setPurTenderContactorList(getContactorsByIds(p.getPurTenderIds()));
+        projectInfoDTO.setSurveyUnitContactorList(getContactorsByIds(p.getSurveyUnitContactorIds()));
+        projectInfoDTO.setSurveyUnitLeaderList(getContactorsByIds(p.getSurveyUnitLeaderIds()));
+        projectInfoDTO.setTenderPriceFileContactorList(getContactorsByIds(p.getTenderPriceFileContactorIds()));
+        projectInfoDTO.setTenderBookFileContactorList(getContactorsByIds(p.getTenderBookFileContactorIds()));
+        projectInfoDTO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
+        projectInfoDTO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
+
+        if (StringUtils.isNotBlank(p.getContractInfoIds())) {
+            List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
+            ContractInfoExample contractInfoExample = new ContractInfoExample();
+            ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
+            contractInfoExampleCriteria.andIdIn(contractInfoIds);
+            List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
+
+            projectInfoDTO.setContractInfoList(contractInfos);
+        }
+        return projectInfoDTO;
     }
 
     /**

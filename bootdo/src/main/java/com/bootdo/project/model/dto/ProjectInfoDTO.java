@@ -15,15 +15,93 @@ import java.util.List;
  * */
 @Data
 public class ProjectInfoDTO {
+
     public ProjectInfoDTO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
-        // todo
+        this.other = projectInfoWithBLOBs.getOther();
+        this.projectNoticeValue = projectInfoWithBLOBs.getProjectNoticeValue();
         this.id = projectInfoWithBLOBs.getId();
+        this.projectStatus = projectInfoWithBLOBs.getProjectStatus();
         this.projectCode = projectInfoWithBLOBs.getProjectCode();
         this.projectName = projectInfoWithBLOBs.getProjectName();
         this.projectYear = projectInfoWithBLOBs.getProjectYear();
         this.customerUnit = projectInfoWithBLOBs.getCustomerUnit();
+        this.customerContactorIds = projectInfoWithBLOBs.getCustomerContactorIds();
+        this.followerUnit = projectInfoWithBLOBs.getFollowerUnit();
+        this.followerIds = projectInfoWithBLOBs.getFollowerIds();
+        this.projectParticipateInfo = projectInfoWithBLOBs.getProjectParticipateInfo();
+        this.solutionFilePath = projectInfoWithBLOBs.getSolutionFilePath();
+        this.projectBudget = projectInfoWithBLOBs.getProjectBudget();
+        this.projectNoticeType = projectInfoWithBLOBs.getProjectNoticeType();
         this.regiDate = projectInfoWithBLOBs.getRegiDate();
         this.regiPlace = projectInfoWithBLOBs.getRegiPlace();
+        this.regiContactorIds = projectInfoWithBLOBs.getRegiContactorIds();
+        this.regiReq = projectInfoWithBLOBs.getRegiReq();
+        this.purTenderIds = projectInfoWithBLOBs.getPurTenderIds();
+        this.purTenderDate = projectInfoWithBLOBs.getPurTenderDate();
+        this.purTenderCost = projectInfoWithBLOBs.getPurTenderCost();
+        this.purTenderTravelExpense = projectInfoWithBLOBs.getPurTenderTravelExpense();
+        this.tenderFilePath = projectInfoWithBLOBs.getTenderFilePath();
+        this.configFilePath = projectInfoWithBLOBs.getConfigFilePath();
+        this.qualificationFilePath = projectInfoWithBLOBs.getQualificationFilePath();
+        this.businessTechnologyAssessmentFilePath = projectInfoWithBLOBs.getBusinessTechnologyAssessmentFilePath();
+        this.surveyPlace = projectInfoWithBLOBs.getSurveyPlace();
+        this.surveyDate = projectInfoWithBLOBs.getSurveyDate();
+        this.surveyUnitContactorIds = projectInfoWithBLOBs.getSurveyUnitContactorIds();
+        this.surveyUnitLeaderIds= projectInfoWithBLOBs.getSurveyUnitLeaderIds();
+        this.surveyHasSample= projectInfoWithBLOBs.getSurveyHasSample();
+        this.surveySampleDetail= projectInfoWithBLOBs.getSurveySampleDetail();
+        this.surveyTestSample= projectInfoWithBLOBs.getSurveyTestSample();
+        this.surveyTestDetail= projectInfoWithBLOBs.getSurveyTestDetail();
+        this.surveyTravelExpense= projectInfoWithBLOBs.getSurveyTravelExpense();
+        this.surveySampleTransforExpense= projectInfoWithBLOBs.getSurveySampleTransforExpense();
+        this.tenderPriceFileContactorIds= projectInfoWithBLOBs.getTenderPriceFileContactorIds();
+        this.tenderBookFileContactorIds= projectInfoWithBLOBs.getTenderBookFileContactorIds();
+        this.proveFileContactorIds= projectInfoWithBLOBs.getProveFileContactorIds();
+        this.printTenderCost= projectInfoWithBLOBs.getPrintTenderCost();
+        this.tenderCarCost= projectInfoWithBLOBs.getTenderCarCost();
+        this.submitTenderFilePath= projectInfoWithBLOBs.getSubmitTenderFilePath();
+        this.proveFilePath= projectInfoWithBLOBs.getProveFilePath();
+        this.priceFilePath= projectInfoWithBLOBs.getPriceFilePath();
+        this.startTenderPlace= projectInfoWithBLOBs.getStartTenderPlace();
+        this.startTenderTime= projectInfoWithBLOBs.getStartTenderTime();
+        this.startTenderHasSample= projectInfoWithBLOBs.getStartTenderHasSample();
+        this.startTenderSampleDetail= projectInfoWithBLOBs.getStartTenderSampleDetail();
+        this.startTenderTestSample= projectInfoWithBLOBs.getStartTenderTestSample();
+        this.startTenderTestDetail= projectInfoWithBLOBs.getStartTenderTestDetail();
+        this.startTenderLeaderIds= projectInfoWithBLOBs.getStartTenderLeaderIds();
+        this.startTenderTravelExpense= projectInfoWithBLOBs.getStartTenderTravelExpense();
+        this.startTenderSampleTransforExpense= projectInfoWithBLOBs.getStartTenderSampleTransforExpense();
+        this.startTenderTotalExpense= projectInfoWithBLOBs.getStartTenderTotalExpense();
+        this.tenderPeopleName= projectInfoWithBLOBs.getTenderPeopleName();
+        this.tenderPeoplePhone= projectInfoWithBLOBs.getTenderPeoplePhone();
+        this.tenderPeopleTrainCost= projectInfoWithBLOBs.getTenderPeopleTrainCost();
+        this.tenderPeopleFlightCost= projectInfoWithBLOBs.getTenderPeopleFlightCost();
+        this.tenderPeopleStayCost= projectInfoWithBLOBs.getTenderPeopleStayCost();
+        this.tenderPeopleSupplyCost= projectInfoWithBLOBs.getTenderPeopleSupplyCost();
+        this.tenderPeopleTaxiCost= projectInfoWithBLOBs.getTenderPeopleTaxiCost();
+        this.tenderPeopleOtherCost= projectInfoWithBLOBs.getTenderPeopleOtherCost();
+        this.tenderPeopleFileTransforCost= projectInfoWithBLOBs.getTenderPeopleFileTransforCost();
+        this.tenderPeopleTotalCost= projectInfoWithBLOBs.getTenderPeopleTotalCost();
+        this.tenderPayPrice= projectInfoWithBLOBs.getTenderPayPrice();
+        this.tenderWin= projectInfoWithBLOBs.getTenderWin();
+        this.tenderWinPrice= projectInfoWithBLOBs.getTenderWinPrice();
+        this.tenderServiceRate= projectInfoWithBLOBs.getTenderServiceRate();
+        this.tenderInterestRate= projectInfoWithBLOBs.getTenderInterestRate();
+        this.tenderProjectIntegrateCost= projectInfoWithBLOBs.getTenderProjectIntegrateCost();
+        this.incomingRate= projectInfoWithBLOBs.getIncomingRate();
+        this.incomingCost= projectInfoWithBLOBs.getIncomingCost();
+        this.projectIntegrateTotalCost= projectInfoWithBLOBs.getProjectIntegrateTotalCost();
+        this.unitInterest= projectInfoWithBLOBs.getUnitInterest();
+        this.corIntegrateCost= projectInfoWithBLOBs.getCorIntegrateCost();
+        this.corOtherCost= projectInfoWithBLOBs.getCorOtherCost();
+        this.corTotalCost= projectInfoWithBLOBs.getCorTotalCost();
+        this.corCanUseCost= projectInfoWithBLOBs.getCorCanUseCost();
+        this.contractInfoIds= projectInfoWithBLOBs.getContractInfoIds();
+        this.warrantyPeriodStandard= projectInfoWithBLOBs.getWarrantyPeriodStandard();
+        this.tenderWarrantyPeriod= projectInfoWithBLOBs.getTenderWarrantyPeriod();
+        this.warrantyPriceStandard= projectInfoWithBLOBs.getWarrantyPriceStandard();
+        this.tenderWarrantyPrice= projectInfoWithBLOBs.getTenderWarrantyPrice();
+        this.canUseWithoutWarrantyPrice= projectInfoWithBLOBs.getCanUseWithoutWarrantyPrice();
     }
 
     /**

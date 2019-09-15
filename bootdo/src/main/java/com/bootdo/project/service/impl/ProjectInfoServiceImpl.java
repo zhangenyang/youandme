@@ -1,6 +1,7 @@
 package com.bootdo.project.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.bootdo.common.utils.StringUtils;
 import com.bootdo.project.dao.ContactorMapper;
 import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
@@ -47,13 +48,15 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             projectInfoDTO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
             projectInfoDTO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
 
-            List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
-            ContractInfoExample contractInfoExample = new ContractInfoExample();
-            ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
-            contractInfoExampleCriteria.andIdIn(contractInfoIds);
-            List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
+            if (StringUtils.isNotBlank(p.getContractInfoIds())) {
+                List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
+                ContractInfoExample contractInfoExample = new ContractInfoExample();
+                ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
+                contractInfoExampleCriteria.andIdIn(contractInfoIds);
+                List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
 
-            projectInfoDTO.setContractInfoList(contractInfos);
+                projectInfoDTO.setContractInfoList(contractInfos);
+            }
 
             responseList.add(projectInfoDTO);
         }
@@ -67,6 +70,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
      * @return
      */
     private List<Contactor> getContactorsByIds(String ids) {
+        if (StringUtils.isBlank(ids)) {
+            return new ArrayList<>();
+        }
         List<Long> contactorIds =  JSON.parseArray(ids,Long.class);
         ContactorExample example = new ContactorExample();
         ContactorExample.Criteria criteria = example.createCriteria();
@@ -86,6 +92,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     @Override
     public int deleteById(Long id) {
+
         return projectInfoMapper.deleteByPrimaryKey(id);
     }
 

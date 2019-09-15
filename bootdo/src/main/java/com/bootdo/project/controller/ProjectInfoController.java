@@ -51,6 +51,14 @@ public class ProjectInfoController {
         return pageUtil;
     }
 
+    @GetMapping("/info")
+    @ResponseBody
+    ProjectInfoDTO get(Long id) {
+        // 查询项目信息数据
+        ProjectInfoDTO p =  projectInfoService.getProjectInfoById(id);
+        return p;
+    }
+
     @PostMapping("/remove")
     @ResponseBody
     R remove(Long id) {

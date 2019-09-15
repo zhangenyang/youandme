@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<style >
+    .text-align-left {
+        text-align: left !important;
+    }
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${projectInfo.id}"
+                               type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">年度：</label>
+                            <div class="col-sm-8">
+                                <input id="projectYear" name="projectYear" class="form-control"
+                                       type="text" th:value="${projectInfo.projectYear}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目名称：</label>
+                            <div class="col-sm-8">
+                                <input id="projectName" name="projectName" class="form-control"
+                                       type="text" th:value="${projectInfo.projectName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户单位：</label>
+                            <div class="col-sm-8">
+                                <input id="customerUnit" name="customerUnit" class="form-control"
+                                       type="text" th:value="${projectInfo.customerUnit}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户单位联系人：</label>
+                            <div class="bootstrap-table">
+                                <div class="col-sm-8">
+                                    <div class="fixed-table-container">
+                                        <div class="fixed-table-body">
+                                            <table id="contactorTable" class="table table-hover table-striped">
+                                                <tr id="addContactorTr">
+                                                    <td id="addContactorName">姓名</td>
+                                                    <td id="addContactorTitle">职务</td>
+                                                    <td id="addContactorFixedPhone">固定电话</td>
+                                                    <td id="addContactorPhone">手机</td>
+                                                    <td id="addContactorBtn"><button id="addContactor" name="addContactor" class="btn btn-primary"
+                                                                                     type="button" onclick="addContactorAction()">添加</button></td>
+                                                </tr>
+                                                <tr th:each="customerContactor,customerContactorStat:${projectInfo.customerContactorList}">
+                                                    <td><input type="text" th:id="${'contactor_name' + customerContactorStat.index}" th:value="${customerContactor.name}"/></td>
+                                                    <td><input type="text" th:id="${'contactor_title' + customerContactorStat.index}" th:value="${customerContactor.title}"/></td>
+                                                    <td><input type="text" th:id="${'contactor_fixedPhone' + customerContactorStat.index}"  th:value="${customerContactor.fixedPhone}"/></td>
+                                                    <td><input type="number" th:id="${'contactor_phone' + customerContactorStat.index}" th:value="${customerContactor.phone}"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">跟进单位：</label>
+                            <div class="col-sm-8">
+                                <input id="followerUnit" name="followerUnit" class="form-control"
+                                       type="text" th:value="${projectInfo.followerUnit}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">跟进人：</label>
+                            <div class="bootstrap-table">
+                                <div class="col-sm-8">
+                                    <div class="fixed-table-container">
+                                        <div class="fixed-table-body">
+                                            <table id="followerTable" class="table table-hover table-striped">
+                                                <tr id="addFollowerTr">
+                                                    <td id="addFollowerName">姓名</td>
+                                                    <td id="addFollowerTitle">职务</td>
+                                                    <td id="addFollowerFixedPhone">固定电话</td>
+                                                    <td id="addFollowerPhone">手机</td>
+                                                    <td id="addFollowerBtn"><button id="addFollower" name="addFollower" class="btn btn-primary"
+                                                                                    type="button" onclick="addFollowerAction()">添加</button></td>
+                                                </tr>
+                                                <tr th:each="follower,followerStat:${projectInfo.followerList}">
+                                                    <td><input type="text" th:id="${'follower_name' + followerStat.index}" th:value="${follower.name}"/></td>
+                                                    <td><input type="text" th:id="${'follower_title' + followerStat.index}" th:value="${follower.title}"/></td>
+                                                    <td><input type="text" th:id="${'follower_fixedPhone' + followerStat.index}"  th:value="${follower.fixedPhone}"/></td>
+                                                    <td><input type="number" th:id="${'follower_phone' + followerStat.index}" th:value="${follower.phone}"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目和参与情况：</label>
+                            <div class="col-sm-8">
+                                <textarea id="projectParticipateInfo" name="projectParticipateInfo"
+                                          class="form-control" th:value="${projectInfo.projectParticipateInfo}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">方案：${projectInfo.solutionFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="solutionFilePath" name="solutionFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadPartInfo()">重新上传</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目预算（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="projectBudget" name="projectBudget" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.projectBudget}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目编号：</label>
+                            <div class="col-sm-8">
+                                <input id="projectCode" name="projectCode" class="form-control"
+                                       type="text" th:value="${projectInfo.projectCode}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目公告：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">链接地址：${projectInfo.projectNoticePath}</label>
+                                    <div class="col-sm-8">
+                                        <input id="projectNoticePath" name="projectNoticePath" class="form-control"
+                                               type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">图片：${projectInfo.projectNoticeImg}</label>
+                                    <div class="col-sm-8">
+                                        <button id="projectNoticeImg" name="projectNoticeImg" class="btn  btn-primary"
+                                                type="button" onclick="uploadProjectNoticeImg()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">文件：${projectInfo.projectNoticeImg}</label>
+                                    <div class="col-sm-8">
+                                        <button id="projectNoticeFile" name="projectNoticeFile" class="btn  btn-primary"
+                                                type="button" onclick="uploadProjectNoticeFile()">重新上传</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">投标报名时间：</label>
+                            <div class="col-sm-8">
+                                <input id="regiDate" name="regiDate" class="form-control"
+                                       type="date" th:value="${projectInfo.regiDate}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">投标报名地点：</label>
+                            <div class="col-sm-8">
+                                <input id="regiPlace" name="regiPlace" class="form-control"
+                                       type="text" th:value="${projectInfo.regiPlace}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">招标机构联系人：</label>
+                            <div class="bootstrap-table">
+                                <div class="col-sm-8">
+                                    <div class="fixed-table-container">
+                                        <div class="fixed-table-body">
+                                            <table id="regiContactorTable" class="table table-hover table-striped">
+                                                <tr id="addRegiContactorTr">
+                                                    <td id="addRegiContactorName">姓名</td>
+                                                    <td id="addRegiContactorTitle">职务</td>
+                                                    <td id="addRegiContactorFixedPhone">固定电话/传真</td>
+                                                    <td id="addRegiContactorPhone">手机</td>
+                                                    <td id="addRegiContactorBtn"><button id="addRegiContactor" name="addRegiContactor" class="btn btn-primary"
+                                                                                         type="button" onclick="addRegiContactorAction()">添加</button></td>
+                                                </tr>
+                                                <tr th:each="regiContactor,regiContactorStat:${projectInfo.regiContactorList}">
+                                                    <td><input type="text" th:id="${'regiContactor_name' + regiContactorStat.index}" th:value="${regiContactor.name}"/></td>
+                                                    <td><input type="text" th:id="${'regiContactor_title' + regiContactorStat.index}" th:value="${regiContactor.title}"/></td>
+                                                    <td><input type="text" th:id="${'regiContactor_fixedPhone' + regiContactorStat.index}"  th:value="${regiContactor.fixedPhone}"/></td>
+                                                    <td><input type="number" th:id="${'regiContactor_phone' + regiContactorStat.index}" th:value="${regiContactor.phone}"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">报名资格特殊要求：</label>
+                            <div class="col-sm-8">
+                                <textarea id="regiReq" name="regiReq" class="form-control" th:value="${projectInfo.regiReq}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">购买标书情况：</label>
+                            <div class="bootstrap-table">
+                                <div class="col-sm-8">
+                                    <div class="fixed-table-container">
+                                        <div class="fixed-table-body">
+                                            <table id="purTenderTable" class="table table-hover table-striped">
+                                                <tr id="addPurTenderTr">
+                                                    <td id="addPurTenderName">姓名</td>
+                                                    <td id="addPurTenderTitle">职务</td>
+                                                    <td id="addPurTenderFixedPhone">固定电话</td>
+                                                    <td id="addPurTenderPhone">手机</td>
+                                                    <td id="addPurTenderBtn"><button id="addPurTender" name="addPurTender" class="btn btn-primary"
+                                                                                     type="button" onclick="addPurTenderAction()">添加</button></td>
+                                                </tr>
+                                                <tr th:each="purTenderContactor,purTenderContactorStat:${projectInfo.purTenderContactorList}">
+                                                    <td><input type="text" th:id="${'purTender_name' + purTenderContactorStat.index}" th:value="${purTenderContactor.name}"/></td>
+                                                    <td><input type="text" th:id="${'purTender_title' + purTenderContactorStat.index}" th:value="${purTenderContactor.title}"/></td>
+                                                    <td><input type="text" th:id="${'purTender_fixedPhone' + purTenderContactorStat.index}"  th:value="${purTenderContactor.fixedPhone}"/></td>
+                                                    <td><input type="number" th:id="${'purTender_phone' + purTenderContactorStat.index}" th:value="${purTenderContactor.phone}"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">购买时间：</label>
+                                    <div class="col-sm-8">
+                                        <input id="purTenderDate" name="purTenderDate" class="form-control"
+                                               type="date" th:value="${projectInfo.purTenderDate}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标书费用（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="purTenderCost" name="purTenderCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.purTenderCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">差旅费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="purTenderTravelExpense" name="purTenderTravelExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.purTenderTravelExpense}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">招标文件：${projectInfo.tenderFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="tenderFilePath" name="tenderFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">参数文件：${projectInfo.tenderFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="configFilePath" name="configFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">资格审查文件：${projectInfo.tenderFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="qualificationFilePath" name="qualificationFilePath" class="btn btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">商务技术评审表：${projectInfo.businessTechnologyAssessmentFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="businessTechnologyAssessmentFilePath" name="businessTechnologyAssessmentFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否踏勘：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">踏勘地点：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveyPlace" name="surveyPlace" class="form-control"
+                                               type="text" th:value="${projectInfo.surveyPlace}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">踏勘时间：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveyDate" name="surveyDate" class="form-control"
+                                               type="date" th:value="${projectInfo.surveyDate}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">踏勘单位联系人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="surveyUnitContactorTable" class="table table-hover table-striped">
+                                                        <tr id="addSurveyUnitContactorTr">
+                                                            <td id="addSurveyUnitContactorName">姓名</td>
+                                                            <td id="addSurveyUnitContactorPhone">电话</td>
+                                                            <td id="addSurveyUnitContactorBtn"><button id="addSurveyUnitContactor" name="addSurveyUnitContactor" class="btn btn-primary"
+                                                                                                       type="button" onclick="addSurveyUnitContactorAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="surveyUnitContactor,surveyUnitContactorStat:${projectInfo.surveyUnitContactorList}">
+                                                            <td><input type="text" th:id="${'surveyUnitContactor_name' + surveyUnitContactorStat.index}" th:value="${surveyUnitContactor.name}"/></td>
+                                                            <td><input type="number" th:id="${'surveyUnitContactor_phone' + surveyUnitContactorStat.index}" th:value="${surveyUnitContactor.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">踏勘负责人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="surveyUnitLeaderTable" class="table table-hover table-striped">
+                                                        <tr id="addSurveyUnitLeaderTr">
+                                                            <td id="addSurveyUnitLeaderName">姓名</td>
+                                                            <td id="addSurveyUnitLeaderPhone">电话</td>
+                                                            <td id="addSurveyUnitLeaderBtn"><button id="addSurveyUnitLeader" name="addSurveyUnitLeader" class="btn btn-primary"
+                                                                                                    type="button" onclick="addSurveyUnitLeaderAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="surveyUnitLeader,surveyUnitLeaderStat:${projectInfo.surveyUnitLeaderList}">
+                                                            <td><input type="text" th:id="${'surveyUnitLeader_name' + surveyUnitLeaderStat.index}" th:value="${surveyUnitLeader.name}"/></td>
+                                                            <td><input type="number" th:id="${'surveyUnitLeader_phone' + surveyUnitLeaderStat.index}" th:value="${surveyUnitLeader.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">是否携带样品:</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="surveyHasSample" value="1" /> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="surveyHasSample" value="0" /> 否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">样品明细：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveySampleDetail" name="surveySampleDetail" class="form-control"
+                                               type="text" th:value="${projectInfo.surveySampleDetail}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">是否样品测试:</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="surveyTestSample" value="1" /> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="surveyTestSample" value="0" /> 否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">测试内容：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveyTestDetail" name="surveyTestDetail" class="form-control"
+                                               type="text" th:value="${projectInfo.surveyTestDetail}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">踏勘差旅费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveyTravelExpense" name="surveyTravelExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.surveyTravelExpense}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">样品运输费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="surveySampleTransforExpense" name="surveySampleTransforExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.surveySampleTransforExpense}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">投标文件拟制：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">价格文件负责人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="tenderPriceFileContactorTable" class="table table-hover table-striped">
+                                                        <tr id="addTenderPriceFileContactorTr">
+                                                            <td id="addTenderPriceFileContactorName">姓名</td>
+                                                            <td id="addTenderPriceFileContactorPhone">电话</td>
+                                                            <td id="addTenderPriceFileContactorBtn"><button id="addTenderPriceFileContactor" name="addTenderPriceFileContactor" class="btn btn-primary"
+                                                                                                            type="button" onclick="addTenderPriceFileContactorAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="tenderPriceFileContactor,tenderPriceFileContactorStat:${projectInfo.tenderPriceFileContactorList}">
+                                                            <td><input type="text" th:id="${'tenderPriceFileContactor_name' + tenderPriceFileContactorStat.index}" th:value="${tenderPriceFileContactor.name}"/></td>
+                                                            <td><input type="number" th:id="${'tenderPriceFileContactor_phone' + tenderPriceFileContactorStat.index}" th:value="${tenderPriceFileContactor.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">投标书负责人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="tenderBookFileContactorTable" class="table table-hover table-striped">
+                                                        <tr id="addTenderBookFileContactorTr">
+                                                            <td id="addTenderBookFileContactorName">姓名</td>
+                                                            <td id="addTenderBookFileContactorPhone">电话</td>
+                                                            <td id="addTenderBookFileContactorBtn"><button id="addTenderBookFileContactor" name="addTenderBookFileContactor" class="btn btn-primary"
+                                                                                                           type="button" onclick="addTenderBookFileContactorAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="tenderBookFileContactor,tenderBookFileContactorStat:${projectInfo.tenderBookFileContactorList}">
+                                                            <td><input type="text" th:id="${'tenderBookFileContactor_name' + tenderBookFileContactorStat.index}" th:value="${tenderBookFileContactor.name}"/></td>
+                                                            <td><input type="number" th:id="${'tenderBookFileContactor_phone' + tenderBookFileContactorStat.index}" th:value="${tenderBookFileContactor.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">资格证明文件负责人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="proveFileContactorTable" class="table table-hover table-striped">
+                                                        <tr id="addProveFileContactorTr">
+                                                            <td id="addProveFileContactorName">姓名</td>
+                                                            <td id="addProveFileContactorPhone">电话</td>
+                                                            <td id="addProveFileContactorBtn"><button id="addProveFileContactor" name="addProveFileContactor" class="btn btn-primary"
+                                                                                                      type="button" onclick="addProveFileContactorAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="proveFileContactor,proveFileContactorStat:${projectInfo.proveFileContactorList}">
+                                                            <td><input type="text" th:id="${'proveFileContactor_name' + proveFileContactorStat.index}" th:value="${proveFileContactor.name}"/></td>
+                                                            <td><input type="number" th:id="${'proveFileContactor_phone' + proveFileContactorStat.index}" th:value="${proveFileContactor.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">打印标书费用（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="printTenderCost" name="printTenderCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.printTenderCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">打车费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderCarCost" name="tenderCarCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderCarCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">上传投标文件：${projectInfo.submitTenderFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="submitTenderFilePath" name="submitTenderFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">资格证明文件：${projectInfo.proveFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="proveFilePath" name="proveFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">价格文件：${projectInfo.priceFilePath}</label>
+                                    <div class="col-sm-8">
+                                        <button id="priceFilePath" name="priceFilePath" class="btn  btn-primary"
+                                                type="button" onclick="uploadFile()">重新上传</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开标时间和地点：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">时间：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderTime" name="startTenderTime" class="form-control"
+                                               type="date" th:value="${projectInfo.startTenderTime}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">地点：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderPlace" name="startTenderPlace" class="form-control"
+                                               type="text" th:value="${projectInfo.startTenderPlace}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开标是否携带样和测试:</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">是否携带样品:</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="startTenderHasSample" value="1" /> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="startTenderHasSample" value="0" /> 否
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">样品明细：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderSampleDetail" name="startTenderSampleDetail" class="form-control"
+                                               type="text" th:value="${projectInfo.startTenderSampleDetail}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">是否样品测试:</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="startTenderTestSample" value="1" /> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="startTenderTestSample" value="0" /> 否
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">测试内容：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderTestDetail" name="startTenderTestDetail" class="form-control"
+                                               type="text" th:value="${projectInfo.startTenderTestDetail}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">负责人：</label>
+                                    <div class="bootstrap-table">
+                                        <div class="col-sm-8">
+                                            <div class="fixed-table-container">
+                                                <div class="fixed-table-body">
+                                                    <table id="startTenderLeaderTable" class="table table-hover table-striped">
+                                                        <tr id="addStartTenderLeaderTr">
+                                                            <td id="addStartTenderLeaderName">姓名</td>
+                                                            <td id="addStartTenderLeaderPhone">电话</td>
+                                                            <td id="addStartTenderLeaderBtn"><button id="addStartTenderLeader" name="addStartTenderLeader" class="btn btn-primary"
+                                                                                                     type="button" onclick="addStartTenderLeaderAction()">添加</button></td>
+                                                        </tr>
+                                                        <tr th:each="startTenderLeader,startTenderLeaderStat:${projectInfo.startTenderLeaderList}">
+                                                            <td><input type="text" th:id="${'startTenderLeader_name' + startTenderLeaderStat.index}" th:value="${startTenderLeader.name}"/></td>
+                                                            <td><input type="number" th:id="${'startTenderLeader_phone' + startTenderLeaderStat.index}" th:value="${startTenderLeader.phone}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">携带样品运输费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderTravelExpense" name="startTenderTravelExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.startTenderTravelExpense}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">差旅费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderSampleTransforExpense" name="startTenderSampleTransforExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.startTenderSampleTransforExpense}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">总费用（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="startTenderTotalExpense" name="startTenderTotalExpense" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.startTenderTotalExpense}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">投标人情况及费用:</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">姓名：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleName" name="tenderPeopleName" class="form-control"
+                                               type="text" th:value="${projectInfo.tenderPeopleName}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">电话：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeoplePhone" name="tenderPeoplePhone" class="form-control"
+                                               type="text" th:value="${projectInfo.tenderPeoplePhone}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">火、汽车票（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleTrainCost" name="tenderPeopleTrainCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleTrainCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">飞机（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleFlightCost" name="tenderPeopleFlightCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleFlightCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">住  宿（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleStayCost" name="tenderPeopleStayCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleStayCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">补助：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleSupplyCost" name="tenderPeopleSupplyCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleSupplyCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">出租车、快车（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleTaxiCost" name="tenderPeopleTaxiCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleTaxiCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">其它（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleOtherCost" name="tenderPeopleOtherCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleOtherCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">文件运输及托运费用（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleFileTransforCost" name="tenderPeopleFileTransforCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleFileTransforCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">总费用（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderPeopleTotalCost" name="tenderPeopleTotalCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderPeopleTotalCost}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">投标价（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="tenderPayPrice" name="tenderPayPrice" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.tenderPayPrice}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否中标:</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="tenderWin" value="1" /> 是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="tenderWin" value="0" /> 否
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">中标价（万元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderWinPrice" name="tenderWinPrice" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderWinPrice}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">中标服务费：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标准：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderServiceRate" name="tenderServiceRate" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderServiceRate}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">费用（万元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderServiceRateCost" name="tenderServiceRateCost" class="form-control"
+                                               type="number" step="0.001">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">毛利：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标准：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderInterestRate" name="tenderInterestRate" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderInterestRate}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">毛利润（万元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderInterestRateCost" name="tenderInterestRateCost" class="form-control"
+                                               type="number" step="0.001">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目协调费用（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="tenderProjectIntegrateCost" name="tenderProjectIntegrateCost" class="form-control"
+                                       type="number" step="0.001"  th:value="${projectInfo.tenderProjectIntegrateCost}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">提成（增量利率）（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="incomingRate" name="incomingRate" class="form-control"
+                                       type="number" step="0.001"  th:value="${projectInfo.incomingRate}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">提成（增量毛利）（元）：</label>
+                            <div class="col-sm-8">
+                                <input id="incomingCost" name="incomingCost" class="form-control"
+                                       type="number" step="0.001"  th:value="${projectInfo.incomingCost}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">项目协调总费用（元）：</label>
+                            <div class="col-sm-8">
+                                <input id="projectIntegrateTotalCost" name="tenderProjectIntegrateCost" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.projectIntegrateTotalCost}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">事业部利润（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="unitInterest" name="unitInterest" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.unitInterest}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">合作方其它开支：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">协调费（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="corIntegrateCost" name="corIntegrateCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.corIntegrateCost}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">其它（元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="corOtherCost" name="corOtherCost" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.corOtherCost}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">合作方总开支（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="corTotalCost" name="corTotalCost" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.corTotalCost}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">合作方可支配费用（万元）：</label>
+                            <div class="col-sm-8">
+                                <input id="corCanUseCost" name="corCanUseCost" class="form-control"
+                                       type="text" th:value="${projectInfo.corCanUseCost}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">合同：</label>
+                            <div class="bootstrap-table">
+                                <div class="col-sm-8">
+                                    <div class="fixed-table-container">
+                                        <div class="fixed-table-body">
+                                            <table id="contractTable" class="table table-hover table-striped">
+                                                <tr id="addContractTr">
+                                                    <td id="addContractName">合同名字</td>
+                                                    <td id="addContractPrice">金额</td>
+                                                    <td id="addContractBtn"><button id="addContract" name="addContract" class="btn btn-primary"
+                                                                                    type="button" onclick="addContractAction()">添加</button></td>
+                                                </tr>
+                                                <tr th:each="contractInfo,contractInfoStat:${projectInfo.contractInfoList}">
+                                                    <td><input type="text" th:id="${'contract_name' + contractInfoStat.index}" th:value="${contractInfo.name}"/></td>
+                                                    <td><input type="number" th:id="${'contract_price' + contractInfoStat.index}" th:value="${contractInfo.price}"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">质保期：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标准：</label>
+                                    <div class="col-sm-8">
+                                        <input id="warrantyPeriodStandard" name="warrantyPeriodStandard" class="form-control"
+                                               type="text" th:value="${projectInfo.warrantyPeriodStandard}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">投标质保期：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderWarrantyPeriod" name="tenderWarrantyPeriod" class="form-control"
+                                               type="text" th:value="${projectInfo.tenderWarrantyPeriod}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">质保金：</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标准：</label>
+                                    <div class="col-sm-8">
+                                        <input id="warrantyPriceStandard" name="warrantyPriceStandard" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.warrantyPriceStandard}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">经费（万元）：</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderWarrantyPrice" name="tenderWarrantyPrice" class="form-control"
+                                               type="number" step="0.001" th:value="${projectInfo.tenderWarrantyPrice}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">合作方去除质保金后可支配费用：</label>
+                            <div class="col-sm-8">
+                                <input id="canUseWithoutWarrantyPrice" name="canUseWithoutWarrantyPrice" class="form-control"
+                                       type="number" step="0.001" th:value="${projectInfo.canUseWithoutWarrantyPrice}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">其它：</label>
+                            <div class="col-sm-8">
+                                <input id="other" name="other" class="form-control"
+                                       type="text" th:value="${projectInfo.other}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/promana/edit.js">
+</script>
+</body>
+</html>

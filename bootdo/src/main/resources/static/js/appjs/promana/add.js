@@ -8,33 +8,30 @@ $.validator.setDefaults({
     }
 });
 
-function save() {
-    var data = $('#signupForm').serialize();
-    // 获取各种联系人的信息并组装
-    $.ajax({
-        cache : true,
-        type : "POST",
-        url : "/project/save",
-        data : data,
-        async : false,
-        error : function(request) {
-            parent.layer.alert("Connection error");
-        },
-        success : function(data) {
-            if (data.code == 0) {
-                parent.layer.msg("操作成功");
-                parent.reLoad();
-                var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
-                parent.layer.close(index);
+// 用户单位联系人
+var addContactorCount = 0;
+// 跟进人
+var addFollowerCount = 0;
+// 招标机构联系人
+var addRegiContactorCount = 0;
+// 购买标书情况联系人
+var addPurTenderCount = 0;
+// 踏勘单位联系人
+var addSurveyUnitContactorCount = 0;
+// 踏勘负责人
+var addSurveyUnitLeaderCount = 0;
+// 价格文件负责人
+var addTenderPriceFileContactorCount = 0;
+// 投标书负责人
+var addTenderBookFileContactorCount = 0;
+// 资格证明文件负责人
+var addProveFileContactorCount = 0;
+// 开标是否携带样和测试 负责人
+var addStartTenderLeaderCount = 0;
 
-            } else {
-                parent.layer.alert(data.msg)
-            }
+// 合同信息
+var addContractCount = 0;
 
-        }
-    });
-
-}
 function validateRule() {
     // TODO 更新校验
     var icon = "<i class='fa fa-times-circle'></i> ";
@@ -110,37 +107,13 @@ function uploadProjectNoticeImg(){
 
 }
 
-// 用户单位联系人
-var addContactorCount = 0;
-// 跟进人
-var addFollowerCount = 0;
-// 招标机构联系人
-var addRegiContactorCount = 0;
-// 购买标书情况联系人
-var addPurTenderCount = 0;
-// 踏勘单位联系人
-var addSurveyUnitContactorCount = 0;
-// 踏勘负责人
-var addSurveyUnitLeaderCount = 0;
-// 价格文件负责人
-var addTenderPriceFileContactorCount = 0;
-// 投标书负责人
-var addTenderBookFileContactorCount = 0;
-// 资格证明文件负责人
-var addProveFileContactorCount = 0;
-// 开标是否携带样和测试 负责人
-var addStartTenderLeaderCount = 0;
-
-// 合同信息
-var addContractCount = 0;
-
 function addContractAction() {
     var table = document.getElementById("contractTable");
     var newTr = table.insertRow(addContractCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "contract_"+ addContractCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addContractCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"price"+addContractCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"contract_name"+addContractCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"contract_price"+addContractCount+"\"/></td>\n";
 
     addContractCount++;
 }
@@ -150,8 +123,8 @@ function addStartTenderLeaderAction() {
     var newTr = table.insertRow(addStartTenderLeaderCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "tenderPriceFileContactor_"+ addStartTenderLeaderCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addStartTenderLeaderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addStartTenderLeaderCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_name"+addStartTenderLeaderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_phone"+addStartTenderLeaderCount+"\"/></td>\n";
 
     addStartTenderLeaderCount++;
 }
@@ -161,8 +134,8 @@ function addTenderPriceFileContactorAction() {
     var newTr = table.insertRow(addTenderPriceFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "tenderPriceFileContactor_"+ addTenderPriceFileContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addTenderPriceFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addTenderPriceFileContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_name"+addTenderPriceFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"tenderPriceFileContactor_phone"+addTenderPriceFileContactorCount+"\"/></td>\n";
 
     addTenderPriceFileContactorCount++;
 }
@@ -172,8 +145,8 @@ function addTenderBookFileContactorAction() {
     var newTr = table.insertRow(addTenderBookFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "tenderBookFileContactor_"+ addTenderBookFileContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addTenderBookFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addTenderBookFileContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"tenderBookFileContactor_name"+addTenderBookFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"tenderBookFileContactor_phone"+addTenderBookFileContactorCount+"\"/></td>\n";
 
     addTenderBookFileContactorCount++;
 }
@@ -183,8 +156,8 @@ function addProveFileContactorAction() {
     var newTr = table.insertRow(addProveFileContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "proveFileContactor_"+ addProveFileContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addProveFileContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addProveFileContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"proveFileContactor_name"+addProveFileContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"proveFileContactor_phone"+addProveFileContactorCount+"\"/></td>\n";
 
     addProveFileContactorCount++;
 }
@@ -194,8 +167,8 @@ function addSurveyUnitLeaderAction() {
     var newTr = table.insertRow(addSurveyUnitLeaderCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "surveyUnitLeader_"+ addSurveyUnitLeaderCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addSurveyUnitLeaderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addSurveyUnitLeaderCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"surveyUnitLeader_name"+addSurveyUnitLeaderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"surveyUnitLeader_phone"+addSurveyUnitLeaderCount+"\"/></td>\n";
 
     addSurveyUnitLeaderCount++;
 }
@@ -205,8 +178,8 @@ function addSurveyUnitContactorAction() {
     var newTr = table.insertRow(addSurveyUnitContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "surveyUnitContactor_"+ addSurveyUnitContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addSurveyUnitContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addSurveyUnitContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"surveyUnitContactor_name"+addSurveyUnitContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"surveyUnitContactor_phone"+addSurveyUnitContactorCount+"\"/></td>\n";
 
     addSurveyUnitContactorCount++;
 }
@@ -216,10 +189,10 @@ function addContactorAction() {
     var newTr = table.insertRow(addContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "contactor_"+ addContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"title"+addContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"fixedPhone"+addContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"contactor_name"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"contactor_title"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"contactor_fixedPhone"+addContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"contactor_phone"+addContactorCount+"\"/></td>\n";
 
     addContactorCount++;
 }
@@ -229,10 +202,10 @@ function addFollowerAction() {
     var newTr = table.insertRow(addFollowerCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "follower_"+ addFollowerCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addFollowerCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"title"+addFollowerCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"fixedPhone"+addFollowerCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addFollowerCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"follower_name"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"follower_title"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"follower_fixedPhone"+addFollowerCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"follower_phone"+addFollowerCount+"\"/></td>\n";
 
     addFollowerCount++;
 }
@@ -242,10 +215,10 @@ function addRegiContactorAction() {
     var newTr = table.insertRow(addRegiContactorCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "regiContactor_"+ addRegiContactorCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addRegiContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"title"+addRegiContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"fixedPhone"+addRegiContactorCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addRegiContactorCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"regiContactor_name"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"regiContactor_title"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"regiContactor_fixedPhone"+addRegiContactorCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"regiContactor_phone"+addRegiContactorCount+"\"/></td>\n";
 
     addRegiContactorCount++;
 }
@@ -255,11 +228,63 @@ function addPurTenderAction() {
     var newTr = table.insertRow(addPurTenderCount + 1);//添加新行，trIndex就是要添加的位置
     newTr.id = "purTender_"+ addPurTenderCount;
 
-    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"name"+addPurTenderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"title"+addPurTenderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"fixedPhone"+addPurTenderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"fax"+addPurTenderCount+"\"/></td>\n" +
-        "                                        <td><input type=\"text\" id=\"phone"+addPurTenderCount+"\"/></td>\n";
+    newTr.innerHTML = "                                        <td><input type=\"text\" id=\"purTender_name"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"purTender_title"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"purTender_fixedPhone"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"purTender_fax"+addPurTenderCount+"\"/></td>\n" +
+        "                                        <td><input type=\"text\" id=\"purTender_phone"+addPurTenderCount+"\"/></td>\n";
 
     addPurTenderCount++;
+}
+
+function save() {
+    var signupForm = $('#signupForm').serializeArray();
+    var data = {};
+    $.each(signupForm,function(i,v){
+        data[v.name] = v.value;
+    });
+    // 获取各种联系人的信息并组装
+
+    // 用户单位联系人
+    var customerContactorList = [];
+    var customerContactor={
+        name:"",
+        title:"",
+        fixedPhone:"",
+        phone:""
+    };
+    for(var i=0; i< addContactorCount ; i++){
+        customerContactor.name = document.getElementById("contactor_name"+i).value;
+        customerContactor.title = document.getElementById("contactor_title"+i).value;
+        customerContactor.fixedPhone = document.getElementById("contactor_fixedPhone"+i).value;
+        customerContactor.phone = document.getElementById("contactor_phone"+i).value;
+        customerContactorList[i] = customerContactor;
+    }
+    data["customerContactorList"] = customerContactorList;
+
+    $.ajax({
+        dataType: 'json',
+        contentType: 'application/json',
+        cache : true,
+        type : "POST",
+        url : "/project/save",
+        data : JSON.stringify(data),
+        async : false,
+        error : function(request) {
+            parent.layer.alert("Connection error");
+        },
+        success : function(data) {
+            if (data.code == 0) {
+                parent.layer.msg("操作成功");
+                parent.reLoad();
+                var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+                parent.layer.close(index);
+
+            } else {
+                parent.layer.alert(data.msg)
+            }
+
+        }
+    });
+
 }

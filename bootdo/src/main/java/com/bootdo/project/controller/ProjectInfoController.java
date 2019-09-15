@@ -6,6 +6,7 @@ import com.bootdo.common.utils.PageUtils;
 import com.bootdo.common.utils.R;
 import com.bootdo.project.model.ProjectInfoWithBLOBs;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
+import com.bootdo.project.model.vo.ProjectInfoVO;
 import com.bootdo.project.service.ContactorService;
 import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
@@ -62,9 +63,9 @@ public class ProjectInfoController {
 
     @PostMapping("/save")
     @ResponseBody
-    R save(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
+    R save(@RequestBody ProjectInfoVO projectInfoVO) {
 
-        if (projectInfoService.insert(projectInfoWithBLOBs) > 0) {
+        if (projectInfoService.insert(projectInfoVO) > 0) {
             return R.ok();
         }
         return R.error();

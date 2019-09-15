@@ -7,6 +7,7 @@ import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
+import com.bootdo.project.model.vo.ProjectInfoVO;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,7 +98,14 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public int insert(ProjectInfoWithBLOBs record) {
+    public int insert(ProjectInfoVO projectInfoVO) {
+        ProjectInfoWithBLOBs record = new ProjectInfoWithBLOBs();
+        // 保存联系人信息
+
+        // 保存合同信息
+
+        // 保存projectInfo主表信息
+
         return projectInfoMapper.insert(record);
     }
 

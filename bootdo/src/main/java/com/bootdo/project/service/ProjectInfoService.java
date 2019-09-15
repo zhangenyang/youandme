@@ -2,6 +2,7 @@ package com.bootdo.project.service;
 
 import com.bootdo.project.model.ProjectInfoWithBLOBs;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
+import com.bootdo.project.model.vo.ProjectInfoVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ProjectInfoService {
 
     int deleteById(Long id);
 
-    int insert(ProjectInfoWithBLOBs record);
+    int insert(ProjectInfoVO projectInfoVO);
 
     int insertSelective(ProjectInfoWithBLOBs record);
 

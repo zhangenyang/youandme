@@ -30,6 +30,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     public ProjectInfoDTO getProjectInfoById(Long id){
 
         ProjectInfoWithBLOBs p =  projectInfoMapper.selectByPrimaryKey(id);
+        if (p == null) {
+            return null;
+        }
         ProjectInfoDTO projectInfoDTO = getProjectInfoDTO(p);
         return projectInfoDTO;
 

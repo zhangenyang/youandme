@@ -2,6 +2,7 @@ package com.bootdo.project.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.bootdo.project.dao.ContactorMapper;
+import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
 import com.bootdo.project.model.dto.ProjectInfoVO;
@@ -20,6 +21,8 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     private ProjectInfoMapper projectInfoMapper;
     @Autowired
     private ContactorMapper contactorMapper;
+    @Autowired
+    private ContractInfoMapper contractInfoMapper;
 
     @Override
     public ProjectInfoWithBLOBs getProjectInfoById(Long id){
@@ -33,20 +36,43 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         for(ProjectInfoWithBLOBs p : list){
             ProjectInfoVO projectInfoVO = new ProjectInfoVO(p);
 
-            // 根据customerContactorIds 获取contractList的信息
-            List<Long> customerContactorIds =  JSON.parseArray(p.getContractInfoIds(),Long.class);
-            ContactorExample example = new ContactorExample();
-            ContactorExample.Criteria criteria = example.createCriteria();
-            criteria.andIdIn(customerContactorIds);
-            List<Contactor> contactors = contactorMapper.selectByExample(example);
+            projectInfoVO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
+            projectInfoVO.setFollowerList(getContactorsByIds(p.getFollowerIds()));
+            projectInfoVO.setRegiContactorList(getContactorsByIds(p.getRegiContactorIds()));
+            projectInfoVO.setPurTenderContactorList(getContactorsByIds(p.getPurTenderIds()));
+            projectInfoVO.setSurveyUnitContactorList(getContactorsByIds(p.getSurveyUnitContactorIds()));
+            projectInfoVO.setSurveyUnitLeaderList(getContactorsByIds(p.getSurveyUnitLeaderIds()));
+            projectInfoVO.setTenderPriceFileContactorList(getContactorsByIds(p.getTenderPriceFileContactorIds()));
+            projectInfoVO.setTenderBookFileContactorList(getContactorsByIds(p.getTenderBookFileContactorIds()));
+            projectInfoVO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
+            projectInfoVO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
 
-            projectInfoVO.setContactorList(contactors);
-            // todo 其他的也一样
+            List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
+            ContractInfoExample contractInfoExample = new ContractInfoExample();
+            ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
+            contractInfoExampleCriteria.andIdIn(contractInfoIds);
+            List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
+
+            projectInfoVO.setContractInfoList(contractInfos);
 
             responseList.add(projectInfoVO);
         }
 
         return responseList;
+    }
+
+    /**
+     * 根据id集合获取不同类型的联系人
+     * @param ids
+     * @return
+     */
+    private List<Contactor> getContactorsByIds(String ids) {
+        List<Long> contactorIds =  JSON.parseArray(ids,Long.class);
+        ContactorExample example = new ContactorExample();
+        ContactorExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(contactorIds);
+        List<Contactor> contactors = contactorMapper.selectByExample(example);
+        return contactors;
     }
 
     @Override

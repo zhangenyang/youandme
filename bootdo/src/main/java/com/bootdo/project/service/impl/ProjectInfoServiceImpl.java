@@ -6,6 +6,7 @@ import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
 import com.bootdo.project.model.dto.ProjectInfoVO;
+import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,6 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     private ProjectInfoMapper projectInfoMapper;
     @Autowired
     private ContactorMapper contactorMapper;
-    @Autowired
-    private ContractInfoMapper contractInfoMapper;
 
     @Override
     public ProjectInfoWithBLOBs getProjectInfoById(Long id){
@@ -30,11 +29,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public List<ProjectInfoVO> getAll() {
+    public List<ProjectInfoDTO> getAll() {
         List<ProjectInfoWithBLOBs> list = projectInfoMapper.selectAll();
-        List<ProjectInfoVO> responseList = new ArrayList<>();
+        List<ProjectInfoDTO> responseList = new ArrayList<>();
         for(ProjectInfoWithBLOBs p : list){
-            ProjectInfoVO projectInfoVO = new ProjectInfoVO(p);
+            ProjectInfoDTO projectInfoDTO = new ProjectInfoDTO(p);
 
             projectInfoVO.setCustomerContactorList(getContactorsByIds(p.getCustomerContactorIds()));
             projectInfoVO.setFollowerList(getContactorsByIds(p.getFollowerIds()));

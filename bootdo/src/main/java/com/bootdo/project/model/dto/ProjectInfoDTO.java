@@ -14,10 +14,16 @@ import java.util.List;
  * @Description 项目信息的返回实体类
  * */
 @Data
-public class ProjectInfoVO {
-    public ProjectInfoVO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
+public class ProjectInfoDTO {
+    public ProjectInfoDTO(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
         // todo
-
+        this.id = projectInfoWithBLOBs.getId();
+        this.projectCode = projectInfoWithBLOBs.getProjectCode();
+        this.projectName = projectInfoWithBLOBs.getProjectName();
+        this.projectYear = projectInfoWithBLOBs.getProjectYear();
+        this.customerUnit = projectInfoWithBLOBs.getCustomerUnit();
+        this.regiDate = projectInfoWithBLOBs.getRegiDate();
+        this.regiPlace = projectInfoWithBLOBs.getRegiPlace();
     }
 
     /**

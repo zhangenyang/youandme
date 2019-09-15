@@ -1,27 +1,25 @@
 package com.bootdo.project.controller;
 
 
-import com.bootdo.common.config.Constant;
-import com.bootdo.common.utils.MD5Utils;
+import com.bootdo.common.annotation.Log;
 import com.bootdo.common.utils.PageUtils;
-import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 import com.bootdo.project.model.ProjectInfoWithBLOBs;
-import com.bootdo.project.model.ProjectStatus;
-import com.bootdo.project.model.dto.ProjectInfoVO;
+import com.bootdo.project.model.dto.ProjectInfoDTO;
 import com.bootdo.project.service.ContactorService;
 import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
 import com.bootdo.project.service.ProjectStatusService;
-import com.bootdo.system.domain.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping("projectInfo")
+@Controller
+@RequestMapping("/project")
 public class ProjectInfoController {
 
     @Autowired
@@ -36,17 +34,24 @@ public class ProjectInfoController {
     @Autowired
     private ProjectStatusService projectStatusService;
 
+    private String prefix = "/project";
+
+    @GetMapping("")
+    String Project(Model model) {
+        return prefix + "/project";
+    }
+
     @GetMapping("/list")
     @ResponseBody
     PageUtils list(@RequestParam Map<String, Object> params) {
         // 查询列表数据
-        List<ProjectInfoVO> projectInfoWithBLOBs =  projectInfoService.getAll();
+        List<ProjectInfoDTO> projectInfoWithBLOBs =  projectInfoService.getAll();
 
         PageUtils pageUtil = new PageUtils(projectInfoWithBLOBs, projectInfoWithBLOBs.size());
         return pageUtil;
     }
 
-    @DeleteMapping("/remove")
+    @PostMapping("/remove")
     @ResponseBody
     R remove(Long id) {
         if (projectInfoService.deleteById(id) > 0) {
@@ -73,6 +78,12 @@ public class ProjectInfoController {
             return R.ok();
         }
         return R.error();
+    }
+
+    @Log("添加项目")
+    @GetMapping("/add")
+    String add(Model model) {
+        return prefix + "/add";
     }
 
 

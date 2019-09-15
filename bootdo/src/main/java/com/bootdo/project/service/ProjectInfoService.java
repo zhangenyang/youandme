@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProjectInfoService {
 
-    ProjectInfoWithBLOBs getProjectInfoById(Long id);
+    ProjectInfoDTO getProjectInfoById(Long id);
 
     List<ProjectInfoDTO> getAll();
 

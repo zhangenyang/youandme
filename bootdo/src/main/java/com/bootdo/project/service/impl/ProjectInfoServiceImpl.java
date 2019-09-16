@@ -117,10 +117,90 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         return projectInfoMapper.deleteByPrimaryKey(id);
     }
 
+    private List<Long> saveContactorEditVO(List<Contactor> contactorList) {
+        List<Long> contactorIds = new ArrayList<>();
+        for (Contactor c : contactorList) {
+            try {
+                contactorService.insert(c);
+                contactorIds.add(c.getId());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        return  contactorIds;
+    }
+
     @Override
     public int insert(ProjectInfoVO projectInfoVO) {
-        ProjectInfoWithBLOBs record = new ProjectInfoWithBLOBs();
         // 保存联系人信息
+        List<Contactor> customerContactorList = projectInfoVO.getCustomerContactorList();
+        List<Long> customerContactorIds = saveContactorEditVO(customerContactorList);
+        projectInfoVO.setCustomerContactorIds(JSON.toJSONString(customerContactorIds));
+
+        List<Contactor> followerList = projectInfoVO.getFollowerList();
+        List<Long> followerIds = saveContactorEditVO(followerList);
+        projectInfoVO.setFollowerIds(JSON.toJSONString(followerIds));
+
+        List<Contactor> regiContactorList = projectInfoVO.getRegiContactorList();
+        List<Long> regiContactorIds = saveContactorEditVO(regiContactorList);
+        projectInfoVO.setRegiContactorIds(JSON.toJSONString(regiContactorIds));
+
+        List<Contactor> purTenderContactorList = projectInfoVO.getPurTenderContactorList();
+        List<Long> purTenderContactorIds = saveContactorEditVO(purTenderContactorList);
+        projectInfoVO.setPurTenderIds(JSON.toJSONString(purTenderContactorIds));
+
+        List<Contactor> surveyUnitContactorList = projectInfoVO.getSurveyUnitContactorList();
+        List<Long> surveyUnitContactorIds = saveContactorEditVO(surveyUnitContactorList);
+        projectInfoVO.setSurveyUnitContactorIds(JSON.toJSONString(surveyUnitContactorIds));
+
+        List<Contactor> surveyUnitLeaderList = projectInfoVO.getSurveyUnitLeaderList();
+        List<Long> surveyUnitLeaderIds = saveContactorEditVO(surveyUnitLeaderList);
+        projectInfoVO.setSurveyUnitLeaderIds(JSON.toJSONString(surveyUnitLeaderIds));
+
+        List<Contactor> tenderPriceFileContactorList = projectInfoVO.getTenderPriceFileContactorList();
+        List<Long> tenderPriceFileContactorIds = saveContactorEditVO(tenderPriceFileContactorList);
+        projectInfoVO.setTenderPriceFileContactorIds(JSON.toJSONString(tenderPriceFileContactorIds));
+
+        List<Contactor> tenderBookFileContactorList = projectInfoVO.getTenderBookFileContactorList();
+        List<Long> tenderBookFileContactorIds = saveContactorEditVO(tenderBookFileContactorList);
+        projectInfoVO.setTenderBookFileContactorIds(JSON.toJSONString(tenderBookFileContactorIds));
+
+        List<Contactor> proveFileContactorList = projectInfoVO.getProveFileContactorList();
+        List<Long> proveFileContactorIds = saveContactorEditVO(proveFileContactorList);
+        projectInfoVO.setProveFileContactorIds(JSON.toJSONString(proveFileContactorIds));
+
+        List<Contactor> startTenderLeaderList = projectInfoVO.getStartTenderLeaderList();
+        List<Long> startTenderLeaderIds = saveContactorEditVO(startTenderLeaderList);
+        projectInfoVO.setStartTenderLeaderIds(JSON.toJSONString(startTenderLeaderIds));
+
+        // 保存合同信息
+        List<ContractInfo> contractInfos = projectInfoVO.getContractInfoList();
+        List<Long> contractInfoIds = new ArrayList<>();
+        for (ContractInfo contractInfo : contractInfos) {
+            try {
+                contractInfoService.insert(contractInfo);
+                contractInfoIds.add(contractInfo.getId());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        projectInfoVO.setContractInfoIds(JSON.toJSONString(contractInfoIds));
+        // 保存projectInfo主表信息
+
+        return projectInfoMapper.insert((ProjectInfoWithBLOBs) projectInfoVO);
+    }
+
+    @Override
+    public int insertSelective(ProjectInfoWithBLOBs record) {
+        return projectInfoMapper.insertSelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(ProjectInfoWithBLOBs record) {
+        return projectInfoMapper.updateByPrimaryKeySelective(record);
+    }
+
+    private List<Contactor> getContactorsByParam(ProjectInfoVO projectInfoVO) {
         List<Contactor> contactors = new ArrayList<>();
         List<Contactor> customerContactorList = projectInfoVO.getCustomerContactorList();
         List<Contactor> followerList = projectInfoVO.getFollowerList();
@@ -142,9 +222,14 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         contactors.addAll(tenderBookFileContactorList);
         contactors.addAll(proveFileContactorList);
         contactors.addAll(startTenderLeaderList);
+        return contactors;
+    }
+    @Override
+    public int updateByPrimaryKey(ProjectInfoVO projectInfoVO) {
+        List<Contactor> contactors = getContactorsByParam(projectInfoVO);
         for (Contactor c : contactors) {
             try {
-                contactorService.insert(c);
+                contactorService.updateByPrimaryKey(c);
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -153,28 +238,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         List<ContractInfo> contractInfos = projectInfoVO.getContractInfoList();
         for (ContractInfo contractInfo : contractInfos) {
             try {
-                contractInfoService.insert(contractInfo);
+                contractInfoService.updateByPrimaryKey(contractInfo);
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
-        // 保存projectInfo主表信息
-
-        return projectInfoMapper.insert(record);
-    }
-
-    @Override
-    public int insertSelective(ProjectInfoWithBLOBs record) {
-        return projectInfoMapper.insertSelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(ProjectInfoWithBLOBs record) {
-        return projectInfoMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKey(ProjectInfoWithBLOBs record) {
-        return projectInfoMapper.updateByPrimaryKey(record);
+        return projectInfoMapper.updateByPrimaryKey(((ProjectInfoWithBLOBs)projectInfoVO));
     }
 }

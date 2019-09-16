@@ -84,9 +84,9 @@ public class ProjectInfoController {
 
     @PostMapping("/edit")
     @ResponseBody
-    R edit(ProjectInfoWithBLOBs projectInfoWithBLOBs) {
+    R edit(@RequestBody ProjectInfoVO projectInfoVO) {
 
-        if (projectInfoService.updateByPrimaryKey(projectInfoWithBLOBs) > 0) {
+        if (projectInfoService.updateByPrimaryKey(projectInfoVO) > 0) {
             return R.ok();
         }
         return R.error();

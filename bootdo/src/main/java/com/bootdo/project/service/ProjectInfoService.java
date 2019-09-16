@@ -22,5 +22,5 @@ public interface ProjectInfoService {
 
     int updateByPrimaryKeySelective(ProjectInfoWithBLOBs record);
 
-    int updateByPrimaryKey(ProjectInfoWithBLOBs record);
+    int updateByPrimaryKey(ProjectInfoVO projectInfoVO);
 }

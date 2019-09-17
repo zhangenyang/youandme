@@ -2,8 +2,6 @@ package com.bootdo.project.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.bootdo.common.utils.StringUtils;
-import com.bootdo.project.dao.ContactorMapper;
-import com.bootdo.project.dao.ContractInfoMapper;
 import com.bootdo.project.dao.ProjectInfoMapper;
 import com.bootdo.project.model.*;
 import com.bootdo.project.model.dto.ProjectInfoDTO;
@@ -14,7 +12,6 @@ import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +20,6 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     @Autowired
     private ProjectInfoMapper projectInfoMapper;
-    @Autowired
-    private ContactorMapper contactorMapper;
-    @Autowired
-    private ContractInfoMapper contractInfoMapper;
 
     @Autowired
     private ContactorService contactorService;
@@ -75,10 +68,8 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
         if (StringUtils.isNotBlank(p.getContractInfoIds())) {
             List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
-            ContractInfoExample contractInfoExample = new ContractInfoExample();
-            ContractInfoExample.Criteria contractInfoExampleCriteria = contractInfoExample.createCriteria();
-            contractInfoExampleCriteria.andIdIn(contractInfoIds);
-            List<ContractInfo> contractInfos = contractInfoMapper.selectByExample(contractInfoExample);
+
+            List<ContractInfo> contractInfos = contractInfoService.getContractInfoByIds(contractInfoIds);
 
             projectInfoDTO.setContractInfoList(contractInfos);
         }
@@ -87,18 +78,15 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     /**
      * 根据id集合获取不同类型的联系人
-     * @param ids
-     * @return
+     * @param ids id集合
+     * @return 联系人集合
      */
     private List<Contactor> getContactorsByIds(String ids) {
         if (StringUtils.isBlank(ids)) {
             return new ArrayList<>();
         }
         List<Long> contactorIds =  JSON.parseArray(ids,Long.class);
-        ContactorExample example = new ContactorExample();
-        ContactorExample.Criteria criteria = example.createCriteria();
-        criteria.andIdIn(contactorIds);
-        List<Contactor> contactors = contactorMapper.selectByExample(example);
+        List<Contactor> contactors = contactorService.getContactorByIds(contactorIds);
         return contactors;
     }
 
@@ -113,6 +101,40 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     @Override
     public int deleteById(Long id) {
+        // 先删除项目信息对应的联系人和合同表
+        ProjectInfoWithBLOBs p = projectInfoMapper.selectByPrimaryKey(id);
+        if (null == p) {
+            return 0;
+        }
+        List<Long> contactorIdList = new ArrayList<>();
+        contactorIdList.addAll(JSON.parseArray(p.getCustomerContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getFollowerIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getRegiContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getPurTenderIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getSurveyUnitContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getSurveyUnitLeaderIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getTenderPriceFileContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getTenderBookFileContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getProveFileContactorIds(),Long.class));
+        contactorIdList.addAll(JSON.parseArray(p.getStartTenderLeaderIds(),Long.class));
+        for(Long contactorId : contactorIdList) {
+            try {
+                contactorService.deleteById(contactorId);
+            } catch (Exception e) {
+                System.err.println();
+            }
+
+        }
+
+        List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
+        for(Long contractInfoId : contractInfoIds) {
+            try {
+                contractInfoService.deleteById(contractInfoId);
+            } catch (Exception e) {
+                System.err.println();
+            }
+
+        }
 
         return projectInfoMapper.deleteByPrimaryKey(id);
     }
@@ -124,7 +146,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
                 contactorService.insert(c);
                 contactorIds.add(c.getId());
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println();
             }
         }
         return  contactorIds;
@@ -181,7 +203,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
                 contractInfoService.insert(contractInfo);
                 contractInfoIds.add(contractInfo.getId());
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println();
             }
         }
         projectInfoVO.setContractInfoIds(JSON.toJSONString(contractInfoIds));
@@ -231,7 +253,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             try {
                 contactorService.updateByPrimaryKey(c);
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println();
             }
         }
         // 保存合同信息
@@ -240,7 +262,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
             try {
                 contractInfoService.updateByPrimaryKey(contractInfo);
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println();
             }
         }
         return projectInfoMapper.updateByPrimaryKey(((ProjectInfoWithBLOBs)projectInfoVO));

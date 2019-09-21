@@ -8,6 +8,29 @@ $.validator.setDefaults({
     }
 });
 
+function calcTenderWinPrice(){
+    // 中标价（万元）
+    var tenderWinPrice = document.getElementById("tenderWinPrice").value;
+    // 中标服务费标准, 中标服务费
+    var tenderServiceRate = document.getElementById("tenderServiceRate").value;
+    var tenderServiceRateCost;
+    if(tenderServiceRate != null && tenderServiceRate !== '' && tenderServiceRate !== undefined){
+        if(tenderServiceRate.indexOf("%") !== -1){
+            tenderServiceRateCost = parseFloat(tenderWinPrice) * (parseFloat(tenderServiceRate.replace("%",""))/100);
+            document.getElementById("tenderServiceRateCost").value = parseFloat(tenderServiceRateCost).toFixed(3);
+        }
+    }
+    // 毛利标准, 毛利
+    var tenderInterestRate = document.getElementById("tenderInterestRate").value;
+    var tenderInterestRateCost;
+    if(tenderInterestRate != null && tenderInterestRate !== '' && tenderInterestRate !== undefined){
+        if(tenderInterestRate.indexOf("%") !== -1){
+            tenderInterestRateCost = parseFloat(tenderWinPrice) * (parseFloat(tenderInterestRate.replace("%",""))/100);
+            document.getElementById("tenderInterestRateCost").value = parseFloat(tenderInterestRateCost).toFixed(3);
+        }
+    }
+}
+
 // 用户单位联系人
 var addContactorCount = 0;
 // 跟进人

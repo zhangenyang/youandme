@@ -31,6 +31,12 @@ public class ProjectInfo {
 
     private String projectCode;
 
+    private String projectNoticePath;
+
+    private String projectNoticeImg;
+
+    private String projectNoticeFile;
+
     private Boolean projectNoticeType;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -147,13 +153,15 @@ public class ProjectInfo {
 
     private BigDecimal tenderWinPrice;
 
-    private BigDecimal tenderServiceRate;
+    private String tenderServiceRate;
 
-    private BigDecimal tenderInterestRate;
+    private String tenderInterestRateLast;
+
+    private String tenderInterestRate;
 
     private BigDecimal tenderProjectIntegrateCost;
 
-    private BigDecimal incomingRate;
+    private String incomingRate;
 
     private BigDecimal incomingCost;
 
@@ -175,7 +183,7 @@ public class ProjectInfo {
 
     private String tenderWarrantyPeriod;
 
-    private BigDecimal warrantyPriceStandard;
+    private String warrantyPriceStandard;
 
     private BigDecimal tenderWarrantyPrice;
 
@@ -275,6 +283,30 @@ public class ProjectInfo {
 
     public void setProjectCode(String projectCode) {
         this.projectCode = projectCode == null ? null : projectCode.trim();
+    }
+
+    public String getProjectNoticePath() {
+        return projectNoticePath;
+    }
+
+    public void setProjectNoticePath(String projectNoticePath) {
+        this.projectNoticePath = projectNoticePath == null ? null : projectNoticePath.trim();
+    }
+
+    public String getProjectNoticeImg() {
+        return projectNoticeImg;
+    }
+
+    public void setProjectNoticeImg(String projectNoticeImg) {
+        this.projectNoticeImg = projectNoticeImg == null ? null : projectNoticeImg.trim();
+    }
+
+    public String getProjectNoticeFile() {
+        return projectNoticeFile;
+    }
+
+    public void setProjectNoticeFile(String projectNoticeFile) {
+        this.projectNoticeFile = projectNoticeFile == null ? null : projectNoticeFile.trim();
     }
 
     public Boolean getProjectNoticeType() {
@@ -709,20 +741,28 @@ public class ProjectInfo {
         this.tenderWinPrice = tenderWinPrice;
     }
 
-    public BigDecimal getTenderServiceRate() {
+    public String getTenderServiceRate() {
         return tenderServiceRate;
     }
 
-    public void setTenderServiceRate(BigDecimal tenderServiceRate) {
-        this.tenderServiceRate = tenderServiceRate;
+    public void setTenderServiceRate(String tenderServiceRate) {
+        this.tenderServiceRate = tenderServiceRate == null ? null : tenderServiceRate.trim();
     }
 
-    public BigDecimal getTenderInterestRate() {
+    public String getTenderInterestRateLast() {
+        return tenderInterestRateLast;
+    }
+
+    public void setTenderInterestRateLast(String tenderInterestRateLast) {
+        this.tenderInterestRateLast = tenderInterestRateLast == null ? null : tenderInterestRateLast.trim();
+    }
+
+    public String getTenderInterestRate() {
         return tenderInterestRate;
     }
 
-    public void setTenderInterestRate(BigDecimal tenderInterestRate) {
-        this.tenderInterestRate = tenderInterestRate;
+    public void setTenderInterestRate(String tenderInterestRate) {
+        this.tenderInterestRate = tenderInterestRate == null ? null : tenderInterestRate.trim();
     }
 
     public BigDecimal getTenderProjectIntegrateCost() {
@@ -733,12 +773,12 @@ public class ProjectInfo {
         this.tenderProjectIntegrateCost = tenderProjectIntegrateCost;
     }
 
-    public BigDecimal getIncomingRate() {
+    public String getIncomingRate() {
         return incomingRate;
     }
 
-    public void setIncomingRate(BigDecimal incomingRate) {
-        this.incomingRate = incomingRate;
+    public void setIncomingRate(String incomingRate) {
+        this.incomingRate = incomingRate == null ? null : incomingRate.trim();
     }
 
     public BigDecimal getIncomingCost() {
@@ -821,12 +861,12 @@ public class ProjectInfo {
         this.tenderWarrantyPeriod = tenderWarrantyPeriod == null ? null : tenderWarrantyPeriod.trim();
     }
 
-    public BigDecimal getWarrantyPriceStandard() {
+    public String getWarrantyPriceStandard() {
         return warrantyPriceStandard;
     }
 
-    public void setWarrantyPriceStandard(BigDecimal warrantyPriceStandard) {
-        this.warrantyPriceStandard = warrantyPriceStandard;
+    public void setWarrantyPriceStandard(String warrantyPriceStandard) {
+        this.warrantyPriceStandard = warrantyPriceStandard == null ? null : warrantyPriceStandard.trim();
     }
 
     public BigDecimal getTenderWarrantyPrice() {

@@ -14,6 +14,9 @@
     <result column="solution_file_path" property="solutionFilePath" jdbcType="VARCHAR" />
     <result column="project_budget" property="projectBudget" jdbcType="DECIMAL" />
     <result column="project_code" property="projectCode" jdbcType="VARCHAR" />
+    <result column="project_notice_path" property="projectNoticePath" jdbcType="VARCHAR" />
+    <result column="project_notice_img" property="projectNoticeImg" jdbcType="VARCHAR" />
+    <result column="project_notice_file" property="projectNoticeFile" jdbcType="VARCHAR" />
     <result column="project_notice_type" property="projectNoticeType" jdbcType="BIT" />
     <result column="regi_date" property="regiDate" jdbcType="TIMESTAMP" />
     <result column="regi_place" property="regiPlace" jdbcType="VARCHAR" />
@@ -68,10 +71,11 @@
     <result column="tender_pay_price" property="tenderPayPrice" jdbcType="DECIMAL" />
     <result column="tender_win" property="tenderWin" jdbcType="BIT" />
     <result column="tender_win_price" property="tenderWinPrice" jdbcType="DECIMAL" />
-    <result column="tender_service_rate" property="tenderServiceRate" jdbcType="DECIMAL" />
-    <result column="tender_interest_rate" property="tenderInterestRate" jdbcType="DECIMAL" />
+    <result column="tender_service_rate" property="tenderServiceRate" jdbcType="VARCHAR" />
+    <result column="tender_interest_rate_last" property="tenderInterestRateLast" jdbcType="VARCHAR" />
+    <result column="tender_interest_rate" property="tenderInterestRate" jdbcType="VARCHAR" />
     <result column="tender_project_integrate_cost" property="tenderProjectIntegrateCost" jdbcType="DECIMAL" />
-    <result column="incoming_rate" property="incomingRate" jdbcType="DECIMAL" />
+    <result column="incoming_rate" property="incomingRate" jdbcType="VARCHAR" />
     <result column="incoming_cost" property="incomingCost" jdbcType="DECIMAL" />
     <result column="project_integrate_total_cost" property="projectIntegrateTotalCost" jdbcType="DECIMAL" />
     <result column="unit_interest" property="unitInterest" jdbcType="DECIMAL" />
@@ -82,7 +86,7 @@
     <result column="contract_info_ids" property="contractInfoIds" jdbcType="VARCHAR" />
     <result column="warranty_period_standard" property="warrantyPeriodStandard" jdbcType="VARCHAR" />
     <result column="tender_warranty_period" property="tenderWarrantyPeriod" jdbcType="VARCHAR" />
-    <result column="warranty_price_standard" property="warrantyPriceStandard" jdbcType="DECIMAL" />
+    <result column="warranty_price_standard" property="warrantyPriceStandard" jdbcType="VARCHAR" />
     <result column="tender_warranty_price" property="tenderWarrantyPrice" jdbcType="DECIMAL" />
     <result column="can_use_without_warranty_price" property="canUseWithoutWarrantyPrice" jdbcType="DECIMAL" />
   </resultMap>
@@ -151,23 +155,24 @@
   <sql id="Base_Column_List" >
     id, project_status, project_year, project_name, customer_unit, customer_contactor_ids, 
     follower_unit, follower_ids, project_participate_info, solution_file_path, project_budget, 
-    project_code, project_notice_type, regi_date, regi_place, regi_contactor_ids, regi_req, 
-    pur_tender_ids, pur_tender_date, pur_tender_cost, pur_tender_travel_expense, tender_file_path, 
-    config_file_path, qualification_file_path, business_technology_assessment_file_path, 
-    survey_place, survey_date, survey_unit_contactor_ids, survey_unit_leader_ids, survey_has_sample, 
-    survey_sample_detail, survey_test_sample, survey_test_detail, survey_travel_expense, 
-    survey_sample_transfor_expense, tender_price_file_contactor_ids, tender_book_file_contactor_ids, 
-    prove_file_contactor_ids, print_tender_cost, tender_car_cost, submit_tender_file_path, 
-    prove_file_path, price_file_path, start_tender_place, start_tender_time, start_tender_has_sample, 
-    start_tender_sample_detail, start_tender_test_sample, start_tender_test_detail, start_tender_leader_ids, 
-    start_tender_travel_expense, start_tender_sample_transfor_expense, start_tender_total_expense, 
-    tender_people_name, tender_people_phone, tender_people_train_cost, tender_people_flight_cost, 
-    tender_people_stay_cost, tender_people_supply_cost, tender_people_taxi_cost, tender_people_other_cost, 
-    tender_people_file_transfor_cost, tender_people_total_cost, tender_pay_price, tender_win, 
-    tender_win_price, tender_service_rate, tender_interest_rate, tender_project_integrate_cost, 
-    incoming_rate, incoming_cost, project_integrate_total_cost, unit_interest, cor_integrate_cost, 
-    cor_other_cost, cor_total_cost, cor_can_use_cost, contract_info_ids, warranty_period_standard, 
-    tender_warranty_period, warranty_price_standard, tender_warranty_price, can_use_without_warranty_price
+    project_code, project_notice_path, project_notice_img, project_notice_file, project_notice_type, 
+    regi_date, regi_place, regi_contactor_ids, regi_req, pur_tender_ids, pur_tender_date, 
+    pur_tender_cost, pur_tender_travel_expense, tender_file_path, config_file_path, qualification_file_path, 
+    business_technology_assessment_file_path, survey_place, survey_date, survey_unit_contactor_ids, 
+    survey_unit_leader_ids, survey_has_sample, survey_sample_detail, survey_test_sample, 
+    survey_test_detail, survey_travel_expense, survey_sample_transfor_expense, tender_price_file_contactor_ids, 
+    tender_book_file_contactor_ids, prove_file_contactor_ids, print_tender_cost, tender_car_cost, 
+    submit_tender_file_path, prove_file_path, price_file_path, start_tender_place, start_tender_time, 
+    start_tender_has_sample, start_tender_sample_detail, start_tender_test_sample, start_tender_test_detail, 
+    start_tender_leader_ids, start_tender_travel_expense, start_tender_sample_transfor_expense, 
+    start_tender_total_expense, tender_people_name, tender_people_phone, tender_people_train_cost, 
+    tender_people_flight_cost, tender_people_stay_cost, tender_people_supply_cost, tender_people_taxi_cost, 
+    tender_people_other_cost, tender_people_file_transfor_cost, tender_people_total_cost, 
+    tender_pay_price, tender_win, tender_win_price, tender_service_rate, tender_interest_rate_last, 
+    tender_interest_rate, tender_project_integrate_cost, incoming_rate, incoming_cost, 
+    project_integrate_total_cost, unit_interest, cor_integrate_cost, cor_other_cost, 
+    cor_total_cost, cor_can_use_cost, contract_info_ids, warranty_period_standard, tender_warranty_period, 
+    warranty_price_standard, tender_warranty_price, can_use_without_warranty_price
   </sql>
   <sql id="Blob_Column_List" >
     project_notice_value, other
@@ -225,11 +230,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
     insert into project_info (id, project_status, project_year, 
       project_name, customer_unit, customer_contactor_ids, 
       follower_unit, follower_ids, project_participate_info, 
       solution_file_path, project_budget, project_code, 
+      project_notice_path, project_notice_img, project_notice_file, 
       project_notice_type, regi_date, regi_place, 
       regi_contactor_ids, regi_req, pur_tender_ids, 
       pur_tender_date, pur_tender_cost, pur_tender_travel_expense, 
@@ -252,8 +258,9 @@
       tender_people_other_cost, tender_people_file_transfor_cost, 
       tender_people_total_cost, tender_pay_price, 
       tender_win, tender_win_price, tender_service_rate, 
-      tender_interest_rate, tender_project_integrate_cost, 
-      incoming_rate, incoming_cost, project_integrate_total_cost, 
+      tender_interest_rate_last, tender_interest_rate, 
+      tender_project_integrate_cost, incoming_rate, 
+      incoming_cost, project_integrate_total_cost, 
       unit_interest, cor_integrate_cost, cor_other_cost, 
       cor_total_cost, cor_can_use_cost, contract_info_ids, 
       warranty_period_standard, tender_warranty_period, 
@@ -264,6 +271,7 @@
       #{projectName,jdbcType=VARCHAR}, #{customerUnit,jdbcType=VARCHAR}, #{customerContactorIds,jdbcType=VARCHAR}, 
       #{followerUnit,jdbcType=VARCHAR}, #{followerIds,jdbcType=VARCHAR}, #{projectParticipateInfo,jdbcType=VARCHAR}, 
       #{solutionFilePath,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DECIMAL}, #{projectCode,jdbcType=VARCHAR}, 
+      #{projectNoticePath,jdbcType=VARCHAR}, #{projectNoticeImg,jdbcType=VARCHAR}, #{projectNoticeFile,jdbcType=VARCHAR}, 
       #{projectNoticeType,jdbcType=BIT}, #{regiDate,jdbcType=TIMESTAMP}, #{regiPlace,jdbcType=VARCHAR}, 
       #{regiContactorIds,jdbcType=VARCHAR}, #{regiReq,jdbcType=VARCHAR}, #{purTenderIds,jdbcType=VARCHAR}, 
       #{purTenderDate,jdbcType=TIMESTAMP}, #{purTenderCost,jdbcType=DECIMAL}, #{purTenderTravelExpense,jdbcType=DECIMAL}, 
@@ -285,17 +293,18 @@
       #{tenderPeopleSupplyCost,jdbcType=DECIMAL}, #{tenderPeopleTaxiCost,jdbcType=DECIMAL}, 
       #{tenderPeopleOtherCost,jdbcType=DECIMAL}, #{tenderPeopleFileTransforCost,jdbcType=DECIMAL}, 
       #{tenderPeopleTotalCost,jdbcType=DECIMAL}, #{tenderPayPrice,jdbcType=DECIMAL}, 
-      #{tenderWin,jdbcType=BIT}, #{tenderWinPrice,jdbcType=DECIMAL}, #{tenderServiceRate,jdbcType=DECIMAL}, 
-      #{tenderInterestRate,jdbcType=DECIMAL}, #{tenderProjectIntegrateCost,jdbcType=DECIMAL}, 
-      #{incomingRate,jdbcType=DECIMAL}, #{incomingCost,jdbcType=DECIMAL}, #{projectIntegrateTotalCost,jdbcType=DECIMAL}, 
+      #{tenderWin,jdbcType=BIT}, #{tenderWinPrice,jdbcType=DECIMAL}, #{tenderServiceRate,jdbcType=VARCHAR}, 
+      #{tenderInterestRateLast,jdbcType=VARCHAR}, #{tenderInterestRate,jdbcType=VARCHAR}, 
+      #{tenderProjectIntegrateCost,jdbcType=DECIMAL}, #{incomingRate,jdbcType=VARCHAR}, 
+      #{incomingCost,jdbcType=DECIMAL}, #{projectIntegrateTotalCost,jdbcType=DECIMAL}, 
       #{unitInterest,jdbcType=DECIMAL}, #{corIntegrateCost,jdbcType=DECIMAL}, #{corOtherCost,jdbcType=DECIMAL}, 
       #{corTotalCost,jdbcType=DECIMAL}, #{corCanUseCost,jdbcType=DECIMAL}, #{contractInfoIds,jdbcType=VARCHAR}, 
       #{warrantyPeriodStandard,jdbcType=VARCHAR}, #{tenderWarrantyPeriod,jdbcType=VARCHAR}, 
-      #{warrantyPriceStandard,jdbcType=DECIMAL}, #{tenderWarrantyPrice,jdbcType=DECIMAL}, 
+      #{warrantyPriceStandard,jdbcType=VARCHAR}, #{tenderWarrantyPrice,jdbcType=DECIMAL}, 
       #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL}, #{projectNoticeValue,jdbcType=LONGVARCHAR}, 
       #{other,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.bootdo.project.model.ProjectInfoWithBLOBs" >
     insert into project_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -333,6 +342,15 @@
       </if>
       <if test="projectCode != null" >
         project_code,
+      </if>
+      <if test="projectNoticePath != null" >
+        project_notice_path,
+      </if>
+      <if test="projectNoticeImg != null" >
+        project_notice_img,
+      </if>
+      <if test="projectNoticeFile != null" >
+        project_notice_file,
       </if>
       <if test="projectNoticeType != null" >
         project_notice_type,
@@ -499,6 +517,9 @@
       <if test="tenderServiceRate != null" >
         tender_service_rate,
       </if>
+      <if test="tenderInterestRateLast != null" >
+        tender_interest_rate_last,
+      </if>
       <if test="tenderInterestRate != null" >
         tender_interest_rate,
       </if>
@@ -590,6 +611,15 @@
       </if>
       <if test="projectCode != null" >
         #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticePath != null" >
+        #{projectNoticePath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeImg != null" >
+        #{projectNoticeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeFile != null" >
+        #{projectNoticeFile,jdbcType=VARCHAR},
       </if>
       <if test="projectNoticeType != null" >
         #{projectNoticeType,jdbcType=BIT},
@@ -754,16 +784,19 @@
         #{tenderWinPrice,jdbcType=DECIMAL},
       </if>
       <if test="tenderServiceRate != null" >
-        #{tenderServiceRate,jdbcType=DECIMAL},
+        #{tenderServiceRate,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderInterestRateLast != null" >
+        #{tenderInterestRateLast,jdbcType=VARCHAR},
       </if>
       <if test="tenderInterestRate != null" >
-        #{tenderInterestRate,jdbcType=DECIMAL},
+        #{tenderInterestRate,jdbcType=VARCHAR},
       </if>
       <if test="tenderProjectIntegrateCost != null" >
         #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
       </if>
       <if test="incomingRate != null" >
-        #{incomingRate,jdbcType=DECIMAL},
+        #{incomingRate,jdbcType=VARCHAR},
       </if>
       <if test="incomingCost != null" >
         #{incomingCost,jdbcType=DECIMAL},
@@ -796,7 +829,7 @@
         #{tenderWarrantyPeriod,jdbcType=VARCHAR},
       </if>
       <if test="warrantyPriceStandard != null" >
-        #{warrantyPriceStandard,jdbcType=DECIMAL},
+        #{warrantyPriceStandard,jdbcType=VARCHAR},
       </if>
       <if test="tenderWarrantyPrice != null" >
         #{tenderWarrantyPrice,jdbcType=DECIMAL},
@@ -856,6 +889,15 @@
       </if>
       <if test="record.projectCode != null" >
         project_code = #{record.projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectNoticePath != null" >
+        project_notice_path = #{record.projectNoticePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectNoticeImg != null" >
+        project_notice_img = #{record.projectNoticeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectNoticeFile != null" >
+        project_notice_file = #{record.projectNoticeFile,jdbcType=VARCHAR},
       </if>
       <if test="record.projectNoticeType != null" >
         project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
@@ -1020,16 +1062,19 @@
         tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.tenderServiceRate != null" >
-        tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
+        tender_service_rate = #{record.tenderServiceRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderInterestRateLast != null" >
+        tender_interest_rate_last = #{record.tenderInterestRateLast,jdbcType=VARCHAR},
       </if>
       <if test="record.tenderInterestRate != null" >
-        tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+        tender_interest_rate = #{record.tenderInterestRate,jdbcType=VARCHAR},
       </if>
       <if test="record.tenderProjectIntegrateCost != null" >
         tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
       </if>
       <if test="record.incomingRate != null" >
-        incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+        incoming_rate = #{record.incomingRate,jdbcType=VARCHAR},
       </if>
       <if test="record.incomingCost != null" >
         incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
@@ -1062,7 +1107,7 @@
         tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
       </if>
       <if test="record.warrantyPriceStandard != null" >
-        warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+        warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=VARCHAR},
       </if>
       <if test="record.tenderWarrantyPrice != null" >
         tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
@@ -1095,6 +1140,9 @@
       solution_file_path = #{record.solutionFilePath,jdbcType=VARCHAR},
       project_budget = #{record.projectBudget,jdbcType=DECIMAL},
       project_code = #{record.projectCode,jdbcType=VARCHAR},
+      project_notice_path = #{record.projectNoticePath,jdbcType=VARCHAR},
+      project_notice_img = #{record.projectNoticeImg,jdbcType=VARCHAR},
+      project_notice_file = #{record.projectNoticeFile,jdbcType=VARCHAR},
       project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
       regi_date = #{record.regiDate,jdbcType=TIMESTAMP},
       regi_place = #{record.regiPlace,jdbcType=VARCHAR},
@@ -1149,10 +1197,11 @@
       tender_pay_price = #{record.tenderPayPrice,jdbcType=DECIMAL},
       tender_win = #{record.tenderWin,jdbcType=BIT},
       tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
-      tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
-      tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+      tender_service_rate = #{record.tenderServiceRate,jdbcType=VARCHAR},
+      tender_interest_rate_last = #{record.tenderInterestRateLast,jdbcType=VARCHAR},
+      tender_interest_rate = #{record.tenderInterestRate,jdbcType=VARCHAR},
       tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
-      incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+      incoming_rate = #{record.incomingRate,jdbcType=VARCHAR},
       incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
       project_integrate_total_cost = #{record.projectIntegrateTotalCost,jdbcType=DECIMAL},
       unit_interest = #{record.unitInterest,jdbcType=DECIMAL},
@@ -1163,7 +1212,7 @@
       contract_info_ids = #{record.contractInfoIds,jdbcType=VARCHAR},
       warranty_period_standard = #{record.warrantyPeriodStandard,jdbcType=VARCHAR},
       tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
-      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=VARCHAR},
       tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
       can_use_without_warranty_price = #{record.canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
       project_notice_value = #{record.projectNoticeValue,jdbcType=LONGVARCHAR},
@@ -1186,6 +1235,9 @@
       solution_file_path = #{record.solutionFilePath,jdbcType=VARCHAR},
       project_budget = #{record.projectBudget,jdbcType=DECIMAL},
       project_code = #{record.projectCode,jdbcType=VARCHAR},
+      project_notice_path = #{record.projectNoticePath,jdbcType=VARCHAR},
+      project_notice_img = #{record.projectNoticeImg,jdbcType=VARCHAR},
+      project_notice_file = #{record.projectNoticeFile,jdbcType=VARCHAR},
       project_notice_type = #{record.projectNoticeType,jdbcType=BIT},
       regi_date = #{record.regiDate,jdbcType=TIMESTAMP},
       regi_place = #{record.regiPlace,jdbcType=VARCHAR},
@@ -1240,10 +1292,11 @@
       tender_pay_price = #{record.tenderPayPrice,jdbcType=DECIMAL},
       tender_win = #{record.tenderWin,jdbcType=BIT},
       tender_win_price = #{record.tenderWinPrice,jdbcType=DECIMAL},
-      tender_service_rate = #{record.tenderServiceRate,jdbcType=DECIMAL},
-      tender_interest_rate = #{record.tenderInterestRate,jdbcType=DECIMAL},
+      tender_service_rate = #{record.tenderServiceRate,jdbcType=VARCHAR},
+      tender_interest_rate_last = #{record.tenderInterestRateLast,jdbcType=VARCHAR},
+      tender_interest_rate = #{record.tenderInterestRate,jdbcType=VARCHAR},
       tender_project_integrate_cost = #{record.tenderProjectIntegrateCost,jdbcType=DECIMAL},
-      incoming_rate = #{record.incomingRate,jdbcType=DECIMAL},
+      incoming_rate = #{record.incomingRate,jdbcType=VARCHAR},
       incoming_cost = #{record.incomingCost,jdbcType=DECIMAL},
       project_integrate_total_cost = #{record.projectIntegrateTotalCost,jdbcType=DECIMAL},
       unit_interest = #{record.unitInterest,jdbcType=DECIMAL},
@@ -1254,7 +1307,7 @@
       contract_info_ids = #{record.contractInfoIds,jdbcType=VARCHAR},
       warranty_period_standard = #{record.warrantyPeriodStandard,jdbcType=VARCHAR},
       tender_warranty_period = #{record.tenderWarrantyPeriod,jdbcType=VARCHAR},
-      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=DECIMAL},
+      warranty_price_standard = #{record.warrantyPriceStandard,jdbcType=VARCHAR},
       tender_warranty_price = #{record.tenderWarrantyPrice,jdbcType=DECIMAL},
       can_use_without_warranty_price = #{record.canUseWithoutWarrantyPrice,jdbcType=DECIMAL}
     <if test="_parameter != null" >
@@ -1296,6 +1349,15 @@
       </if>
       <if test="projectCode != null" >
         project_code = #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticePath != null" >
+        project_notice_path = #{projectNoticePath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeImg != null" >
+        project_notice_img = #{projectNoticeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNoticeFile != null" >
+        project_notice_file = #{projectNoticeFile,jdbcType=VARCHAR},
       </if>
       <if test="projectNoticeType != null" >
         project_notice_type = #{projectNoticeType,jdbcType=BIT},
@@ -1460,16 +1522,19 @@
         tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
       </if>
       <if test="tenderServiceRate != null" >
-        tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
+        tender_service_rate = #{tenderServiceRate,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderInterestRateLast != null" >
+        tender_interest_rate_last = #{tenderInterestRateLast,jdbcType=VARCHAR},
       </if>
       <if test="tenderInterestRate != null" >
-        tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+        tender_interest_rate = #{tenderInterestRate,jdbcType=VARCHAR},
       </if>
       <if test="tenderProjectIntegrateCost != null" >
         tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
       </if>
       <if test="incomingRate != null" >
-        incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+        incoming_rate = #{incomingRate,jdbcType=VARCHAR},
       </if>
       <if test="incomingCost != null" >
         incoming_cost = #{incomingCost,jdbcType=DECIMAL},
@@ -1502,7 +1567,7 @@
         tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
       </if>
       <if test="warrantyPriceStandard != null" >
-        warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+        warranty_price_standard = #{warrantyPriceStandard,jdbcType=VARCHAR},
       </if>
       <if test="tenderWarrantyPrice != null" >
         tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
@@ -1532,6 +1597,9 @@
       solution_file_path = #{solutionFilePath,jdbcType=VARCHAR},
       project_budget = #{projectBudget,jdbcType=DECIMAL},
       project_code = #{projectCode,jdbcType=VARCHAR},
+      project_notice_path = #{projectNoticePath,jdbcType=VARCHAR},
+      project_notice_img = #{projectNoticeImg,jdbcType=VARCHAR},
+      project_notice_file = #{projectNoticeFile,jdbcType=VARCHAR},
       project_notice_type = #{projectNoticeType,jdbcType=BIT},
       regi_date = #{regiDate,jdbcType=TIMESTAMP},
       regi_place = #{regiPlace,jdbcType=VARCHAR},
@@ -1586,10 +1654,11 @@
       tender_pay_price = #{tenderPayPrice,jdbcType=DECIMAL},
       tender_win = #{tenderWin,jdbcType=BIT},
       tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
-      tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
-      tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+      tender_service_rate = #{tenderServiceRate,jdbcType=VARCHAR},
+      tender_interest_rate_last = #{tenderInterestRateLast,jdbcType=VARCHAR},
+      tender_interest_rate = #{tenderInterestRate,jdbcType=VARCHAR},
       tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
-      incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+      incoming_rate = #{incomingRate,jdbcType=VARCHAR},
       incoming_cost = #{incomingCost,jdbcType=DECIMAL},
       project_integrate_total_cost = #{projectIntegrateTotalCost,jdbcType=DECIMAL},
       unit_interest = #{unitInterest,jdbcType=DECIMAL},
@@ -1600,7 +1669,7 @@
       contract_info_ids = #{contractInfoIds,jdbcType=VARCHAR},
       warranty_period_standard = #{warrantyPeriodStandard,jdbcType=VARCHAR},
       tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
-      warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+      warranty_price_standard = #{warrantyPriceStandard,jdbcType=VARCHAR},
       tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
       can_use_without_warranty_price = #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL},
       project_notice_value = #{projectNoticeValue,jdbcType=LONGVARCHAR},
@@ -1620,6 +1689,9 @@
       solution_file_path = #{solutionFilePath,jdbcType=VARCHAR},
       project_budget = #{projectBudget,jdbcType=DECIMAL},
       project_code = #{projectCode,jdbcType=VARCHAR},
+      project_notice_path = #{projectNoticePath,jdbcType=VARCHAR},
+      project_notice_img = #{projectNoticeImg,jdbcType=VARCHAR},
+      project_notice_file = #{projectNoticeFile,jdbcType=VARCHAR},
       project_notice_type = #{projectNoticeType,jdbcType=BIT},
       regi_date = #{regiDate,jdbcType=TIMESTAMP},
       regi_place = #{regiPlace,jdbcType=VARCHAR},
@@ -1674,10 +1746,11 @@
       tender_pay_price = #{tenderPayPrice,jdbcType=DECIMAL},
       tender_win = #{tenderWin,jdbcType=BIT},
       tender_win_price = #{tenderWinPrice,jdbcType=DECIMAL},
-      tender_service_rate = #{tenderServiceRate,jdbcType=DECIMAL},
-      tender_interest_rate = #{tenderInterestRate,jdbcType=DECIMAL},
+      tender_service_rate = #{tenderServiceRate,jdbcType=VARCHAR},
+      tender_interest_rate_last = #{tenderInterestRateLast,jdbcType=VARCHAR},
+      tender_interest_rate = #{tenderInterestRate,jdbcType=VARCHAR},
       tender_project_integrate_cost = #{tenderProjectIntegrateCost,jdbcType=DECIMAL},
-      incoming_rate = #{incomingRate,jdbcType=DECIMAL},
+      incoming_rate = #{incomingRate,jdbcType=VARCHAR},
       incoming_cost = #{incomingCost,jdbcType=DECIMAL},
       project_integrate_total_cost = #{projectIntegrateTotalCost,jdbcType=DECIMAL},
       unit_interest = #{unitInterest,jdbcType=DECIMAL},
@@ -1688,7 +1761,7 @@
       contract_info_ids = #{contractInfoIds,jdbcType=VARCHAR},
       warranty_period_standard = #{warrantyPeriodStandard,jdbcType=VARCHAR},
       tender_warranty_period = #{tenderWarrantyPeriod,jdbcType=VARCHAR},
-      warranty_price_standard = #{warrantyPriceStandard,jdbcType=DECIMAL},
+      warranty_price_standard = #{warrantyPriceStandard,jdbcType=VARCHAR},
       tender_warranty_price = #{tenderWarrantyPrice,jdbcType=DECIMAL},
       can_use_without_warranty_price = #{canUseWithoutWarrantyPrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=BIGINT}

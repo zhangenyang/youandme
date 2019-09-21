@@ -11,6 +11,7 @@ import com.bootdo.project.service.ContractInfoService;
 import com.bootdo.project.service.ProjectInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,12 +67,14 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         projectInfoDTO.setProveFileContactorList(getContactorsByIds(p.getProveFileContactorIds()));
         projectInfoDTO.setStartTenderLeaderList(getContactorsByIds(p.getStartTenderLeaderIds()));
 
-        if (StringUtils.isNotBlank(p.getContractInfoIds())) {
+        if (StringUtils.isNotBlank(p.getContractInfoIds()) && !"[]".equals(p.getContractInfoIds())) {
             List<Long> contractInfoIds = JSON.parseArray(p.getContractInfoIds(),Long.class);
 
             List<ContractInfo> contractInfos = contractInfoService.getContractInfoByIds(contractInfoIds);
 
             projectInfoDTO.setContractInfoList(contractInfos);
+        }else{
+            projectInfoDTO.setContractInfoList(new ArrayList<>());
         }
         return projectInfoDTO;
     }
@@ -82,7 +85,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
      * @return 联系人集合
      */
     private List<Contactor> getContactorsByIds(String ids) {
-        if (StringUtils.isBlank(ids)) {
+        if (StringUtils.isBlank(ids) || "[]".equals(ids)) {
             return new ArrayList<>();
         }
         List<Long> contactorIds =  JSON.parseArray(ids,Long.class);
@@ -100,6 +103,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public int deleteById(Long id) {
         // 先删除项目信息对应的联系人和合同表
         ProjectInfoWithBLOBs p = projectInfoMapper.selectByPrimaryKey(id);
@@ -153,6 +157,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public int insert(ProjectInfoVO projectInfoVO) {
         // 保存联系人信息
         List<Contactor> customerContactorList = projectInfoVO.getCustomerContactorList();
@@ -246,12 +251,18 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         contactors.addAll(startTenderLeaderList);
         return contactors;
     }
+
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public int updateByPrimaryKey(ProjectInfoVO projectInfoVO) {
         List<Contactor> contactors = getContactorsByParam(projectInfoVO);
         for (Contactor c : contactors) {
             try {
-                contactorService.updateByPrimaryKey(c);
+                if(c.getId() == null){
+                    contactorService.insert(c);
+                }else{
+                    contactorService.updateByPrimaryKey(c);
+                }
             } catch (Exception e) {
                 System.err.println();
             }
@@ -260,7 +271,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
         List<ContractInfo> contractInfos = projectInfoVO.getContractInfoList();
         for (ContractInfo contractInfo : contractInfos) {
             try {
-                contractInfoService.updateByPrimaryKey(contractInfo);
+                if(contractInfo.getId() == null){
+                    contractInfoService.insert(contractInfo);
+                }else{
+                    contractInfoService.updateByPrimaryKey(contractInfo);
+                }
             } catch (Exception e) {
                 System.err.println();
             }

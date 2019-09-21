@@ -15,12 +15,25 @@
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
                         <input id="id" name="id" th:value="${projectInfo.id}"
-                               type="hidden">
+                               type="hidden" />
                         <div class="form-group">
                             <label class="col-sm-3 control-label">年度：</label>
                             <div class="col-sm-8">
                                 <input id="projectYear" name="projectYear" class="form-control"
-                                       type="text" th:value="${projectInfo.projectYear}">
+                                       type="text" maxlength="4" list="years" th:value="${projectInfo.projectYear}">
+                                <datalist id = "years">
+                                    <option>2015</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,6 +56,7 @@
                                 <div class="col-sm-8">
                                     <div class="fixed-table-container">
                                         <div class="fixed-table-body">
+                                            <input id="customerContactorListCount" name="customerContactorListCount" th:value="${#lists.size(projectInfo.customerContactorList)}" type="hidden" />
                                             <table id="contactorTable" class="table table-hover table-striped">
                                                 <tr id="addContactorTr">
                                                     <td id="addContactorName">姓名</td>
@@ -53,6 +67,7 @@
                                                                                      type="button" onclick="addContactorAction()">添加</button></td>
                                                 </tr>
                                                 <tr th:each="customerContactor,customerContactorStat:${projectInfo.customerContactorList}">
+                                                    <td style="display:none"><input type="hidden" th:id="${'contactor_id' + customerContactorStat.index}" th:value="${customerContactor.id}"/></td>
                                                     <td><input type="text" th:id="${'contactor_name' + customerContactorStat.index}" th:value="${customerContactor.name}"/></td>
                                                     <td><input type="text" th:id="${'contactor_title' + customerContactorStat.index}" th:value="${customerContactor.title}"/></td>
                                                     <td><input type="text" th:id="${'contactor_fixedPhone' + customerContactorStat.index}"  th:value="${customerContactor.fixedPhone}"/></td>
@@ -77,6 +92,7 @@
                                 <div class="col-sm-8">
                                     <div class="fixed-table-container">
                                         <div class="fixed-table-body">
+                                            <input id="followerListCount" name="followerListCount" th:value="${#lists.size(projectInfo.followerList)}" type="hidden" />
                                             <table id="followerTable" class="table table-hover table-striped">
                                                 <tr id="addFollowerTr">
                                                     <td id="addFollowerName">姓名</td>
@@ -87,6 +103,7 @@
                                                                                     type="button" onclick="addFollowerAction()">添加</button></td>
                                                 </tr>
                                                 <tr th:each="follower,followerStat:${projectInfo.followerList}">
+                                                    <td style="display:none"><input type="hidden" th:id="${'follower_id' + followerStat.index}" th:value="${follower.id}"/></td>
                                                     <td><input type="text" th:id="${'follower_name' + followerStat.index}" th:value="${follower.name}"/></td>
                                                     <td><input type="text" th:id="${'follower_title' + followerStat.index}" th:value="${follower.title}"/></td>
                                                     <td><input type="text" th:id="${'follower_fixedPhone' + followerStat.index}"  th:value="${follower.fixedPhone}"/></td>
@@ -139,7 +156,7 @@
                                     <label class="col-sm-3 control-label text-align-left">链接地址：${projectInfo.projectNoticePath}</label>
                                     <div class="col-sm-8">
                                         <input id="projectNoticePath" name="projectNoticePath" class="form-control"
-                                               type="text" />
+                                               type="text" th:value="${projectInfo.projectNoticePath}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -178,6 +195,7 @@
                                 <div class="col-sm-8">
                                     <div class="fixed-table-container">
                                         <div class="fixed-table-body">
+                                            <input id="regiContactorListCount" name="regiContactorListCount" th:value="${#lists.size(projectInfo.regiContactorList)}" type="hidden" />
                                             <table id="regiContactorTable" class="table table-hover table-striped">
                                                 <tr id="addRegiContactorTr">
                                                     <td id="addRegiContactorName">姓名</td>
@@ -188,6 +206,7 @@
                                                                                          type="button" onclick="addRegiContactorAction()">添加</button></td>
                                                 </tr>
                                                 <tr th:each="regiContactor,regiContactorStat:${projectInfo.regiContactorList}">
+                                                    <td style="display:none"><input type="hidden" th:id="${'regiContactor_id' + regiContactorStat.index}" th:value="${regiContactor.id}"/></td>
                                                     <td><input type="text" th:id="${'regiContactor_name' + regiContactorStat.index}" th:value="${regiContactor.name}"/></td>
                                                     <td><input type="text" th:id="${'regiContactor_title' + regiContactorStat.index}" th:value="${regiContactor.title}"/></td>
                                                     <td><input type="text" th:id="${'regiContactor_fixedPhone' + regiContactorStat.index}"  th:value="${regiContactor.fixedPhone}"/></td>
@@ -211,6 +230,7 @@
                                 <div class="col-sm-8">
                                     <div class="fixed-table-container">
                                         <div class="fixed-table-body">
+                                            <input id="purTenderContactorListCount" name="purTenderContactorListCount" th:value="${#lists.size(projectInfo.purTenderContactorList)}" type="hidden" />
                                             <table id="purTenderTable" class="table table-hover table-striped">
                                                 <tr id="addPurTenderTr">
                                                     <td id="addPurTenderName">姓名</td>
@@ -221,6 +241,7 @@
                                                                                      type="button" onclick="addPurTenderAction()">添加</button></td>
                                                 </tr>
                                                 <tr th:each="purTenderContactor,purTenderContactorStat:${projectInfo.purTenderContactorList}">
+                                                    <td style="display:none"><input type="hidden" th:id="${'purTender_id' + purTenderContactorStat.index}" th:value="${purTenderContactor.id}"/></td>
                                                     <td><input type="text" th:id="${'purTender_name' + purTenderContactorStat.index}" th:value="${purTenderContactor.name}"/></td>
                                                     <td><input type="text" th:id="${'purTender_title' + purTenderContactorStat.index}" th:value="${purTenderContactor.title}"/></td>
                                                     <td><input type="text" th:id="${'purTender_fixedPhone' + purTenderContactorStat.index}"  th:value="${purTenderContactor.fixedPhone}"/></td>
@@ -314,6 +335,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="surveyUnitContactorListCount" name="surveyUnitContactorListCount" th:value="${#lists.size(projectInfo.surveyUnitContactorList)}" type="hidden" />
                                                     <table id="surveyUnitContactorTable" class="table table-hover table-striped">
                                                         <tr id="addSurveyUnitContactorTr">
                                                             <td id="addSurveyUnitContactorName">姓名</td>
@@ -322,6 +344,7 @@
                                                                                                        type="button" onclick="addSurveyUnitContactorAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="surveyUnitContactor,surveyUnitContactorStat:${projectInfo.surveyUnitContactorList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'surveyUnitContactor_id' + surveyUnitContactorStat.index}" th:value="${surveyUnitContactor.id}"/></td>
                                                             <td><input type="text" th:id="${'surveyUnitContactor_name' + surveyUnitContactorStat.index}" th:value="${surveyUnitContactor.name}"/></td>
                                                             <td><input type="number" th:id="${'surveyUnitContactor_phone' + surveyUnitContactorStat.index}" th:value="${surveyUnitContactor.phone}"/></td>
                                                         </tr>
@@ -337,6 +360,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="surveyUnitLeaderListCount" name="surveyUnitLeaderListCount" th:value="${#lists.size(projectInfo.surveyUnitLeaderList)}" type="hidden" />
                                                     <table id="surveyUnitLeaderTable" class="table table-hover table-striped">
                                                         <tr id="addSurveyUnitLeaderTr">
                                                             <td id="addSurveyUnitLeaderName">姓名</td>
@@ -345,6 +369,7 @@
                                                                                                     type="button" onclick="addSurveyUnitLeaderAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="surveyUnitLeader,surveyUnitLeaderStat:${projectInfo.surveyUnitLeaderList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'surveyUnitLeader_id' + surveyUnitLeaderStat.index}" th:value="${surveyUnitLeader.id}"/></td>
                                                             <td><input type="text" th:id="${'surveyUnitLeader_name' + surveyUnitLeaderStat.index}" th:value="${surveyUnitLeader.name}"/></td>
                                                             <td><input type="number" th:id="${'surveyUnitLeader_phone' + surveyUnitLeaderStat.index}" th:value="${surveyUnitLeader.phone}"/></td>
                                                         </tr>
@@ -357,16 +382,19 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <input id="surveyHasSample" name="surveyHasSample" th:value="${projectInfo.surveyHasSample}" type="hidden" />
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">是否携带样品:</label>
                                     <div class="col-sm-8">
                                         <label class="radio-inline">
-                                            <input type="radio" name="surveyHasSample" value="1" /> 是
+                                            <input type="radio" name="surveyHasSample" value="1"
+                                                   onclick="clickSurveyHasSample(true)" th:field="*{projectInfo.surveyHasSample}"/> 是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="surveyHasSample" value="0" /> 否
+                                            <input type="radio" name="surveyHasSample" value="0"
+                                                   onclick="clickSurveyHasSample(false)" th:field="*{projectInfo.surveyHasSample}"/> 否
                                         </label>
                                     </div>
                                 </div>
@@ -385,16 +413,19 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <input id="surveyTestSample" name="surveyTestSample" th:value="${projectInfo.surveyTestSample}" type="hidden" />
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">是否样品测试:</label>
                                     <div class="col-sm-8">
                                         <label class="radio-inline">
-                                            <input type="radio" name="surveyTestSample" value="1" /> 是
+                                            <input type="radio" name="surveyTestSample" value="1"
+                                                   onclick="clickSurveyTestSample(true)" th:field="*{projectInfo.surveyTestSample}"/> 是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="surveyTestSample" value="0" /> 否
+                                            <input type="radio" name="surveyTestSample" value="0"
+                                                   onclick="clickSurveyTestSample(false)" th:field="*{projectInfo.surveyTestSample}"/> 否
                                         </label>
                                     </div>
                                 </div>
@@ -440,6 +471,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="tenderPriceFileContactorListCount" name="tenderPriceFileContactorListCount" th:value="${#lists.size(projectInfo.tenderPriceFileContactorList)}" type="hidden" />
                                                     <table id="tenderPriceFileContactorTable" class="table table-hover table-striped">
                                                         <tr id="addTenderPriceFileContactorTr">
                                                             <td id="addTenderPriceFileContactorName">姓名</td>
@@ -448,6 +480,7 @@
                                                                                                             type="button" onclick="addTenderPriceFileContactorAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="tenderPriceFileContactor,tenderPriceFileContactorStat:${projectInfo.tenderPriceFileContactorList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'tenderPriceFileContactor_id' + tenderPriceFileContactorStat.index}" th:value="${tenderPriceFileContactor.id}"/></td>
                                                             <td><input type="text" th:id="${'tenderPriceFileContactor_name' + tenderPriceFileContactorStat.index}" th:value="${tenderPriceFileContactor.name}"/></td>
                                                             <td><input type="number" th:id="${'tenderPriceFileContactor_phone' + tenderPriceFileContactorStat.index}" th:value="${tenderPriceFileContactor.phone}"/></td>
                                                         </tr>
@@ -463,6 +496,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="tenderBookFileContactorListCount" name="tenderBookFileContactorListCount" th:value="${#lists.size(projectInfo.tenderBookFileContactorList)}" type="hidden" />
                                                     <table id="tenderBookFileContactorTable" class="table table-hover table-striped">
                                                         <tr id="addTenderBookFileContactorTr">
                                                             <td id="addTenderBookFileContactorName">姓名</td>
@@ -471,6 +505,7 @@
                                                                                                            type="button" onclick="addTenderBookFileContactorAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="tenderBookFileContactor,tenderBookFileContactorStat:${projectInfo.tenderBookFileContactorList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'tenderBookFileContactor_id' + tenderBookFileContactorStat.index}" th:value="${tenderBookFileContactor.id}"/></td>
                                                             <td><input type="text" th:id="${'tenderBookFileContactor_name' + tenderBookFileContactorStat.index}" th:value="${tenderBookFileContactor.name}"/></td>
                                                             <td><input type="number" th:id="${'tenderBookFileContactor_phone' + tenderBookFileContactorStat.index}" th:value="${tenderBookFileContactor.phone}"/></td>
                                                         </tr>
@@ -486,6 +521,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="proveFileContactorListCount" name="proveFileContactorListCount" th:value="${#lists.size(projectInfo.proveFileContactorList)}" type="hidden" />
                                                     <table id="proveFileContactorTable" class="table table-hover table-striped">
                                                         <tr id="addProveFileContactorTr">
                                                             <td id="addProveFileContactorName">姓名</td>
@@ -494,6 +530,7 @@
                                                                                                       type="button" onclick="addProveFileContactorAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="proveFileContactor,proveFileContactorStat:${projectInfo.proveFileContactorList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'proveFileContactor_id' + proveFileContactorStat.index}" th:value="${proveFileContactor.id}"/></td>
                                                             <td><input type="text" th:id="${'proveFileContactor_name' + proveFileContactorStat.index}" th:value="${proveFileContactor.name}"/></td>
                                                             <td><input type="number" th:id="${'proveFileContactor_phone' + proveFileContactorStat.index}" th:value="${proveFileContactor.phone}"/></td>
                                                         </tr>
@@ -560,16 +597,19 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <input id="startTenderHasSample" name="startTenderHasSample" th:value="${projectInfo.startTenderHasSample}" type="hidden" />
                             <label class="col-sm-3 control-label">开标是否携带样和测试:</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">是否携带样品:</label>
                                     <div class="col-sm-8">
                                         <label class="radio-inline">
-                                            <input type="radio" name="startTenderHasSample" value="1" /> 是
+                                            <input type="radio" name="startTenderHasSample" value="1"
+                                                   onclick="clickStartTenderHasSample(true)" th:field="${projectInfo.startTenderHasSample}"/> 是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="startTenderHasSample" value="0" /> 否
+                                            <input type="radio" name="startTenderHasSample" value="0"
+                                                   onclick="clickStartTenderHasSample(false)" th:field="${projectInfo.startTenderHasSample}"/> 否
                                         </label>
                                     </div>
                                 </div>
@@ -581,13 +621,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <input id="startTenderTestSample" name="startTenderTestSample" th:value="${projectInfo.startTenderTestSample}" type="hidden" />
                                     <label class="col-sm-3 control-label text-align-left">是否样品测试:</label>
                                     <div class="col-sm-8">
                                         <label class="radio-inline">
-                                            <input type="radio" name="startTenderTestSample" value="1" /> 是
+                                            <input type="radio" name="startTenderTestSample" value="1"
+                                                   onclick="clickStartTenderTestSample(true)" th:field="*{projectInfo.startTenderTestSample}"/> 是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="startTenderTestSample" value="0" /> 否
+                                            <input type="radio" name="startTenderTestSample" value="0"
+                                                   onclick="clickStartTenderTestSample(false)" th:field="*{projectInfo.startTenderTestSample}"/> 否
                                         </label>
                                     </div>
                                 </div>
@@ -604,6 +647,7 @@
                                         <div class="col-sm-8">
                                             <div class="fixed-table-container">
                                                 <div class="fixed-table-body">
+                                                    <input id="startTenderLeaderListCount" name="startTenderLeaderListCount" th:value="${#lists.size(projectInfo.startTenderLeaderList)}" type="hidden" />
                                                     <table id="startTenderLeaderTable" class="table table-hover table-striped">
                                                         <tr id="addStartTenderLeaderTr">
                                                             <td id="addStartTenderLeaderName">姓名</td>
@@ -612,6 +656,7 @@
                                                                                                      type="button" onclick="addStartTenderLeaderAction()">添加</button></td>
                                                         </tr>
                                                         <tr th:each="startTenderLeader,startTenderLeaderStat:${projectInfo.startTenderLeaderList}">
+                                                            <td style="display:none"><input type="hidden" th:id="${'startTenderLeader_id' + startTenderLeaderStat.index}" th:value="${startTenderLeader.id}"/></td>
                                                             <td><input type="text" th:id="${'startTenderLeader_name' + startTenderLeaderStat.index}" th:value="${startTenderLeader.name}"/></td>
                                                             <td><input type="number" th:id="${'startTenderLeader_phone' + startTenderLeaderStat.index}" th:value="${startTenderLeader.phone}"/></td>
                                                         </tr>
@@ -727,13 +772,14 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <input id="tenderWin" name="tenderWin" th:value="${projectInfo.tenderWin}" type="hidden" />
                             <label class="col-sm-3 control-label">是否中标:</label>
                             <div class="col-sm-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="tenderWin" value="1" /> 是
+                                    <input type="radio" name="tenderWin" value="1" onclick="clickTenderWin(true)" th:field="*{projectInfo.tenderWin}"/> 是
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="tenderWin" value="0" /> 否
+                                    <input type="radio" name="tenderWin" value="0" onclick="clickTenderWin(false)" th:field="*{projectInfo.tenderWin}"/> 否
                                 </label>
                             </div>
 
@@ -745,7 +791,7 @@
                                     <label class="col-sm-3 control-label text-align-left">中标价（万元）：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderWinPrice" name="tenderWinPrice" class="form-control"
-                                               type="number" step="0.001" th:value="${projectInfo.tenderWinPrice}">
+                                               type="number" step="0.001" th:value="${projectInfo.tenderWinPrice}" onkeyup="calcLogic()">
                                     </div>
                                 </div>
                             </div>
@@ -757,14 +803,14 @@
                                     <label class="col-sm-3 control-label text-align-left">标准：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderServiceRate" name="tenderServiceRate" class="form-control"
-                                               type="number" step="0.001" th:value="${projectInfo.tenderServiceRate}">
+                                               type="text" onkeyup="calcLogic()" th:value="${projectInfo.tenderServiceRate}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">费用（万元）：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderServiceRateCost" name="tenderServiceRateCost" class="form-control"
-                                               type="number" step="0.001">
+                                               type="number" step="0.001" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -773,17 +819,24 @@
                             <label class="col-sm-3 control-label">毛利：</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left">标准</label>
+                                    <div class="col-sm-8">
+                                        <input id="tenderInterestRateLast" name="tenderInterestRateLast" class="form-control"
+                                               type="text" onkeyup="calcLogic()" th:value="${projectInfo.tenderInterestRateLast}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">标准：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderInterestRate" name="tenderInterestRate" class="form-control"
-                                               type="number" step="0.001" th:value="${projectInfo.tenderInterestRate}">
+                                               type="text" onkeyup="calcLogic()" th:value="${projectInfo.tenderInterestRate}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">毛利润（万元）：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderInterestRateCost" name="tenderInterestRateCost" class="form-control"
-                                               type="number" step="0.001">
+                                               type="number" step="0.001" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -792,35 +845,35 @@
                             <label class="col-sm-3 control-label">项目协调费用（万元）：</label>
                             <div class="col-sm-8">
                                 <input id="tenderProjectIntegrateCost" name="tenderProjectIntegrateCost" class="form-control"
-                                       type="number" step="0.001"  th:value="${projectInfo.tenderProjectIntegrateCost}">
+                                       type="number" step="0.001"  th:value="${projectInfo.tenderProjectIntegrateCost}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">提成（增量利率）（万元）：</label>
                             <div class="col-sm-8">
                                 <input id="incomingRate" name="incomingRate" class="form-control"
-                                       type="number" step="0.001"  th:value="${projectInfo.incomingRate}">
+                                       type="text" onkeyup="calcLogic()"  th:value="${projectInfo.incomingRate}" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">提成（增量毛利）（元）：</label>
                             <div class="col-sm-8">
                                 <input id="incomingCost" name="incomingCost" class="form-control"
-                                       type="number" step="0.001"  th:value="${projectInfo.incomingCost}">
+                                       type="number" step="0.001"  th:value="${projectInfo.incomingCost}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">项目协调总费用（元）：</label>
                             <div class="col-sm-8">
                                 <input id="projectIntegrateTotalCost" name="tenderProjectIntegrateCost" class="form-control"
-                                       type="number" step="0.001" th:value="${projectInfo.projectIntegrateTotalCost}">
+                                       type="number" step="0.001" th:value="${projectInfo.projectIntegrateTotalCost}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">事业部利润（万元）：</label>
                             <div class="col-sm-8">
                                 <input id="unitInterest" name="unitInterest" class="form-control"
-                                       type="number" step="0.001" th:value="${projectInfo.unitInterest}">
+                                       type="number" step="0.001" th:value="${projectInfo.unitInterest}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -846,14 +899,14 @@
                             <label class="col-sm-3 control-label">合作方总开支（万元）：</label>
                             <div class="col-sm-8">
                                 <input id="corTotalCost" name="corTotalCost" class="form-control"
-                                       type="number" step="0.001" th:value="${projectInfo.corTotalCost}">
+                                       type="number" step="0.001" th:value="${projectInfo.corTotalCost}" onkeyup="calcLogic()">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">合作方可支配费用（万元）：</label>
                             <div class="col-sm-8">
                                 <input id="corCanUseCost" name="corCanUseCost" class="form-control"
-                                       type="text" th:value="${projectInfo.corCanUseCost}">
+                                       type="text" th:value="${projectInfo.corCanUseCost}" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -862,6 +915,7 @@
                                 <div class="col-sm-8">
                                     <div class="fixed-table-container">
                                         <div class="fixed-table-body">
+                                            <input id="contractInfoListCount" name="contractInfoListCount" th:value="${#lists.size(projectInfo.contractInfoList)}" type="hidden" />
                                             <table id="contractTable" class="table table-hover table-striped">
                                                 <tr id="addContractTr">
                                                     <td id="addContractName">合同名字</td>
@@ -870,6 +924,7 @@
                                                                                     type="button" onclick="addContractAction()">添加</button></td>
                                                 </tr>
                                                 <tr th:each="contractInfo,contractInfoStat:${projectInfo.contractInfoList}">
+                                                    <td style="display:none"><input type="hidden" th:id="${'contract_id' + startTenderLeaderStat.index}" th:value="${contractInfo.id}"/></td>
                                                     <td><input type="text" th:id="${'contract_name' + contractInfoStat.index}" th:value="${contractInfo.name}"/></td>
                                                     <td><input type="number" th:id="${'contract_price' + contractInfoStat.index}" th:value="${contractInfo.price}"/></td>
                                                 </tr>
@@ -905,14 +960,14 @@
                                     <label class="col-sm-3 control-label text-align-left">标准：</label>
                                     <div class="col-sm-8">
                                         <input id="warrantyPriceStandard" name="warrantyPriceStandard" class="form-control"
-                                               type="number" step="0.001" th:value="${projectInfo.warrantyPriceStandard}">
+                                               type="text" onkeyup="calcLogic()" th:value="${projectInfo.warrantyPriceStandard}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">经费（万元）：</label>
                                     <div class="col-sm-8">
                                         <input id="tenderWarrantyPrice" name="tenderWarrantyPrice" class="form-control"
-                                               type="number" step="0.001" th:value="${projectInfo.tenderWarrantyPrice}">
+                                               type="number" step="0.001" th:value="${projectInfo.tenderWarrantyPrice}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -921,7 +976,7 @@
                             <label class="col-sm-3 control-label">合作方去除质保金后可支配费用：</label>
                             <div class="col-sm-8">
                                 <input id="canUseWithoutWarrantyPrice" name="canUseWithoutWarrantyPrice" class="form-control"
-                                       type="number" step="0.001" th:value="${projectInfo.canUseWithoutWarrantyPrice}">
+                                       type="number" step="0.001" th:value="${projectInfo.canUseWithoutWarrantyPrice}" readonly>
                             </div>
                         </div>
                         <div class="form-group">

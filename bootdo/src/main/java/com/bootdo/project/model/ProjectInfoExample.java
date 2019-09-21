@@ -926,6 +926,216 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andProjectNoticePathIsNull() {
+            addCriterion("project_notice_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathIsNotNull() {
+            addCriterion("project_notice_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathEqualTo(String value) {
+            addCriterion("project_notice_path =", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathNotEqualTo(String value) {
+            addCriterion("project_notice_path <>", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathGreaterThan(String value) {
+            addCriterion("project_notice_path >", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathGreaterThanOrEqualTo(String value) {
+            addCriterion("project_notice_path >=", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathLessThan(String value) {
+            addCriterion("project_notice_path <", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathLessThanOrEqualTo(String value) {
+            addCriterion("project_notice_path <=", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathLike(String value) {
+            addCriterion("project_notice_path like", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathNotLike(String value) {
+            addCriterion("project_notice_path not like", value, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathIn(List<String> values) {
+            addCriterion("project_notice_path in", values, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathNotIn(List<String> values) {
+            addCriterion("project_notice_path not in", values, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathBetween(String value1, String value2) {
+            addCriterion("project_notice_path between", value1, value2, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticePathNotBetween(String value1, String value2) {
+            addCriterion("project_notice_path not between", value1, value2, "projectNoticePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgIsNull() {
+            addCriterion("project_notice_img is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgIsNotNull() {
+            addCriterion("project_notice_img is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgEqualTo(String value) {
+            addCriterion("project_notice_img =", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgNotEqualTo(String value) {
+            addCriterion("project_notice_img <>", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgGreaterThan(String value) {
+            addCriterion("project_notice_img >", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgGreaterThanOrEqualTo(String value) {
+            addCriterion("project_notice_img >=", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgLessThan(String value) {
+            addCriterion("project_notice_img <", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgLessThanOrEqualTo(String value) {
+            addCriterion("project_notice_img <=", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgLike(String value) {
+            addCriterion("project_notice_img like", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgNotLike(String value) {
+            addCriterion("project_notice_img not like", value, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgIn(List<String> values) {
+            addCriterion("project_notice_img in", values, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgNotIn(List<String> values) {
+            addCriterion("project_notice_img not in", values, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgBetween(String value1, String value2) {
+            addCriterion("project_notice_img between", value1, value2, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeImgNotBetween(String value1, String value2) {
+            addCriterion("project_notice_img not between", value1, value2, "projectNoticeImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileIsNull() {
+            addCriterion("project_notice_file is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileIsNotNull() {
+            addCriterion("project_notice_file is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileEqualTo(String value) {
+            addCriterion("project_notice_file =", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileNotEqualTo(String value) {
+            addCriterion("project_notice_file <>", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileGreaterThan(String value) {
+            addCriterion("project_notice_file >", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileGreaterThanOrEqualTo(String value) {
+            addCriterion("project_notice_file >=", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileLessThan(String value) {
+            addCriterion("project_notice_file <", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileLessThanOrEqualTo(String value) {
+            addCriterion("project_notice_file <=", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileLike(String value) {
+            addCriterion("project_notice_file like", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileNotLike(String value) {
+            addCriterion("project_notice_file not like", value, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileIn(List<String> values) {
+            addCriterion("project_notice_file in", values, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileNotIn(List<String> values) {
+            addCriterion("project_notice_file not in", values, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileBetween(String value1, String value2) {
+            addCriterion("project_notice_file between", value1, value2, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectNoticeFileNotBetween(String value1, String value2) {
+            addCriterion("project_notice_file not between", value1, value2, "projectNoticeFile");
+            return (Criteria) this;
+        }
+
         public Criteria andProjectNoticeTypeIsNull() {
             addCriterion("project_notice_type is null");
             return (Criteria) this;
@@ -4426,53 +4636,133 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateEqualTo(BigDecimal value) {
+        public Criteria andTenderServiceRateEqualTo(String value) {
             addCriterion("tender_service_rate =", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateNotEqualTo(BigDecimal value) {
+        public Criteria andTenderServiceRateNotEqualTo(String value) {
             addCriterion("tender_service_rate <>", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateGreaterThan(BigDecimal value) {
+        public Criteria andTenderServiceRateGreaterThan(String value) {
             addCriterion("tender_service_rate >", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andTenderServiceRateGreaterThanOrEqualTo(String value) {
             addCriterion("tender_service_rate >=", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateLessThan(BigDecimal value) {
+        public Criteria andTenderServiceRateLessThan(String value) {
             addCriterion("tender_service_rate <", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andTenderServiceRateLessThanOrEqualTo(String value) {
             addCriterion("tender_service_rate <=", value, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateIn(List<BigDecimal> values) {
+        public Criteria andTenderServiceRateLike(String value) {
+            addCriterion("tender_service_rate like", value, "tenderServiceRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderServiceRateNotLike(String value) {
+            addCriterion("tender_service_rate not like", value, "tenderServiceRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderServiceRateIn(List<String> values) {
             addCriterion("tender_service_rate in", values, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateNotIn(List<BigDecimal> values) {
+        public Criteria andTenderServiceRateNotIn(List<String> values) {
             addCriterion("tender_service_rate not in", values, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTenderServiceRateBetween(String value1, String value2) {
             addCriterion("tender_service_rate between", value1, value2, "tenderServiceRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderServiceRateNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTenderServiceRateNotBetween(String value1, String value2) {
             addCriterion("tender_service_rate not between", value1, value2, "tenderServiceRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastIsNull() {
+            addCriterion("tender_interest_rate_last is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastIsNotNull() {
+            addCriterion("tender_interest_rate_last is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastEqualTo(String value) {
+            addCriterion("tender_interest_rate_last =", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastNotEqualTo(String value) {
+            addCriterion("tender_interest_rate_last <>", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastGreaterThan(String value) {
+            addCriterion("tender_interest_rate_last >", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastGreaterThanOrEqualTo(String value) {
+            addCriterion("tender_interest_rate_last >=", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastLessThan(String value) {
+            addCriterion("tender_interest_rate_last <", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastLessThanOrEqualTo(String value) {
+            addCriterion("tender_interest_rate_last <=", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastLike(String value) {
+            addCriterion("tender_interest_rate_last like", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastNotLike(String value) {
+            addCriterion("tender_interest_rate_last not like", value, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastIn(List<String> values) {
+            addCriterion("tender_interest_rate_last in", values, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastNotIn(List<String> values) {
+            addCriterion("tender_interest_rate_last not in", values, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastBetween(String value1, String value2) {
+            addCriterion("tender_interest_rate_last between", value1, value2, "tenderInterestRateLast");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateLastNotBetween(String value1, String value2) {
+            addCriterion("tender_interest_rate_last not between", value1, value2, "tenderInterestRateLast");
             return (Criteria) this;
         }
 
@@ -4486,52 +4776,62 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateEqualTo(BigDecimal value) {
+        public Criteria andTenderInterestRateEqualTo(String value) {
             addCriterion("tender_interest_rate =", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateNotEqualTo(BigDecimal value) {
+        public Criteria andTenderInterestRateNotEqualTo(String value) {
             addCriterion("tender_interest_rate <>", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateGreaterThan(BigDecimal value) {
+        public Criteria andTenderInterestRateGreaterThan(String value) {
             addCriterion("tender_interest_rate >", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andTenderInterestRateGreaterThanOrEqualTo(String value) {
             addCriterion("tender_interest_rate >=", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateLessThan(BigDecimal value) {
+        public Criteria andTenderInterestRateLessThan(String value) {
             addCriterion("tender_interest_rate <", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andTenderInterestRateLessThanOrEqualTo(String value) {
             addCriterion("tender_interest_rate <=", value, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateIn(List<BigDecimal> values) {
+        public Criteria andTenderInterestRateLike(String value) {
+            addCriterion("tender_interest_rate like", value, "tenderInterestRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateNotLike(String value) {
+            addCriterion("tender_interest_rate not like", value, "tenderInterestRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenderInterestRateIn(List<String> values) {
             addCriterion("tender_interest_rate in", values, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateNotIn(List<BigDecimal> values) {
+        public Criteria andTenderInterestRateNotIn(List<String> values) {
             addCriterion("tender_interest_rate not in", values, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTenderInterestRateBetween(String value1, String value2) {
             addCriterion("tender_interest_rate between", value1, value2, "tenderInterestRate");
             return (Criteria) this;
         }
 
-        public Criteria andTenderInterestRateNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andTenderInterestRateNotBetween(String value1, String value2) {
             addCriterion("tender_interest_rate not between", value1, value2, "tenderInterestRate");
             return (Criteria) this;
         }
@@ -4606,52 +4906,62 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateEqualTo(BigDecimal value) {
+        public Criteria andIncomingRateEqualTo(String value) {
             addCriterion("incoming_rate =", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateNotEqualTo(BigDecimal value) {
+        public Criteria andIncomingRateNotEqualTo(String value) {
             addCriterion("incoming_rate <>", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateGreaterThan(BigDecimal value) {
+        public Criteria andIncomingRateGreaterThan(String value) {
             addCriterion("incoming_rate >", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andIncomingRateGreaterThanOrEqualTo(String value) {
             addCriterion("incoming_rate >=", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateLessThan(BigDecimal value) {
+        public Criteria andIncomingRateLessThan(String value) {
             addCriterion("incoming_rate <", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andIncomingRateLessThanOrEqualTo(String value) {
             addCriterion("incoming_rate <=", value, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateIn(List<BigDecimal> values) {
+        public Criteria andIncomingRateLike(String value) {
+            addCriterion("incoming_rate like", value, "incomingRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIncomingRateNotLike(String value) {
+            addCriterion("incoming_rate not like", value, "incomingRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIncomingRateIn(List<String> values) {
             addCriterion("incoming_rate in", values, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateNotIn(List<BigDecimal> values) {
+        public Criteria andIncomingRateNotIn(List<String> values) {
             addCriterion("incoming_rate not in", values, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andIncomingRateBetween(String value1, String value2) {
             addCriterion("incoming_rate between", value1, value2, "incomingRate");
             return (Criteria) this;
         }
 
-        public Criteria andIncomingRateNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andIncomingRateNotBetween(String value1, String value2) {
             addCriterion("incoming_rate not between", value1, value2, "incomingRate");
             return (Criteria) this;
         }
@@ -5296,52 +5606,62 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardEqualTo(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardEqualTo(String value) {
             addCriterion("warranty_price_standard =", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardNotEqualTo(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardNotEqualTo(String value) {
             addCriterion("warranty_price_standard <>", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardGreaterThan(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardGreaterThan(String value) {
             addCriterion("warranty_price_standard >", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardGreaterThanOrEqualTo(String value) {
             addCriterion("warranty_price_standard >=", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardLessThan(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardLessThan(String value) {
             addCriterion("warranty_price_standard <", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andWarrantyPriceStandardLessThanOrEqualTo(String value) {
             addCriterion("warranty_price_standard <=", value, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardIn(List<BigDecimal> values) {
+        public Criteria andWarrantyPriceStandardLike(String value) {
+            addCriterion("warranty_price_standard like", value, "warrantyPriceStandard");
+            return (Criteria) this;
+        }
+
+        public Criteria andWarrantyPriceStandardNotLike(String value) {
+            addCriterion("warranty_price_standard not like", value, "warrantyPriceStandard");
+            return (Criteria) this;
+        }
+
+        public Criteria andWarrantyPriceStandardIn(List<String> values) {
             addCriterion("warranty_price_standard in", values, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardNotIn(List<BigDecimal> values) {
+        public Criteria andWarrantyPriceStandardNotIn(List<String> values) {
             addCriterion("warranty_price_standard not in", values, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andWarrantyPriceStandardBetween(String value1, String value2) {
             addCriterion("warranty_price_standard between", value1, value2, "warrantyPriceStandard");
             return (Criteria) this;
         }
 
-        public Criteria andWarrantyPriceStandardNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andWarrantyPriceStandardNotBetween(String value1, String value2) {
             addCriterion("warranty_price_standard not between", value1, value2, "warrantyPriceStandard");
             return (Criteria) this;
         }

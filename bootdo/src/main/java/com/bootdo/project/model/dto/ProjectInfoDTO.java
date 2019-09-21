@@ -31,6 +31,9 @@ public class ProjectInfoDTO {
         this.projectParticipateInfo = projectInfoWithBLOBs.getProjectParticipateInfo();
         this.solutionFilePath = projectInfoWithBLOBs.getSolutionFilePath();
         this.projectBudget = projectInfoWithBLOBs.getProjectBudget();
+        this.projectNoticePath = projectInfoWithBLOBs.getProjectNoticePath();
+        this.projectNoticeImg = projectInfoWithBLOBs.getProjectNoticeImg();
+        this.projectNoticeFile = projectInfoWithBLOBs.getProjectNoticeFile();
         this.projectNoticeType = projectInfoWithBLOBs.getProjectNoticeType();
         this.regiDate = projectInfoWithBLOBs.getRegiDate();
         this.regiPlace = projectInfoWithBLOBs.getRegiPlace();
@@ -87,6 +90,7 @@ public class ProjectInfoDTO {
         this.tenderWinPrice= projectInfoWithBLOBs.getTenderWinPrice();
         this.tenderServiceRate= projectInfoWithBLOBs.getTenderServiceRate();
         this.tenderInterestRate= projectInfoWithBLOBs.getTenderInterestRate();
+        this.tenderInterestRateLast = projectInfoWithBLOBs.getTenderInterestRateLast();
         this.tenderProjectIntegrateCost= projectInfoWithBLOBs.getTenderProjectIntegrateCost();
         this.incomingRate= projectInfoWithBLOBs.getIncomingRate();
         this.incomingCost= projectInfoWithBLOBs.getIncomingCost();
@@ -177,6 +181,12 @@ public class ProjectInfoDTO {
     private BigDecimal projectBudget;
 
     private String projectCode;
+
+    private String projectNoticePath;
+
+    private String projectNoticeImg;
+
+    private String projectNoticeFile;
 
     private Boolean projectNoticeType;
 
@@ -286,13 +296,15 @@ public class ProjectInfoDTO {
 
     private BigDecimal tenderWinPrice;
 
-    private BigDecimal tenderServiceRate;
+    private String tenderServiceRate;
 
-    private BigDecimal tenderInterestRate;
+    private String tenderInterestRateLast;
+
+    private String tenderInterestRate;
 
     private BigDecimal tenderProjectIntegrateCost;
 
-    private BigDecimal incomingRate;
+    private String incomingRate;
 
     private BigDecimal incomingCost;
 
@@ -314,7 +326,7 @@ public class ProjectInfoDTO {
 
     private String tenderWarrantyPeriod;
 
-    private BigDecimal warrantyPriceStandard;
+    private String warrantyPriceStandard;
 
     private BigDecimal tenderWarrantyPrice;
 

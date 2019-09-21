@@ -8,10 +8,11 @@ $.validator.setDefaults({
     }
 });
 
-function calcTenderWinPrice(){
-    // 中标价（万元）
+function calcLogic(){
+    // 中标价
     var tenderWinPrice = document.getElementById("tenderWinPrice").value;
-    // 中标服务费标准, 中标服务费
+
+    // 计算 中标服务费
     var tenderServiceRate = document.getElementById("tenderServiceRate").value;
     var tenderServiceRateCost;
     if(tenderServiceRate != null && tenderServiceRate !== '' && tenderServiceRate !== undefined){
@@ -20,15 +21,75 @@ function calcTenderWinPrice(){
             document.getElementById("tenderServiceRateCost").value = parseFloat(tenderServiceRateCost).toFixed(3);
         }
     }
-    // 毛利标准, 毛利
+
+    // 计算 毛利
     var tenderInterestRate = document.getElementById("tenderInterestRate").value;
-    var tenderInterestRateCost;
+    var tenderInterestRateCost = null;
+
+    // 计算 项目协调费用（万元）
+    var tenderProjectIntegrateCost = null;
     if(tenderInterestRate != null && tenderInterestRate !== '' && tenderInterestRate !== undefined){
         if(tenderInterestRate.indexOf("%") !== -1){
             tenderInterestRateCost = parseFloat(tenderWinPrice) * (parseFloat(tenderInterestRate.replace("%",""))/100);
             document.getElementById("tenderInterestRateCost").value = parseFloat(tenderInterestRateCost).toFixed(3);
+            tenderProjectIntegrateCost = parseFloat(tenderWinPrice) * 0.1 * (parseFloat(tenderInterestRate.replace("%",""))/100);
+            document.getElementById("tenderProjectIntegrateCost").value = parseFloat(tenderProjectIntegrateCost).toFixed(3);
         }
     }
+
+    // 计算 提成（增量毛利）（元）
+    var incomingCost = null;
+
+    var incomingRate = document.getElementById("incomingRate").value;
+    var tenderInterestRateLast = document.getElementById("tenderInterestRateLast").value;
+    if((incomingRate != null && incomingRate !== '' && incomingRate !== undefined) &&
+        (tenderInterestRateLast != null && tenderInterestRateLast !== '' && tenderInterestRateLast !== undefined)){
+        if(tenderInterestRate.indexOf("%") !== -1 && tenderInterestRateLast.indexOf("%") !== -1 && incomingRate.indexOf("%") !== -1){
+            incomingCost = parseFloat(tenderWinPrice) * (parseFloat(tenderInterestRate.replace("%",""))/100
+                - parseFloat(tenderInterestRateLast.replace("%",""))/100) * (parseFloat(incomingRate.replace("%",""))/100);
+            document.getElementById("incomingCost").value = parseFloat(incomingCost).toFixed(3);
+        }
+    }
+
+    // 计算 项目协调总费用（元）
+    var projectIntegrateTotalCost = null;
+    if(tenderProjectIntegrateCost != null && incomingCost != null){
+        projectIntegrateTotalCost = parseFloat(tenderProjectIntegrateCost) + parseFloat(incomingCost);
+        document.getElementById("projectIntegrateTotalCost").value = parseFloat(projectIntegrateTotalCost).toFixed(3);
+    }
+
+    // 计算 事业部利润（万元）
+    var unitInterest = null;
+    if(tenderInterestRateCost != null && projectIntegrateTotalCost != null){
+        unitInterest = parseFloat(tenderInterestRateCost) - parseFloat(projectIntegrateTotalCost);
+        document.getElementById("unitInterest").value = parseFloat(unitInterest).toFixed(3);
+    }
+
+    // 计算 合作方可支配费用（万元）
+    var corCanUseCost = null;
+    var corTotalCost = document.getElementById("corTotalCost").value;
+    if(corTotalCost != null && corTotalCost !== '' && corTotalCost !== undefined){
+        corCanUseCost = parseFloat(tenderWinPrice) - parseFloat(corTotalCost);
+        document.getElementById("corCanUseCost").value = parseFloat(corCanUseCost).toFixed(3);
+    }
+
+    // 计算 经费（万元）
+    var tenderWarrantyPrice = null;
+    var warrantyPriceStandard = document.getElementById("warrantyPriceStandard").value;
+    if(warrantyPriceStandard != null && warrantyPriceStandard !== '' && warrantyPriceStandard !== undefined){
+        if(warrantyPriceStandard.indexOf("%") !== -1){
+            tenderWarrantyPrice = parseFloat(tenderWinPrice) * (parseFloat(warrantyPriceStandard.replace("%",""))/100);
+            document.getElementById("tenderWarrantyPrice").value = parseFloat(tenderWarrantyPrice).toFixed(3);
+        }
+    }
+
+    // 计算 合作方去除质保金后可支配费用
+    var canUseWithoutWarrantyPrice = null;
+    if(corCanUseCost != null && tenderWarrantyPrice != null){
+        canUseWithoutWarrantyPrice = parseFloat(corCanUseCost) - parseFloat(tenderWarrantyPrice);
+        document.getElementById("canUseWithoutWarrantyPrice").value = parseFloat(canUseWithoutWarrantyPrice).toFixed(3);
+    }
+
 }
 
 // 用户单位联系人
@@ -228,6 +289,26 @@ function addPurTenderAction() {
     addPurTenderCount++;
 }
 
+function clickSurveyHasSample(result){
+    document.getElementById("surveyHasSample").value = result;
+}
+
+function clickSurveyTestSample(result){
+    document.getElementById("surveyTestSample").value = result;
+}
+
+function clickStartTenderHasSample(result){
+    document.getElementById("startTenderHasSample").value = result;
+}
+
+function clickStartTenderTestSample(result){
+    document.getElementById("startTenderTestSample").value = result;
+}
+
+function clickTenderWin(result){
+    document.getElementById("tenderWin").value = result;
+}
+
 function save() {
     var signupForm = $('#signupForm').serializeArray();
     var data = {};
@@ -355,44 +436,15 @@ function save() {
     }
     data["contractInfoList"] = list;
 
-    if(data["surveyHasSample"] != null){
-        if(data["surveyHasSample"] = "0"){
-            data["surveyHasSample"] = false;
-        }else{
-            data["surveyHasSample"] = true;
-        }
-    }
-    if(data["surveyTestSample"] != null){
-        if(data["surveyTestSample"] = "0"){
-            data["surveyTestSample"] = false;
-        }else{
-            data["surveyTestSample"] = true;
-        }
-    }
+    data["surveyHasSample"] = document.getElementById("surveyHasSample").value;
 
-    if(data["startTenderHasSample"] != null){
-        if(data["startTenderHasSample"] = "0"){
-            data["startTenderHasSample"] = false;
-        }else{
-            data["startTenderHasSample"] = true;
-        }
-    }
+    data["surveyTestSample"] = document.getElementById("surveyTestSample").value;
 
-    if(data["startTenderTestSample"] != null){
-        if(data["startTenderTestSample"] = "0"){
-            data["startTenderTestSample"] = false;
-        }else{
-            data["startTenderTestSample"] = true;
-        }
-    }
+    data["startTenderHasSample"] = document.getElementById("startTenderHasSample").value;
 
-    if(data["tenderWin"] != null){
-        if(data["tenderWin"] = "0"){
-            data["tenderWin"] = false;
-        }else{
-            data["tenderWin"] = true;
-        }
-    }
+    data["startTenderTestSample"] = document.getElementById("startTenderTestSample").value;
+
+    data["tenderWin"] = document.getElementById("tenderWin").value;
 
     $.ajax({
         dataType: 'json',
@@ -406,7 +458,7 @@ function save() {
             parent.layer.alert("Connection error");
         },
         success : function(data) {
-            if (data.code == 0) {
+            if (data.code === 0) {
                 parent.layer.msg("操作成功");
                 parent.reLoad();
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引

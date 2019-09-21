@@ -74,8 +74,6 @@ public class ProjectInfoController {
     @ResponseBody
     R save(@RequestBody ProjectInfoVO projectInfoVO) {
 
-        System.out.println(JSON.toJSONString(projectInfoVO));
-
         if (projectInfoService.insert(projectInfoVO) > 0) {
             return R.ok();
         }

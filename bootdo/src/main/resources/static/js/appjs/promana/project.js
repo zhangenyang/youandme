@@ -88,7 +88,7 @@ var load = function () {
 }
 
 function reLoad() {
-    load();
+    $('#exampleTable').bootstrapTable('refresh');
 }
 
 function add() {

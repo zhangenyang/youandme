@@ -6,6 +6,9 @@
     .text-align-left {
         text-align: left !important;
     }
+    .border0{
+        border:0 !important;
+    }
 </style>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
@@ -106,14 +109,19 @@
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label text-align-left">方案：</label>
+                                    <label class="col-sm-3 control-label text-align-left">上传方案：</label>
                                     <div class="col-sm-8">
-                                        <button id="uploadPartInfo" name="uploadPartInfo" class="btn  btn-primary"
-                                                type="button" onclick="uploadPartInfo()">上传方案</button>
+                                        <button type="button" class="layui-btn " id="uploadPartInfo" hidden></button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label text-align-left"></label>
+                                    <div class="col-sm-8">
+                                        <input id="solutionFilePath" name="solutionFilePath" class="col-sm-3 form-control border0"
+                                               type="text"/>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">项目预算（万元）：</label>
@@ -915,5 +923,8 @@
 <div th:include="include::footer"></div>
 <script type="text/javascript" src="/js/appjs/promana/add.js">
 </script>
+<!-- 全局js -->
+<script src="/js/layui.js"></script>
+
 </body>
 </html>

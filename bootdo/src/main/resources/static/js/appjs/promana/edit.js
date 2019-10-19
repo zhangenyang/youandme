@@ -1,4 +1,139 @@
 $().ready(function() {
+    //
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#uploadPartInfo', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("solutionFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst1 = upload.render({
+            elem: '#uploadProjectNoticeImg', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'image',
+            done: function (r) {
+                document.getElementById("projectNoticeImg").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst2 = upload.render({
+            elem: '#uploadProjectNoticeFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("projectNoticeFile").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst3 = upload.render({
+            elem: '#uploadTenderFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("tenderFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst4 = upload.render({
+            elem: '#uploadConfigFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("configFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst5 = upload.render({
+            elem: '#uploadQualificationFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("qualificationFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst6 = upload.render({
+            elem: '#uploadBusinessTechnologyAssessmentFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("businessTechnologyAssessmentFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst7 = upload.render({
+            elem: '#uploadSubmitTenderFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("submitTenderFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst8 = upload.render({
+            elem: '#uploadProveFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("proveFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+        var uploadInst9 = upload.render({
+            elem: '#uploadPriceFile', //绑定元素
+            url: '/common/sysFile/upload', //上传接口
+            size: 1000,
+            accept: 'file',
+            done: function (r) {
+                document.getElementById("priceFilePath").value = r.fileName;
+                layer.msg(r.msg);
+            },
+            error: function (r) {
+                layer.msg(r.msg);
+            }
+        });
+    });
     validateRule();
     calcLogic();
 });
@@ -158,6 +293,28 @@ function uploadProjectNoticeFile(){
 
 }
 function uploadProjectNoticeImg(){
+
+}
+
+function uploadTenderFile(){
+
+}
+function uploadConfigFile(){
+
+}
+function uploadQualificationFile(){
+
+}
+function uploadBusinessTechnologyAssessmentFile(){
+
+}
+function uploadSubmitTenderFile(){
+
+}
+function uploadProveFile(){
+
+}
+function uploadPriceFile(){
 
 }
 

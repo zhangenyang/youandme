@@ -148,17 +148,37 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label text-align-left">图片：</label>
+                                    <label class="col-sm-3 control-label text-align-left">上传图片：</label>
                                     <div class="col-sm-8">
-                                        <button id="projectNoticeImg" name="projectNoticeImg" class="btn  btn-primary"
-                                                type="button" onclick="uploadProjectNoticeImg()">上传图片</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadProjectNoticeImg" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="projectNoticeImg" name="projectNoticeImg" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label text-align-left">文件：</label>
+                                    <label class="col-sm-3 control-label text-align-left">上传文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="projectNoticeFile" name="projectNoticeFile" class="btn  btn-primary"
-                                                type="button" onclick="uploadProjectNoticeFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadProjectNoticeFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="projectNoticeFile" name="projectNoticeFile" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -252,29 +272,70 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">招标文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="tenderFilePath" name="tenderFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadTenderFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="tenderFilePath" name="tenderFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">参数文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="configFilePath" name="configFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadConfigFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="configFilePath" name="configFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">资格审查文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="qualificationFilePath" name="qualificationFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadQualificationFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="qualificationFilePath" name="qualificationFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">商务技术评审表：</label>
                                     <div class="col-sm-8">
-                                        <button id="businessTechnologyAssessmentFilePath" name="businessTechnologyAssessmentFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadBusinessTechnologyAssessmentFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="businessTechnologyAssessmentFilePath" name="businessTechnologyAssessmentFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -495,22 +556,52 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">上传投标文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="submitTenderFilePath" name="submitTenderFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadSubmitTenderFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="submitTenderFilePath" name="submitTenderFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">资格证明文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="proveFilePath" name="proveFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadProveFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="proveFilePath" name="proveFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label text-align-left">价格文件：</label>
                                     <div class="col-sm-8">
-                                        <button id="priceFilePath" name="priceFilePath" class="btn  btn-primary"
-                                                type="button" onclick="uploadFile()">上传文件</button>
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <button type="button" class="layui-btn " id="uploadPriceFile" hidden></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label text-align-left"></label>
+                                            <div class="col-sm-8">
+                                                <input id="priceFilePath" name="priceFilePath" class="col-sm-3 form-control border0"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

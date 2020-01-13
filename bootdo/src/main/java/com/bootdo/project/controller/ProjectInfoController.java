@@ -36,7 +36,7 @@ public class ProjectInfoController {
     @Autowired
     private ProjectStatusService projectStatusService;
 
-    private String prefix = "/project";
+    private String prefix = "project";
 
     @GetMapping("")
     String Project(Model model) {
